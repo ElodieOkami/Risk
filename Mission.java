@@ -52,12 +52,12 @@ public class Mission {
 		
 		if (nbrJoueur == 4 || nbrJoueur == 5  ) // s'il y a 4 ou 5 joueurs --> missions 1 à 7
 		{
-			Mission mission7 = new Mission("Contrôler 24 territoires");
+			
 		}
 		
 		if (nbrJoueur == 6) // s'il y a 6 joueurs --> missions 1 à 8
 		{
-			Mission mission8 = new Mission("Contrôler 21 territoires");
+		
 		}
 		
 		else // s'il y a 1 ou 2 joueurs --> missions 1 et 2
