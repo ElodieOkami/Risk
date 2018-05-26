@@ -54,9 +54,7 @@ public class RiskIsep {
 				if (19 < clickX && clickX < 21) 
 				{
 					Joueur joueur1 = new Joueur( liste , "joueur1", Color.BLUE );
-					//int[] listeJoueur = {1};
 					System.out.println("un joueur");
-					//return listeJoueur;
 					return 1;
 				}
 				
@@ -64,9 +62,7 @@ public class RiskIsep {
 				{
 					Joueur joueur1 = new Joueur( liste , "joueur1", Color.BLUE);
 					Joueur joueur2 = new Joueur( liste , "joueur2", Color.RED);
-					//int[] listeJoueur = {1, 2};
 					System.out.println("deux joueur");
-					//return listeJoueur;
 					return 2;
 				}
 				
@@ -75,9 +71,7 @@ public class RiskIsep {
 					Joueur joueur1 = new Joueur( liste , "joueur1", Color.BLUE);
 					Joueur joueur2 = new Joueur( liste , "joueur2", Color.RED);
 					Joueur joueur3 = new Joueur( liste , "joueur3", Color.GREEN);
-					//int[] listeJoueur = {1, 2, 3};
 					System.out.println("trois joueur");
-					//return listeJoueur;
 					return 3;
 				}
 				
@@ -87,9 +81,7 @@ public class RiskIsep {
 					Joueur joueur2 = new Joueur( liste , "joueur2", Color.RED);
 					Joueur joueur3 = new Joueur( liste , "joueur3", Color.GREEN);
 					Joueur joueur4 = new Joueur( liste , "joueur4", Color.PINK);
-					//int[] listeJoueur = {1, 2, 3, 4};
 					System.out.println("quatre joueur");
-					//return listeJoueur;
 					return 4;
 				}
 				
@@ -100,9 +92,7 @@ public class RiskIsep {
 					Joueur joueur3 = new Joueur( liste , "joueur3", Color.GREEN);
 					Joueur joueur4 = new Joueur( liste , "joueur4", Color.PINK);
 					Joueur joueur5 = new Joueur( liste , "joueur5", Color.YELLOW);
-					//int[] listeJoueur = {1, 2, 3, 4, 5};
 					System.out.println("cinq joueur");
-					//return listeJoueur;
 					return 5;
 				}
 				
@@ -114,19 +104,14 @@ public class RiskIsep {
 					Joueur joueur4 = new Joueur( liste , "joueur4", Color.PINK);
 					Joueur joueur5 = new Joueur( liste , "joueur5", Color.YELLOW);
 					Joueur joueur6 = new Joueur( liste , "joueur6", Color.BLACK);
-					//int[] listeJoueur = {1, 2, 3, 4, 5,6};
 					System.out.println("six joueur");
-					//return listeJoueur;
 					return 6;
 				}
-				
-				
+		
 			}
 			
 		}
-		return 0;
-		
-		
+		return 0;	
 	}
 	
 	
