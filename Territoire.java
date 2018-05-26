@@ -1,16 +1,21 @@
 
 public class Territoire {
-	int numero;
-	int proprietaire;
+	int numero;			//Numéro dans la région
+	int proprietaire;	//Propriétaire de ce territoire
+	int id;		//id parmi les 42 du plateau
 	
-	//Constructeur
-	public Territoire(int numero) {
+	
+	//----------------------    Constructeur     ---------------------------//
+	
+	public Territoire(int numero, int id) {
 		super();
 		this.numero = numero;
+		this.id = id;
 	}
 
 	
-	//Getters et Setters
+	//----------------------    Getters et Setters     ---------------------------//
+	
 	public int getNumero() {
 		return numero;
 	}
@@ -23,8 +28,15 @@ public class Territoire {
 	public void setProprietaire(int proprietaire) {
 		this.proprietaire = proprietaire;
 	}
-	
-	public static void attributionTerritoire()
+	public int getId() {
+		return id;
+	}
+	public void setId(int id) {
+		this.id = id;
+	}
+
+
+	public static void attributionTerritoire(int idMax)
 	{
 		
 	}
