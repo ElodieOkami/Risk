@@ -34,12 +34,5 @@ public class Territoire {
 	public void setId(int id) {
 		this.id = id;
 	}
-
-
-	public static void attributionTerritoire(int idMax)
-	{
-		
-	}
-	
 	
 }
