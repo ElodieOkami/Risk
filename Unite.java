@@ -1,16 +1,13 @@
-
 public class Unite {
 	int cout;
-	int puissance;
+	int[] puissance;
 	int prioriteATT;
 	int prioriteDEF;
 	int mvtTour;
-	int token;
-	Joueur [] listeJoueur;
+	String token;
 	
 	//Constructeurs
-	public Unite(int cout, int puissance, int prioriteATT, int prioriteDEF, int mvtTour, int token,
-			Joueur[] listeJoueur) {
+	public Unite(int cout, int[] puissance, int prioriteATT, int prioriteDEF, int mvtTour, String token) {
 		super();
 		this.cout = cout;
 		this.puissance = puissance;
@@ -18,7 +15,6 @@ public class Unite {
 		this.prioriteDEF = prioriteDEF;
 		this.mvtTour = mvtTour;
 		this.token = token;
-		this.listeJoueur = listeJoueur;
 	}
 
 	//Getters et Setters
@@ -28,10 +24,10 @@ public class Unite {
 	public void setCout(int cout) {
 		this.cout = cout;
 	}
-	public int getPuissance() {
+	public int[] getPuissance() {
 		return puissance;
 	}
-	public void setPuissance(int puissance) {
+	public void setPuissance(int[] puissance) {
 		this.puissance = puissance;
 	}
 	public int getPrioriteATT() {
@@ -52,19 +48,55 @@ public class Unite {
 	public void setMvtTour(int mvtTour) {
 		this.mvtTour = mvtTour;
 	}
-	public int getToken() {
+	public String getToken() {
 		return token;
 	}
-	public void setToken(int token) {
+	public void setToken(String token) {
 		this.token = token;
 	}
-	public Joueur[] getListeJoueur() {
-		return listeJoueur;
+
+//Fonctions
+
+	public void repartitionUnite()
+	{
+		int nbrJoueur = RiskIsep.MenuJoueur(); // nombre de joueurs sur la partie actuelle
+		int[] listePuissanceSoldat = {1,2,3,4,5,6};
+		switch(nbrJoueur) //On gère les différents cas
+		{
+		case '1' :
+			
+			break;
+		case '2' :
+			for(int i = 0; i < 40; i++)
+			{
+				Joueur.listeUnite.add(new Soldat(1, listePuissanceSoldat, 2, 1, 2, "Soldat"));
+			}
+			break;
+		case '3' :
+			for(int i = 0; i < 35; i++)
+			{
+				Joueur.listeUnite.add(new Soldat(1, listePuissanceSoldat, 2, 1, 2, "Soldat"));
+			}
+			break;
+		case '4' :
+			for(int i = 0; i < 30; i++)
+			{
+				Joueur.listeUnite.add(new Soldat(1, listePuissanceSoldat, 2, 1, 2, "Soldat"));
+			}
+			break;
+		case '5' :
+			for(int i = 0; i < 25; i++)
+			{
+				Joueur.listeUnite.add(new Soldat(1, listePuissanceSoldat, 2, 1, 2, "Soldat"));
+			}
+			break;
+		case '6' :
+			for(int i = 0; i < 20; i++)
+			{
+				Joueur.listeUnite.add(new Soldat(1, listePuissanceSoldat, 2, 1, 2, "Soldat"));
+			}
+			break;
+		}
 	}
-	public void setListeJoueur(Joueur[] listeJoueur) {
-		this.listeJoueur = listeJoueur;
-	}
-	
-	
 	
 }
