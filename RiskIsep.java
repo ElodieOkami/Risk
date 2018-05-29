@@ -13,12 +13,16 @@ public class RiskIsep {
 		while (nbrJr == 0)
 		{
 			nbrJr = MenuJoueur();
+			
 		}
 		//System.out.println(nbrJr);
 	
 		//Potentielle fonction de choix de carte
+		
 		String cartePng = "plateauElder.png";
+		Mission.attributionMissions();
 		CreaRegTer(cartePng, nbrJr);
+		
 		
 	}
 	
@@ -38,7 +42,6 @@ public class RiskIsep {
 	{
 		Plateau.affichePlateau(cartePng);					//Affiche l'image du plateau de jeu
 		int idMax = Region.creationRegions(cartePng, nbrJr);			//Crée les Régions ainsi que les territoires
-		Region.attributionTerritoire(idMax, nbrJr);			//Attribue les territoires aléatoirement aux différents joueurs
 	}
 
 }
