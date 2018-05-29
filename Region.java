@@ -53,7 +53,7 @@ public class Region {
 		{
 			Joueur.add(i+1);													//Cette liste va de 1 au nombre de joueur
 		}
-		System.out.println(Joueur.get(nbrJr-1));
+		System.out.println("Nombre de joueurs: " + Joueur.get(nbrJr-1));
 		
 		if (cartePng == "plateauElder.png")		//Si on utilise la carte Skyrim
 		{
