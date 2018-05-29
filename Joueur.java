@@ -1,23 +1,29 @@
 import java.awt.Color;
 import java.awt.Dimension;
+import java.util.Random;
 
-import edu.princeton.cs.introcs.StdDraw;
+
 
 public class Joueur {
+	int idJoueur;
 	Unite [] listeUnite;
 	String pseudo;
 	Color couleur;
+	int idMission;
 	
-	// Constructeur
-	public Joueur(Unite[] listeUnite, String pseudo, Color couleur) {
+	//----------------------    Constructeur     ---------------------------//
+	
+	public Joueur(int idJoueur, Unite[] listeUnite, String pseudo, Color couleur,int idMission) {
 		super();
+		this.idJoueur = idJoueur;
 		this.listeUnite = listeUnite;
 		this.pseudo = pseudo;
 		this.couleur = couleur;
+		this.idMission = idMission;
 	}
 
 	
-	//Getters et Setters
+	//----------------------    Getters et Setters     ---------------------------//
 	public Unite[] getListeUnite() {
 		return listeUnite;
 	}
@@ -36,8 +42,32 @@ public class Joueur {
 	public void setCouleur(Color couleur) {
 		this.couleur = couleur;
 	}
+	public int getIdMission() {
+		return idMission;
+	}
+	public void setIdMission(int idMission) {
+		this.idMission = idMission;
+	}
+	public int getIdJoueur() {
+		return idJoueur;
+	}
+	public void setIdJoueur(int idJoueur) {
+		this.idJoueur = idJoueur;
+	}
 	
 	
+
+	//----------------------    Création des joueurs     ---------------------------//
+	static Unite[] liste = {};
+	static Joueur joueur1 = new Joueur(0, liste , "joueur1", Color.BLUE,0);
+	static Joueur joueur2 = new Joueur(0, liste , "joueur2", Color.RED,0);
+	static Joueur joueur3 = new Joueur(0, liste , "joueur3", Color.GREEN,0);
+	static Joueur joueur4 = new Joueur(0, liste , "joueur4", Color.PINK,0);
+	static Joueur joueur5 = new Joueur(0, liste , "joueur5", Color.YELLOW,0);
+	static Joueur joueur6 = new Joueur(0, liste , "joueur6", Color.BLACK,0);
+	
+	
+	//----------------------    Fonctions     ---------------------------//
 	public static int nombreJoueurs(double clickX, double clickY)
 	{
 		Dimension dimension = java.awt.Toolkit.getDefaultToolkit().getScreenSize();
@@ -50,63 +80,56 @@ public class Joueur {
 			{
 				if (width/3.9-15 < clickX && clickX < width/3.9+15) 
 				{
-					Joueur joueur1 = new Joueur( liste , "joueur1", Color.BLUE );
-					//System.out.println("un joueur");
+					joueur1.idJoueur = 1;
 					return 1;
 				}
 				
 				else if (width/2.8-15 < clickX && clickX < width/2.8+15) 
 				{
-					Joueur joueur1 = new Joueur( liste , "joueur1", Color.BLUE);
-					Joueur joueur2 = new Joueur( liste , "joueur2", Color.RED);
-					//System.out.println("deux joueur");
+					joueur1.idJoueur = 1;
+					joueur2.idJoueur = 2;
 					return 2;
 				}
 				
 				else if (width/2.2-15 < clickX && clickX < width/2.2+15)
 				{
-					Joueur joueur1 = new Joueur( liste , "joueur1", Color.BLUE);
-					Joueur joueur2 = new Joueur( liste , "joueur2", Color.RED);
-					Joueur joueur3 = new Joueur( liste , "joueur3", Color.GREEN);
-					//System.out.println("trois joueur");
+					joueur1.idJoueur = 1;
+					joueur2.idJoueur = 2;
+					joueur3.idJoueur = 3;
 					return 3;
 				}
 				
 				else if (width/1.8-15 < clickX && clickX < width/1.8+15)
 				{
-					Joueur joueur1 = new Joueur( liste , "joueur1", Color.BLUE);
-					Joueur joueur2 = new Joueur( liste , "joueur2", Color.RED);
-					Joueur joueur3 = new Joueur( liste , "joueur3", Color.GREEN);
-					Joueur joueur4 = new Joueur( liste , "joueur4", Color.PINK);
-					//System.out.println("quatre joueur");
+					joueur1.idJoueur = 1;
+					joueur2.idJoueur = 2;
+					joueur3.idJoueur = 3;
+					joueur4.idJoueur = 4;
 					return 4;
 				}
 				
 				else if (width/1.55-15 < clickX && clickX < width/1.55+15)
 				{
-					Joueur joueur1 = new Joueur( liste , "joueur1", Color.BLUE);
-					Joueur joueur2 = new Joueur( liste , "joueur2", Color.RED);
-					Joueur joueur3 = new Joueur( liste , "joueur3", Color.GREEN);
-					Joueur joueur4 = new Joueur( liste , "joueur4", Color.PINK);
-					Joueur joueur5 = new Joueur( liste , "joueur5", Color.YELLOW);
-					//System.out.println("cinq joueur");
+					joueur1.idJoueur = 1;
+					joueur2.idJoueur = 2;
+					joueur3.idJoueur = 3;
+					joueur4.idJoueur = 4;
+					joueur5.idJoueur = 5;
 					return 5;
 				}
 				
 				else if (width/1.35-15 < clickX && clickX < width/1.35+15)
 				{
-					Joueur joueur1 = new Joueur( liste , "joueur1", Color.BLUE);
-					Joueur joueur2 = new Joueur( liste , "joueur2", Color.RED);
-					Joueur joueur3 = new Joueur( liste , "joueur3", Color.GREEN);
-					Joueur joueur4 = new Joueur( liste , "joueur4", Color.PINK);
-					Joueur joueur5 = new Joueur( liste , "joueur5", Color.YELLOW);
-					Joueur joueur6 = new Joueur( liste , "joueur6", Color.BLACK);
-					//System.out.println("six joueur");
+					joueur1.idJoueur = 1;
+					joueur2.idJoueur = 2;
+					joueur3.idJoueur = 3;
+					joueur4.idJoueur = 4;
+					joueur5.idJoueur = 5;
+					joueur6.idJoueur = 6;
 					return 6;
 				}
-		
 			}
-			
-		return 0;	
+		return 0;
 	}
+	
 }
