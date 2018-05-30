@@ -22,7 +22,7 @@ public class Mission {
 
 	
 	//----------------------    Fonctions     ---------------------------//
-	public static void attributionMissions()
+	public static void attributionMissions(int nbrJr)
 	{
 		// Définition des différentes missions 
 		Mission mission1 = new Mission("Contrôler 3 régions et au moins 18 territoires",1);
@@ -30,11 +30,10 @@ public class Mission {
 		Mission mission3 = new Mission("Conquérir tous les territoires",3);
 		Mission mission4 = new Mission("Contrôler 30 territoires",4);
 		Mission mission5 = new Mission("Contrôler 18 territoires avec au moins 2 armées",5);
-		int nbrJoueur = RiskIsep.MenuJoueur(); // nombre de joueurs sur la partie actuelle 
-		if (nbrJoueur != 0)
+		if (nbrJr != 0)
 		{
 		Random x = new Random(); 
-		int xAlea = x.nextInt(nbrJoueur) + 1; // choix du numéro du joueur à détuire pour la mission 6
+		int xAlea = x.nextInt(nbrJr) + 1; // choix du numéro du joueur à détuire pour la mission 6
 		Mission mission6 = new Mission("Détruire le joueur" + xAlea,6);
 		}
 		Mission mission7 = new Mission("Contrôler 24 territoires",7);
@@ -42,7 +41,7 @@ public class Mission {
 		
 		
 		//Attribution des missions selon le nombre de joueurs 
-		if ( nbrJoueur == 1) // s'il y a 1 joueur on peut attribuer les missions 1 et 2 (une pour le joueur l'autre pour l'IA)
+		if ( nbrJr == 1) // s'il y a 1 joueur on peut attribuer les missions 1 et 2 (une pour le joueur l'autre pour l'IA)
 		{
 			Random j1 = new Random(); 
 			int j1Alea = j1.nextInt(2) + 1; // création d'un nombre aléatoire entre 1 et 2 
@@ -50,7 +49,7 @@ public class Mission {
 			System.out.println("Mission du joueur1: " + Joueur.joueur1.idMission);
 		}
 		
-		if (nbrJoueur == 2) // s'il y a 2 joueurs on peut attribuer les missions 1 2 3 et 4 
+		if (nbrJr == 2) // s'il y a 2 joueurs on peut attribuer les missions 1 2 3 et 4 
 		{
 			Random j1 = new Random(); 
 			int j1Alea = j1.nextInt(4) + 1; // création d'un nombre aléatoire entre 1 et 4 
@@ -62,7 +61,7 @@ public class Mission {
 			System.out.println("Mission du joueur2: " + Joueur.joueur2.idMission  );
 		}
 		
-		if (nbrJoueur == 3) // s'il y a 3 joueurs on peut attribuer les missions 1 2 3 4 5 et 6
+		if (nbrJr == 3) // s'il y a 3 joueurs on peut attribuer les missions 1 2 3 4 5 et 6
 		{
 			Random j1 = new Random(); 
 			int j1Alea = j1.nextInt(6) + 1;
@@ -78,7 +77,7 @@ public class Mission {
 			System.out.println("Mission du joueur3: " + Joueur.joueur3.idMission  );
 		}
 		
-		if (nbrJoueur == 4 | nbrJoueur == 5) // s'il y a 4 ou 5 joueurs on peut attribuer les missions 1 2 5 6 et 7
+		if (nbrJr == 4 | nbrJr == 5) // s'il y a 4 ou 5 joueurs on peut attribuer les missions 1 2 5 6 et 7
 		{
 			int[] tabl = {1, 2, 5, 6, 7};
 			
@@ -108,7 +107,7 @@ public class Mission {
 			System.out.println("Mission du joueur3: " + Joueur.joueur3.idMission  );
 			System.out.println("Mission du joueur4: " + Joueur.joueur4.idMission  );
 			
-			if(nbrJoueur == 5) // s'il y a 5 joueurs on peut attribuer les missions 1 2 5 6 et 7
+			if(nbrJr == 5) // s'il y a 5 joueurs on peut attribuer les missions 1 2 5 6 et 7
 			{
 				Random j5 = new Random() ;
 				int j5Alea = j5.nextInt(5);
@@ -119,7 +118,7 @@ public class Mission {
 			}
 		}
 		
-		if(nbrJoueur == 6) // s'il y a 6 joueurs on peut attribuer les missions 1 2 5 6 et 8
+		if(nbrJr == 6) // s'il y a 6 joueurs on peut attribuer les missions 1 2 5 6 et 8
 		{
 			int[] tabl = {1, 2, 5, 6, 8};
 			
