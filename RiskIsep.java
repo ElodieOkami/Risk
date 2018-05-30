@@ -22,6 +22,7 @@ public class RiskIsep {
 		String cartePng = "plateauElder.png";
 		Mission.attributionMissions(nbrJr);
 		CreaRegTer(cartePng, nbrJr);
+		Unite.repartitionUnite(nbrJr);
 		
 		
 	}

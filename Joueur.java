@@ -1,19 +1,20 @@
 import java.awt.Color;
 import java.awt.Dimension;
+import java.util.ArrayList;
 import java.util.Random;
 
 
 
 public class Joueur {
 	int idJoueur;
-	Unite [] listeUnite;
+	static ArrayList<Unite> listeUnite = new ArrayList <Unite>();
 	String pseudo;
 	Color couleur;
 	int idMission;
 	
 	//----------------------    Constructeur     ---------------------------//
 	
-	public Joueur(int idJoueur, Unite[] listeUnite, String pseudo, Color couleur,int idMission) {
+	public Joueur(int idJoueur, ArrayList<Unite> listeUnite, String pseudo, Color couleur,int idMission) {
 		super();
 		this.idJoueur = idJoueur;
 		this.listeUnite = listeUnite;
@@ -24,10 +25,10 @@ public class Joueur {
 
 	
 	//----------------------    Getters et Setters     ---------------------------//
-	public Unite[] getListeUnite() {
+	public ArrayList<Unite> getListeUnite() {
 		return listeUnite;
 	}
-	public void setListeUnite(Unite[] listeUnite) {
+	public void setListeUnite(ArrayList<Unite> listeUnite) {
 		this.listeUnite = listeUnite;
 	}
 	public String getPseudo() {
@@ -58,7 +59,7 @@ public class Joueur {
 	
 
 	//----------------------    Création des joueurs     ---------------------------//
-	static Unite[] liste = {};
+	static ArrayList<Unite> liste = new ArrayList();
 	static Joueur joueur1 = new Joueur(0, liste , "joueur1", Color.BLUE,0);
 	static Joueur joueur2 = new Joueur(0, liste , "joueur2", Color.RED,0);
 	static Joueur joueur3 = new Joueur(0, liste , "joueur3", Color.GREEN,0);
