@@ -20,7 +20,7 @@ public class RiskIsep {
 		//Potentielle fonction de choix de carte
 		
 		String cartePng = "plateauElder.png";
-		Mission.attributionMissions();
+		Mission.attributionMissions(nbrJr);
 		CreaRegTer(cartePng, nbrJr);
 		
 		
