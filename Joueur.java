@@ -7,7 +7,7 @@ import java.util.Random;
 
 public class Joueur {
 	int idJoueur;
-	static ArrayList<Unite> listeUnite;
+	static ArrayList<Unite> listeUnite = new ArrayList <Unite>();
 	String pseudo;
 	Color couleur;
 	int idMission;
