@@ -1,35 +1,39 @@
 import edu.princeton.cs.introcs.StdDraw;
-import java.awt.Color;
-import java.awt.Dimension;
-import java.awt.Font;
 
 
 public class RiskIsep {
 
 	public static void main(String[] args) {
 		int nbrJr = 0;
+		String cartePng = "nonselectionne";
 		
 		Plateau.CreaCanvas();
-		while (nbrJr == 0)
+		
+		while (nbrJr == 0) //Séléction du nombre de joueurs
 		{
 			nbrJr = MenuJoueur();
 			
 		}
-		//System.out.println(nbrJr);
-	
-		//Potentielle fonction de choix de carte
+
 		
-		String cartePng = "plateauElder.png";
+		while (cartePng == "nonselectionne")//Choix de la carte
+		{
+			cartePng = MenuCarte();
+		}
+		
 		Mission.attributionMissions(nbrJr);
 		CreaRegTer(cartePng, nbrJr);
 		Unite.repartitionUnite(nbrJr);
+		
+		
+		
 		
 		
 	}
 	
 	public static int MenuJoueur() 
 	{
-		Plateau.afficheMenu();
+		Plateau.afficheMenuJoueur();
 		if(StdDraw.mousePressed())
 		{
 			double clickX=StdDraw.mouseX();
@@ -39,10 +43,33 @@ public class RiskIsep {
 		return 0;
 	}
 	
+	public static String MenuCarte() 
+	{
+		Plateau.afficheMenuCarte();
+		String carte = "noMap.png";
+		if(StdDraw.mousePressed())
+		{
+			double clickX=StdDraw.mouseX();
+			double clickY=StdDraw.mouseY();
+			int indice = Plateau.choixCarte(clickX, clickY);
+			if(indice == 1)
+			{
+				carte = "plateauTerre.png";
+			}
+			else if(indice == 2)
+			{
+				carte = "plateauElder.png";
+			}
+		}
+		return carte;
+		
+	}
+	
 	public static void CreaRegTer(String cartePng, int nbrJr)
 	{
 		Plateau.affichePlateau(cartePng);					//Affiche l'image du plateau de jeu
 		int idMax = Region.creationRegions(cartePng, nbrJr);			//Crée les Régions ainsi que les territoires
 	}
+	
 
 }
