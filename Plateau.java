@@ -1,7 +1,14 @@
 import edu.princeton.cs.introcs.StdDraw;
 import java.awt.Font;
+import java.awt.image.BufferedImage;
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.IOException;
+import java.awt.Color;
 import java.awt.Dimension;
 import java.util.ArrayList;
+
+import javax.imageio.ImageIO;
 
 public class Plateau
 {
@@ -15,7 +22,7 @@ public class Plateau
 		StdDraw.setYscale(0, height);
 	}
 
-	public static void afficheMenu()	// Affiche le choix du nombre de joueurs en début de partie
+	public static void afficheMenuJoueur()	// Affiche le choix du nombre de joueurs en début de partie
 	{
 		Dimension dimension = java.awt.Toolkit.getDefaultToolkit().getScreenSize();
 		int height = (int)dimension.getHeight();
@@ -49,6 +56,54 @@ public class Plateau
 		StdDraw.clear();
 	}
 	
+	public static void afficheMenuCarte()
+	{
+		Dimension dimension = java.awt.Toolkit.getDefaultToolkit().getScreenSize();
+		int height = (int)dimension.getHeight();
+		int width  = (int)dimension.getWidth();
+		
+		StdDraw.setPenColor(50,100,255);				//Couleur du titre en bleu
+		Font font = new Font("Arial", Font.BOLD, 60);	//En gros en gras
+		StdDraw.setFont(font);
+		
+		StdDraw.text(width/2,height/1.1,"RiskIsep");
+		
+		StdDraw.setPenColor();							//Couleur en noir
+		font = new Font("Arial", Font.PLAIN, 40);		//En plus petit et pas en gras
+		StdDraw.setFont(font);
+				
+		StdDraw.text(width/2, height/1.3, "Choix de la carte :");
+		StdDraw.text(width/2.3, height/1.5, "Terre");
+		StdDraw.rectangle(width/2.3, height/1.5+5, 75, 30);
+		StdDraw.text(width/1.8, height/1.5, "Tamriel");
+		StdDraw.rectangle(width/1.8, height/1.5+5, 75, 30);
+		
+		StdDraw.show(50);
+		StdDraw.clear();	
+	}
+	
+	public static int choixCarte(double clickX, double clickY)
+	{
+		Dimension dimension = java.awt.Toolkit.getDefaultToolkit().getScreenSize();
+		int height = (int)dimension.getHeight();
+		int width  = (int)dimension.getWidth();
+		int indice = 0;
+		
+		if(height/1.5-30 < clickY && clickY < height/1.5+30) 
+		{
+			if (width/2.3-70 < clickX && clickX < width/2.3+70) 
+			{
+				indice = 1;
+			}
+			
+			else if (width/1.8-70 < clickX && clickX < width/1.8+70) 
+			{
+				indice = 2;
+			}
+		}
+		return indice;
+	}
+	
 	public static void affichePlateau(String cartePng)			//Affiche l'image du plateau de jeu
 	{
 		Dimension dimension = java.awt.Toolkit.getDefaultToolkit().getScreenSize();
@@ -63,4 +118,28 @@ public class Plateau
 		
 	}
 	
+	public void lectureClic(String cartePng) {
+	    try {
+	        BufferedImage image = ImageIO.read(new File(cartePng));    
+	        Color couleur;
+	        if(StdDraw.mousePressed())
+	        		{
+	        			int clickX=(int) StdDraw.mouseX();
+	        			int clickY=(int) StdDraw.mouseY();
+	        			couleur = new Color(image.getRGB(clickX, clickY));
+	        		}
+	            }
+	    catch (FileNotFoundException e) 
+	    {
+	        e.printStackTrace();
+	    } 
+	    catch (IOException e) 
+	    {
+	        e.printStackTrace();
+	    } 
+	    catch (Exception e) 
+	    {
+	        e.printStackTrace();
+	    }
+	}
 }
