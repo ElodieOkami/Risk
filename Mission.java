@@ -42,7 +42,12 @@ public class Mission {
 		
 		list.add(mission1);
 		list.add(mission2);
-	
+		
+		if (nbrJr ==1)
+		{
+			missionAlea(list, nbrJr);
+		}
+		
 		if (nbrJr == 2)
 		{
 			list.add(mission3);
