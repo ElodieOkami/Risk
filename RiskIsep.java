@@ -11,6 +11,7 @@ public class RiskIsep {
 		
 		Plateau.CreaCanvas();
 		
+		
 		while (nbrJr == 0) //Séléction du nombre de joueurs
 		{
 			nbrJr = MenuJoueur();
@@ -23,7 +24,6 @@ public class RiskIsep {
 			cartePng = MenuCarte();
 		}
 		
-		System.out.println("On sort bien");
 		Plateau.affichePlateau(cartePng);
 		Mission.attributionMissions(nbrJr);
 		CreaRegTer(cartePng, nbrJr);
@@ -39,7 +39,7 @@ public class RiskIsep {
 	public static int MenuJoueur() 
 	{
 		Plateau.afficheMenuJoueur();
-		if(StdDraw.mousePressed())
+		if(StdDraw.isMousePressed())
 		{
 			double clickX=StdDraw.mouseX();
 			double clickY=StdDraw.mouseY();		
@@ -51,7 +51,7 @@ public class RiskIsep {
 	public static String MenuCarte() 
 	{
 		Plateau.afficheMenuCarte();
-		if(StdDraw.mousePressed())
+		if(StdDraw.isMousePressed())
 		{
 			double clickX=StdDraw.mouseX();
 			double clickY=StdDraw.mouseY();
