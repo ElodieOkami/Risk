@@ -70,14 +70,24 @@ public class Region {
 			id = aldmeri.creaEtAttribTerritoires(id, nbrJr, Joueur, JrFull);
 			Region argonie = new Region("argonie", 10);
 			id = argonie.creaEtAttribTerritoires(id, nbrJr, Joueur, JrFull);
-			
-			return id;
 		}
 		
-		else
+		else if (cartePng == "plateauTerre.png")
 		{
-			return id;
+			Region northAmerica = new Region("northAmerica",9);
+			id = northAmerica.creaEtAttribTerritoires(id, nbrJr, Joueur, JrFull);
+			Region southAmerica = new Region("southAmerica",4);
+			id = southAmerica.creaEtAttribTerritoires(id, nbrJr, Joueur, JrFull);
+			Region Europe = new Region("Europe",7);
+			id = Europe.creaEtAttribTerritoires(id, nbrJr, Joueur, JrFull);
+			Region Africa = new Region("Africa",6);
+			id = Africa.creaEtAttribTerritoires(id, nbrJr, Joueur, JrFull);
+			Region Asia = new Region("Asia",12);
+			id = Asia.creaEtAttribTerritoires(id, nbrJr, Joueur, JrFull);
+			Region Australia = new Region("Australia",4);
+			id = Australia.creaEtAttribTerritoires(id, nbrJr, Joueur, JrFull);
 		}
+		return id;
 	}
 	
 	private void ajouterTerritoires(int numero, int id)			//Ajoute un territoire dans l'arryalist territoires
