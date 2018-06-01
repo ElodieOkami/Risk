@@ -1,4 +1,4 @@
-import edu.princeton.cs.introcs.StdDraw;
+port edu.princeton.cs.introcs.StdDraw;
 import java.awt.Font;
 import java.awt.image.BufferedImage;
 import java.io.File;
@@ -87,30 +87,36 @@ public class Plateau
 		Dimension dimension = java.awt.Toolkit.getDefaultToolkit().getScreenSize();
 		int height = (int)dimension.getHeight();
 		int width  = (int)dimension.getWidth();
-		int indice = 0;
+		System.out.println("height = "+ height + " width = " + width);
+		
 		
 		if(height/1.5-30 < clickY && clickY < height/1.5+30) 
 		{
-			if (width/2.3-70 < clickX && clickX < width/2.3+70) 
+			System.out.println("height ok");
+			if (width/2.3-30 < clickX && clickX < width/2.3+30) 
 			{
-				indice = 1;
+				System.out.println("width gauche ok");
+				return 1;
 			}
 			
-			else if (width/1.8-70 < clickX && clickX < width/1.8+70) 
+			else if (width/1.8-30 < clickX && clickX < width/1.8+30) 
 			{
-				indice = 2;
+				System.out.println("width droite ok");
+				return 2;
 			}
 		}
-		return indice;
+		return 0;
 	}
 	
 	public static void affichePlateau(String cartePng)			//Affiche l'image du plateau de jeu
 	{
+		StdDraw.clear();
 		Dimension dimension = java.awt.Toolkit.getDefaultToolkit().getScreenSize();
 		int height = (int)dimension.getHeight();
 		int width  = (int)dimension.getWidth();
 		
 		StdDraw.picture(width/2, height/2, cartePng);
+		StdDraw.show();
 	}
 	
 	public static void afficheUnite()
@@ -118,7 +124,30 @@ public class Plateau
 		
 	}
 	
-	public void lectureClic(String cartePng) {
+	public void lectureImage(String cartePng) {
+	    try {
+	        BufferedImage image = ImageIO.read(new File(cartePng));
+	         
+	        int largeurImage = image.getWidth();
+	        int hauteurImage = image.getHeight();
+	         
+	        Color couleur;
+	        for(int colonne = 0; colonne < largeurImage; colonne++){
+	            for(int ligne = 0; ligne < hauteurImage; ligne++){
+	                couleur = new Color(image.getRGB(colonne, ligne), false);
+	                // Traitement ici
+	            }
+	        }
+	    } catch (FileNotFoundException e) {
+	        e.printStackTrace();
+	    } catch (IOException e) {
+	        e.printStackTrace();
+	    } catch (Exception e) {
+	        e.printStackTrace();
+	    }
+	}
+	
+	public static void lectureClic(String cartePng) {
 	    try {
 	        BufferedImage image = ImageIO.read(new File(cartePng));    
 	        Color couleur;
@@ -127,6 +156,7 @@ public class Plateau
 	        			int clickX=(int) StdDraw.mouseX();
 	        			int clickY=(int) StdDraw.mouseY();
 	        			couleur = new Color(image.getRGB(clickX, clickY));
+	        			System.out.println(couleur);
 	        		}
 	            }
 	    catch (FileNotFoundException e) 
