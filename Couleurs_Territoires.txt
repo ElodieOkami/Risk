@@ -1,0 +1,49 @@
+Couleurs RGB de chaque territoire :)
+
+provincesImperiales1 : 255 197 218
+provincesImperiales2 : 212 181 192
+provincesImperiales3 : 198 134 157
+provincesImperiales4 : 161 121 135
+provincesImperiales5 : 224 116 154
+provincesImperiales6 : 169 89 117
+provincesImperiales7 : 154 48 85
+provincesImperiales8 : 207 49 104
+provincesImperiales9 : 125 6 48
+provincesImperiales10 : 66 23 38
+provincesImperiales11 : 106 44 66
+
+lenclume1 : 206 221 161
+lenclume2 : 168 185 117
+lenclume3 : 126 143 74
+lenclume4 : 153 160 131
+lenclume5 : 166 196 76
+
+cyrodiil1 : 236 175 175
+cyrodiil2 : 225 122 122
+cyrodiil3 : 184 61 61
+cyrodiil4 : 138 79 79
+cyrodiil5 : 87 0 0
+cyrodiil6 : 78 40 40
+cyrodiil7 : 144 0 0
+cyrodiil8 : 209 11 11
+
+archipelAutomne1 : 126 131 180
+archipelAutomne2 : 45 52 133
+archipelAutomne3 : 70 73 119
+
+aldmeri1 : 126 169 180
+aldmeri2 : 49 151 177
+aldmeri3 : 67 114 126
+aldmeri4 : 16 83 100
+aldmeri5 : 119 206 227
+
+argonie1 : 64 82 78
+argonie2 : 95 122 116
+argonie3 : 27 113 94
+argonie4 : 42 169 141
+argonie5 : 133 171 163
+argonie6 : 165 213 203
+argonie7 : 52 210 175
+argonie8 : 190 255 241
+argonie9 : 15 65 54
+argonie10 : 0 255 199
