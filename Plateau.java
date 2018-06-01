@@ -32,13 +32,13 @@ public class Plateau
 		Font font = new Font("Arial", Font.BOLD, 60);	//En gros en gras
 		StdDraw.setFont(font);
 		
-		StdDraw.text(width/2,height/1.1,"RiskIsep");
+		StdDraw.text(width/2,height/1.1,"Bienvenue dans RiskIsep");
 		
 		StdDraw.setPenColor();							//Couleur en noir
 		font = new Font("Arial", Font.PLAIN, 40);		//En plus petit et pas en gras
 		StdDraw.setFont(font);
 				
-		StdDraw.text(width/2, height/1.3, "Nombre de joueur :");
+		StdDraw.text(width/2, height/1.3, "Combien de joueurs êtes-vous ?");
 		StdDraw.text(width/3.9, height/1.5, "1");
 		StdDraw.circle(width/3.9, height/1.5+5, 20);
 		StdDraw.text(width/2.8, height/1.5, "2");
@@ -66,13 +66,13 @@ public class Plateau
 		Font font = new Font("Arial", Font.BOLD, 60);	//En gros en gras
 		StdDraw.setFont(font);
 		
-		StdDraw.text(width/2,height/1.1,"RiskIsep");
+		StdDraw.text(width/2,height/1.1,"Bienvenue dans RiskIsep");
 		
 		StdDraw.setPenColor();							//Couleur en noir
 		font = new Font("Arial", Font.PLAIN, 40);		//En plus petit et pas en gras
 		StdDraw.setFont(font);
 				
-		StdDraw.text(width/2, height/1.3, "Choix de la carte :");
+		StdDraw.text(width/2, height/1.3, "Sur quelle carte souhaitez-vous jouer ?");
 		StdDraw.text(width/2.3, height/1.5, "Terre");
 		StdDraw.rectangle(width/2.3, height/1.5+5, 75, 30);
 		StdDraw.text(width/1.8, height/1.5, "Tamriel");
@@ -124,34 +124,12 @@ public class Plateau
 		
 	}
 	
-	public void lectureImage(String cartePng) {
-	    try {
-	        BufferedImage image = ImageIO.read(new File(cartePng));
-	         
-	        int largeurImage = image.getWidth();
-	        int hauteurImage = image.getHeight();
-	         
-	        Color couleur;
-	        for(int colonne = 0; colonne < largeurImage; colonne++){
-	            for(int ligne = 0; ligne < hauteurImage; ligne++){
-	                couleur = new Color(image.getRGB(colonne, ligne), false);
-	                // Traitement ici
-	            }
-	        }
-	    } catch (FileNotFoundException e) {
-	        e.printStackTrace();
-	    } catch (IOException e) {
-	        e.printStackTrace();
-	    } catch (Exception e) {
-	        e.printStackTrace();
-	    }
-	}
 	
 	public static void lectureClic(String cartePng) {
 	    try {
 	        BufferedImage image = ImageIO.read(new File(cartePng));    
 	        Color couleur;
-	        if(StdDraw.mousePressed())
+	        if(StdDraw.isMousePressed())
 	        		{
 	        			int clickX=(int) StdDraw.mouseX();
 	        			int clickY=(int) StdDraw.mouseY();
