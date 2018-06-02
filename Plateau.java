@@ -1,14 +1,8 @@
 import edu.princeton.cs.introcs.StdDraw;
 import java.awt.Font;
-import java.awt.image.BufferedImage;
-import java.io.File;
-import java.io.FileNotFoundException;
-import java.io.IOException;
-import java.awt.Color;
 import java.awt.Dimension;
-import java.util.ArrayList;
 
-import javax.imageio.ImageIO;
+//Class servant uniquement à afficher des choses
 
 public class Plateau
 {
@@ -82,31 +76,6 @@ public class Plateau
 		StdDraw.clear();	
 	}
 	
-	public static int choixCarte(double clickX, double clickY)
-	{
-		Dimension dimension = java.awt.Toolkit.getDefaultToolkit().getScreenSize();
-		int height = (int)dimension.getHeight();
-		int width  = (int)dimension.getWidth();
-		System.out.println("height = "+ height + " width = " + width);
-		
-		
-		if(height/1.5-30 < clickY && clickY < height/1.5+30) 
-		{
-			System.out.println("height ok");
-			if (width/2.3-30 < clickX && clickX < width/2.3+30) 
-			{
-				System.out.println("width gauche ok");
-				return 1;
-			}
-			
-			else if (width/1.8-30 < clickX && clickX < width/1.8+30) 
-			{
-				System.out.println("width droite ok");
-				return 2;
-			}
-		}
-		return 0;
-	}
 	
 	public static void affichePlateau(String cartePng)			//Affiche l'image du plateau de jeu
 	{
@@ -124,30 +93,4 @@ public class Plateau
 		
 	}
 	
-	
-	public static void lectureClic(String cartePng) {
-	    try {
-	        BufferedImage image = ImageIO.read(new File(cartePng));    
-	        Color couleur;
-	        if(StdDraw.isMousePressed())
-	        		{
-	        			int clickX=(int) StdDraw.mouseX();
-	        			int clickY=(int) StdDraw.mouseY();
-	        			couleur = new Color(image.getRGB(clickX, clickY));
-	        			System.out.println(couleur);
-	        		}
-	            }
-	    catch (FileNotFoundException e) 
-	    {
-	        e.printStackTrace();
-	    } 
-	    catch (IOException e) 
-	    {
-	        e.printStackTrace();
-	    } 
-	    catch (Exception e) 
-	    {
-	        e.printStackTrace();
-	    }
-	}
 }
