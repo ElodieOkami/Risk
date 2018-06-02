@@ -24,6 +24,7 @@ public class Initialisation {
 	//Etape 1 : Attribution des missions
 	public static void attributionMissions(int nbrJr)
 	{
+		//Définition du contenu des missions
 		String mission1 = "Contôler 3 régions et au moins 18 territoires";
 		String mission2 = "Contrôler la plus grosse région + 1 autre région";
 		String mission3 = "Conquérir tous les territoires";
@@ -34,10 +35,11 @@ public class Initialisation {
 		String mission8 = "contrôler 21 territoires";
 		List<String> list = new ArrayList<String>();
 		
-		
+		//On ajoute dans la liste les missions 1 et 2 qui sont disponible quelque soit le nombre de joueurs
 		list.add(mission1);
 		list.add(mission2);
 		
+		//On traite les différents cas selon le nombre de joueurs sur la partie
 		if (nbrJr ==1)
 		{
 			missionAlea(list, nbrJr);
@@ -83,20 +85,21 @@ public class Initialisation {
 			missionAlea(list, nbrJr);	
 		}
 	}
-			
+	
+	//Fonction permettant d'attribuer aléatoirement la mission selon la liste des missions disponibles et le nombre de joueurs
 	public static void missionAlea (List<String> list, int nbrJr)
 	{
-		int l = list.size();
-		for (int i=1; i<= nbrJr; i++) 
+		int l = list.size(); //Nombre de missions disponibles
+		for (int i=1; i<= nbrJr; i++) //Tant que tous les joueurs non pas eu leur mission
 		{
 			Random x = new Random();
 			int xAlea = x.nextInt(l - 1) + 1;
-			String mission = list.get(xAlea);;
-			if (mission == "Détruire le joueur") 
+			String mission = list.get(xAlea);
+			if (mission == "Détruire le joueur") // Si la mission est "détruire le joueur" on doit choisir le numéro du joueur à détruir
 			{
 				Random r = new Random();
 				int j = r.nextInt(nbrJr - 2) + 1;
-				while (j==i) 
+				while (j==i)  //Cela ne peut pas être le joueur lui-même
 				{
 					r = new Random();
 					j = r.nextInt(nbrJr - 2) + 1;
