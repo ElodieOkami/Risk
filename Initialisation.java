@@ -24,17 +24,16 @@ public class Initialisation {
 	//Etape 1 : Attribution des missions
 	public static void attributionMissions(int nbrJr)
 	{
-		Random x = new Random(); 
-		int xAlea = x.nextInt(nbrJr) + 1;
 		String mission1 = "Contôler 3 régions et au moins 18 territoires";
 		String mission2 = "Contrôler la plus grosse région + 1 autre région";
 		String mission3 = "Conquérir tous les territoires";
 		String mission4 = "Contrôler 30 territoires";
 		String mission5 = "Contrôler 18 territoires avec au moins 2 armées";
-		String mission6 = "Détruire le joueur" + xAlea;
+		String mission6 = "Détruire le joueur";
 		String mission7 = "Contrôler 24 territoires";
 		String mission8 = "contrôler 21 territoires";
 		List<String> list = new ArrayList<String>();
+		
 		
 		list.add(mission1);
 		list.add(mission2);
@@ -91,9 +90,21 @@ public class Initialisation {
 		for (int i=1; i<= nbrJr; i++) 
 		{
 			Random x = new Random();
-			int xAlea = 1 + x.nextInt(l - 1);
+			int xAlea = x.nextInt(l - 1) + 1;
 			String mission = list.get(xAlea);;
+			if (mission == "Détruire le joueur") 
+			{
+				Random r = new Random();
+				int j = r.nextInt(nbrJr - 2) + 1;
+				while (j==i) 
+				{
+					r = new Random();
+					j = r.nextInt(nbrJr - 2) + 1;
+				}
+				mission = "Détruire le joueur "+j;
+			}
 			System.out.println("Mission joueur "+i+" : "+mission);
+			
 		}
 	}
 	
