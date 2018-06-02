@@ -1,5 +1,6 @@
 import edu.princeton.cs.introcs.StdDraw;
 import java.awt.Font;
+import java.awt.Color;
 import java.awt.Dimension;
 
 //Class servant uniquement à afficher des choses
@@ -18,21 +19,26 @@ public class Plateau
 
 	public static void afficheMenuJoueur()	// Affiche le choix du nombre de joueurs en début de partie
 	{
+		affichePlateau("plateauMenu.png");
 		Dimension dimension = java.awt.Toolkit.getDefaultToolkit().getScreenSize();
 		int height = (int)dimension.getHeight();
 		int width  = (int)dimension.getWidth();
 		
-		StdDraw.setPenColor(50,100,255);				//Couleur du titre en bleu
-		Font font = new Font("Arial", Font.BOLD, 60);	//En gros en gras
+		StdDraw.setPenColor(Color.red);				//Couleur du titre en rouge
+		Font font = new Font("Papyrus", Font.BOLD, 60);	//En gros en gras
 		StdDraw.setFont(font);
 		
 		StdDraw.text(width/2,height/1.1,"Bienvenue dans RiskIsep");
 		
 		StdDraw.setPenColor();							//Couleur en noir
-		font = new Font("Arial", Font.PLAIN, 40);		//En plus petit et pas en gras
+		font = new Font("Papyrus", Font.PLAIN, 40);		//En plus petit et pas en gras
 		StdDraw.setFont(font);
-				
+		
 		StdDraw.text(width/2, height/1.3, "Combien de joueurs êtes-vous ?");
+
+		font = new Font("Times new roman", Font.PLAIN, 40);
+		StdDraw.setFont(font);
+		
 		StdDraw.text(width/3.9, height/1.5, "1");
 		StdDraw.circle(width/3.9, height/1.5+5, 20);
 		StdDraw.text(width/2.8, height/1.5, "2");
@@ -52,21 +58,25 @@ public class Plateau
 	
 	public static void afficheMenuCarte()
 	{
+		affichePlateau("plateauMenu.png");
 		Dimension dimension = java.awt.Toolkit.getDefaultToolkit().getScreenSize();
 		int height = (int)dimension.getHeight();
 		int width  = (int)dimension.getWidth();
 		
-		StdDraw.setPenColor(50,100,255);				//Couleur du titre en bleu
-		Font font = new Font("Arial", Font.BOLD, 60);	//En gros en gras
+		StdDraw.setPenColor(Color.red);				//Couleur du titre en rouge
+		Font font = new Font("Papyrus", Font.BOLD, 60);	//En gros en gras
 		StdDraw.setFont(font);
 		
 		StdDraw.text(width/2,height/1.1,"Bienvenue dans RiskIsep");
 		
 		StdDraw.setPenColor();							//Couleur en noir
-		font = new Font("Arial", Font.PLAIN, 40);		//En plus petit et pas en gras
+		font = new Font("Papyrus", Font.PLAIN, 40);		//En plus petit et pas en gras
 		StdDraw.setFont(font);
 				
 		StdDraw.text(width/2, height/1.3, "Sur quelle carte souhaitez-vous jouer ?");
+		
+		font = new Font("Times new roman", Font.PLAIN, 40);
+		StdDraw.setFont(font);
 		StdDraw.text(width/2.3, height/1.5, "Terre");
 		StdDraw.rectangle(width/2.3, height/1.5+5, 75, 30);
 		StdDraw.text(width/1.8, height/1.5, "Tamriel");
