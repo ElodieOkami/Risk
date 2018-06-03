@@ -15,13 +15,13 @@ public class Territoire {
 	
 	//----------------------    Getters et Setters     ---------------------------//
 	
-	public int getNumero() {
+	public static int getNumero() {
 		return numero;
 	}
 	public void setNumero(int numero) {
 		Territoire.numero = numero;
 	}
-	public int getProprietaire() {
+	public static int getProprietaire() {
 		return proprietaire;
 	}
 	public void setProprietaire(int proprietaire) {
