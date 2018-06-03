@@ -38,6 +38,14 @@ public class Region {
 		
 	
 	
+	public static void CreaRegTer(String cartePng, int nbrJr)
+	{
+		Plateau.affichePlateau(cartePng);					//Affiche l'image du plateau de jeu
+		int idTerritoire=0;
+		creationRegions(cartePng, nbrJr, idTerritoire);			//Crée les Régions ainsi que les territoires
+	}
+	
+	
 	public static int creationRegions(String cartePng, int nbrJr, int idTerritoire)			//Crée les Régions ainsi que les territoires
 	{
 		
@@ -58,46 +66,47 @@ public class Region {
 		{
 			
 			Region provincesImperiales = new Region("provincesImperiales", 11);			//On créé la région a l'aide du constructeur
-			provincesImperiales.creaEtAttribTerritoires(provincesImperiales, idTerritoire, nbrJr, Joueur, JrFull);	//On créé chaque territoire des régions et on les répartis aléatoirement parmi les joueurs.
-			idTerritoire += provincesImperiales.getTaille();
+			provincesImperiales.creaEtAttribTerritoires(idTerritoire, nbrJr, Joueur, JrFull);	//On créé chaque territoire des régions et on les répartis aléatoirement parmi les joueurs.
+			idTerritoire += provincesImperiales.getTaille()-1;
 			Region lenclume = new Region("lenclume", 5);
-			lenclume.creaEtAttribTerritoires(lenclume, idTerritoire, nbrJr, Joueur, JrFull);
+			lenclume.creaEtAttribTerritoires(idTerritoire, nbrJr, Joueur, JrFull);
 			idTerritoire += lenclume.getTaille();
 			Region cyrodiil = new Region("cyrodiil", 8);
-			cyrodiil.creaEtAttribTerritoires(cyrodiil, idTerritoire, nbrJr, Joueur, JrFull);
+			cyrodiil.creaEtAttribTerritoires(idTerritoire, nbrJr, Joueur, JrFull);
 			idTerritoire += cyrodiil.getTaille();
 			Region archipelAutomne = new Region("archipelAutomne", 3);
-			archipelAutomne.creaEtAttribTerritoires(archipelAutomne, idTerritoire, nbrJr, Joueur, JrFull);
+			archipelAutomne.creaEtAttribTerritoires(idTerritoire, nbrJr, Joueur, JrFull);
 			idTerritoire += archipelAutomne.getTaille();
 			Region aldmeri = new Region("aldmeri", 5);
-			aldmeri.creaEtAttribTerritoires(aldmeri, idTerritoire, nbrJr, Joueur, JrFull);
+			aldmeri.creaEtAttribTerritoires(idTerritoire, nbrJr, Joueur, JrFull);
 			idTerritoire += aldmeri.getTaille();
 			Region argonie = new Region("argonie", 10);
-			argonie.creaEtAttribTerritoires(argonie, idTerritoire, nbrJr, Joueur, JrFull);
+			argonie.creaEtAttribTerritoires(idTerritoire, nbrJr, Joueur, JrFull);
 			idTerritoire += argonie.getTaille();
-			
+			System.out.println(idTerritoire);
 		}
 		
 		else if (cartePng == "plateauTerre.png")
 		{
 			Region northAmerica = new Region("northAmerica",9);
-			northAmerica.creaEtAttribTerritoires(northAmerica, idTerritoire, nbrJr, Joueur, JrFull);
+			northAmerica.creaEtAttribTerritoires(idTerritoire, nbrJr, Joueur, JrFull);
 			idTerritoire += northAmerica.getTaille();
 			Region southAmerica = new Region("southAmerica",4);
-			southAmerica.creaEtAttribTerritoires(southAmerica, idTerritoire, nbrJr, Joueur, JrFull);
+			southAmerica.creaEtAttribTerritoires(idTerritoire, nbrJr, Joueur, JrFull);
 			idTerritoire += southAmerica.getTaille();
 			Region europe = new Region("europe",7);
-			europe.creaEtAttribTerritoires(europe, idTerritoire, nbrJr, Joueur, JrFull);
+			europe.creaEtAttribTerritoires(idTerritoire, nbrJr, Joueur, JrFull);
 			idTerritoire += europe.getTaille();
 			Region africa = new Region("africa",6);
-			africa.creaEtAttribTerritoires(africa, idTerritoire, nbrJr, Joueur, JrFull);
+			africa.creaEtAttribTerritoires(idTerritoire, nbrJr, Joueur, JrFull);
 			idTerritoire += africa.getTaille();
 			Region asia = new Region("asia",12);
-			asia.creaEtAttribTerritoires(asia, idTerritoire, nbrJr, Joueur, JrFull);
+			asia.creaEtAttribTerritoires(idTerritoire, nbrJr, Joueur, JrFull);
 			idTerritoire += asia.getTaille();
 			Region australia = new Region("australia",4);
-			australia.creaEtAttribTerritoires(australia, idTerritoire, nbrJr, Joueur, JrFull);
+			australia.creaEtAttribTerritoires(idTerritoire, nbrJr, Joueur, JrFull);
 			idTerritoire += australia.getTaille();
+			
 		}
 		return idTerritoire;
 	}
@@ -109,21 +118,21 @@ public class Region {
 	}
 	
 	
-		public int creaEtAttribTerritoires(Region region, int id, int nbrJr, ArrayList <Integer> Joueur, ArrayList <Integer> JrFull)		//Création des territoires de chaque région et répartion aléatoire parmi les joueurs
+		private void creaEtAttribTerritoires(int idTerritoire, int nbrJr, ArrayList <Integer> Joueur, ArrayList <Integer> JrFull)		//Création des territoires de chaque région et répartion aléatoire parmi les joueurs
 		{
 			int terParJr=(int)(42/nbrJr);		//Nombre de territoire arrondi que se verra attribué chaque joueur
 			
 			
 			
-			for (int i=1; i<region.getTaille()+1; i++)
+			for (int i=1; i<this.getTaille()+1; i++)
 			{
-				this.ajouterTerritoires(i, id);		//On ajoute le territoire dans l'arraylist territoires de cette région
-				id++;							//Le prochain territoire possède l'id suivant
+				this.ajouterTerritoires(i, idTerritoire);		//On ajoute le territoire dans l'arraylist territoires de cette région
+				idTerritoire++;							//Le prochain territoire possède l'id suivant
 				
 				int j = (int)(Math.random()*(nbrJr-(nbrJr-Joueur.size()))+1);	//Nombre aléatoire entre 1 et le nbr de joueur pas encore full	
 				this.listeTerritoires.get(i-1).setProprietaire(Joueur.get(j-1));		//On attribue le territoire à un joueur
 				
-				//System.out.println(Region.getNom()+Territoire.getNumero() + " Id : " +Region.listeTerritoires.get(i-1).getId() + " et Propri : " +Territoire.getProprietaire());
+				//System.out.println(this.getNom()+Territoire.getNumero() + " Id : " +this.listeTerritoires.get(i-1).getId() + " et Propri : " +this.listeTerritoires.get(i-1).getProprietaire());
 				
 				JrFull.set(j-1, (1+JrFull.get(j-1)));	//On augmente la quantité de territoire que possède le joueur
 				if (JrFull.get(j-1)==terParJr)			//Si le joueur possède le nombre max de territoires
@@ -140,18 +149,13 @@ public class Region {
 						}
 					}
 				}
-				//System.out.println(Joueur.get(j-1));
+				
 			}
-			return id;
+			
 			
 		}
 		
-		public static void CreaRegTer(String cartePng, int nbrJr)
-		{
-			Plateau.affichePlateau(cartePng);					//Affiche l'image du plateau de jeu
-			int idTerritoire=0;
-			int idMax = creationRegions(cartePng, nbrJr, idTerritoire);			//Crée les Régions ainsi que les territoires
-		}
+		
 	
 	
 	
