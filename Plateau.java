@@ -94,7 +94,6 @@ public class Plateau
 		StdDraw.circle(width/1.35, height/1.5+5, 20);
 				
 		StdDraw.show(1);
-		StdDraw.clear();
 	}
 	
 	public static void afficheMenuCarte()
@@ -119,7 +118,7 @@ public class Plateau
 		StdDraw.text(width/1.8, height/1.5, "Tamriel");
 		StdDraw.rectangle(width/1.8, height/1.5+5, width/25, 30);
 		
-		StdDraw.show(1);
+		StdDraw.show();
 		StdDraw.clear();	
 	}
 
@@ -150,8 +149,8 @@ public class Plateau
 	        	scaleX = (double)width;
 	        }		 
 		
-	        StdDraw.picture(width/2, height/2, cartePng); //Rajouter ",scaleX ,scaleY" dans la parenthèse pour avoir du rescale mais perturbe les clics
-	        StdDraw.show(1);
+	        StdDraw.picture(width/2, height/2, cartePng, scaleX, scaleY); //Rajouter ",scaleX ,scaleY" dans la parenthèse pour avoir du rescale mais perturbe les clics
+	        StdDraw.show();
 	        
 			}
 	        catch (FileNotFoundException e) 
