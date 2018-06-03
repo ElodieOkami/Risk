@@ -7,13 +7,13 @@ import java.io.IOException;
 import javax.imageio.ImageIO;
 import edu.princeton.cs.introcs.StdDraw;
 
-//Class permettant de récupérer et analyser des informations selon la position des clics
+//Class permettant de rÃ©cupÃ©rer et analyser des informations selon la position des clics
 
 public class Interface {
 
-	static final int clicTropBas = 20; //A cause de la barre en haut de la fenêtre, tous les clics sont trop bas
+	static final int clicTropBas = 20; //A cause de la barre en haut de la fenÃªtre, tous les clics sont trop bas
 	
-	//Interface 1er Menu (séléction du nombre de joueurs)
+	//Interface 1er Menu (sÃ©lÃ©ction du nombre de joueurs)
 	public static int MenuJoueur() 
 	{
 		Plateau.afficheMenuJoueur();
@@ -74,7 +74,7 @@ public class Interface {
 	}
 	
 	
-	//Interface 2ème Menu (séléction de la carte)
+	//Interface 2Ã¨me Menu (sÃ©lÃ©ction de la carte)
 	public static String MenuCarte() 
 	{
 		Plateau.afficheMenuCarte();
@@ -135,15 +135,12 @@ public class Interface {
 	        			clickX = clickX-((width-image.getWidth())/2);
 	        			clickY = clickY-((height-image.getHeight())/2);
 	        			
-	        			System.out.println(clickX);
-	        			System.out.println(image.getHeight()-clickY);
 	        			
 	        			couleur = new Color(image.getRGB(clickX, image.getHeight()-clickY));
 	        			
 	        			System.out.println("R = " + couleur.getRed());
 	        			System.out.println("G = " + couleur.getGreen());
 	        			System.out.println("B = " + couleur.getBlue());
-	        			System.out.println(couleur.getRGB());
 	        			correspondClic(cartePng, couleur);
 	        		}
 	            }
@@ -161,18 +158,84 @@ public class Interface {
 	    }
 	}
 	
-	public static void correspondClic(String cartePng, Color couleur)
+	public static int correspondClic(String cartePng, Color couleur)
 	{
 		if (cartePng == "plateauElder.png")
 		{
+			int tabCoul[][] = creaTableauCouleurs(cartePng);
 			
+			int R = couleur.getRed();
+			int G = couleur.getGreen();
+			int B = couleur.getBlue();
+			
+			if (R == 255 && G == 255 && B == 255)
+			{
+				System.out.println("Veuillez cliquez sur un des 42 territoires en couleurs");
+				return -1;
+			}
+			
+			else if (R == 168 && G == 168 && B == 168)
+			{
+				System.out.println("Cette zone est non habitable");
+				return -2;
+			}
+			
+			else
+			{
+				for (int i = 0; i<tabCoul.length; i++)
+				{
+					if (tabCoul[i][0] == R && tabCoul[i][1] == G && tabCoul[i][2] == B)
+					{
+						System.out.println("Vous cliquez sur le territoire " + i);
+						return i;
+					}
+				}
+				System.out.println("Erreur, veuillez rÃ©-essayer de cliquer sur un territoire");
+			}
+			return -3;
 		}
-	}
-	
-	public static void ifClicCouleur()
-	{
+		
+		return -4;
 		
 	}
+	
+	public static int[][] creaTableauCouleurs(String cartePng)
+	{
+		
+		if (cartePng == "plateauElder.png")
+		{
+					int[][] tabCoul = {
+					{255, 197, 218}, {212, 181, 192}, {198, 134, 157},
+					{161, 121, 135}, {224, 116, 154}, {169, 89, 117},
+					{154, 48, 85},   {207, 49, 104},  {125, 6, 48},
+					{66, 23, 38},    {106, 44, 66},
+					
+					{206, 221, 161}, {168, 185, 117}, {126, 143, 74},
+					{153, 160, 131}, {166, 196, 76},
+				
+					{236, 175, 175}, {225, 122 ,122}, {184, 61, 61},
+					{138, 79, 79},   {87, 0, 0},      {78, 40, 40},
+					{144, 0, 0},     {209, 11, 11},
+				
+					{126, 131, 180}, {45, 52, 133},   {70, 73, 119},
+				
+					{126, 169, 180}, {49, 151, 177}, {67, 114, 126},
+					{16, 83, 100},   {119, 206, 227},
+				
+					{64, 82, 78},    {95, 122, 116},  {27, 113, 94},
+					{42, 169, 141},  {133, 171, 163}, {165, 213, 203},
+					{52, 210, 175},  {190, 255, 241}, {15, 65, 54},
+					{0, 255, 199}
+					};
+					return tabCoul;
+		}
+		else
+		{
+			
+		}
+		int[][] tabVide = new int[2][3];
+		return tabVide;
+	}	
 	
 	
 }
