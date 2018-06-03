@@ -1,48 +1,21 @@
-import edu.princeton.cs.introcs.StdDraw;
-import java.awt.Color;
-import java.awt.Dimension;
-import java.awt.Font;
-
 
 public class RiskIsep {
 
 	public static void main(String[] args) {
-		int nbrJr = 0;
-		
-		Plateau.CreaCanvas();
-		while (nbrJr == 0)
-		{
-			nbrJr = MenuJoueur();
-			
-		}
-		//System.out.println(nbrJr);
-	
-		//Potentielle fonction de choix de carte
-		
-		String cartePng = "plateauElder.png";
-		Mission.attributionMissions(nbrJr);
-		CreaRegTer(cartePng, nbrJr);
-		Unite.repartitionUnite(nbrJr);
-		
+		Jeu();
 		
 	}
 	
-	public static int MenuJoueur() 
+	public static void Jeu()
 	{
-		Plateau.afficheMenu();
-		if(StdDraw.mousePressed())
+		String cartePng = Initialisation.initialisationJeu();
+		
+		while(true)
 		{
-			double clickX=StdDraw.mouseX();
-			double clickY=StdDraw.mouseY();		
-			return Joueur.nombreJoueurs(clickX, clickY);
+		Interface.lectureClic(cartePng);
 		}
-		return 0;
+		//Tour.Tour(); (pour la future class tour)
 	}
 	
-	public static void CreaRegTer(String cartePng, int nbrJr)
-	{
-		Plateau.affichePlateau(cartePng);					//Affiche l'image du plateau de jeu
-		int idMax = Region.creationRegions(cartePng, nbrJr);			//Crée les Régions ainsi que les territoires
-	}
 
 }
