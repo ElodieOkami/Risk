@@ -6,12 +6,12 @@
 
 	}  
   
-	// Focntion qui retourne true si le joueur a cliqué sur un pays voisin du sien
+	// Focntion qui retourne true si le joueur a cliquÃ© sur un pays voisin du sien
 	public static boolean defVoisins(int ter, int clickTer) 
-	//ter = id du territoire où se trouve le joueur
-	//clickTer = id du territoire ou le joueur a cliqué
+	//ter = id du territoire oÃ¹ se trouve le joueur
+	//clickTer = id du territoire ou le joueur a cliquÃ©
 	{
-		//matrice adjancente déffinissant les pays voisins
+		//matrice adjancente dÃ©ffinissant les pays voisins
 		int[][] matriceVoisins= 
 		{
 			{0,1,0,0,0,0,0,0,0,0,0, 1,0,0,0,0, 0,0,0,0,0,0,0,0, 0,0,0, 0,0,0,0,0, 0,0,0,0,0,0,0,0,0,0},
@@ -63,7 +63,7 @@
 			{0,0,0,0,0,0,0,0,0,0,0, 0,0,0,0,0, 0,0,0,0,0,0,0,0, 0,0,0, 0,0,0,0,0, 0,0,1,0,0,0,0,0,1,0},			
 		};
 			
-		if (matriceVoisins[ter - 1][clickTer - 1]==1) // on vérifi si les pays destination et départ sont voisins
+		if (matriceVoisins[ter - 1][clickTer - 1]==1) // on vÃ©rifi si les pays destination et dÃ©part sont voisins
 		{
 			return true;
 		}
@@ -75,20 +75,22 @@
 	}
 	
 	
-  	// Fonction pour vérifier si le joueur à gagné la partie 
-	//A mettre à la fin de chaque tour
+  	// Fonction pour vÃ©rifier si le joueur Ã  gagnÃ© la partie 
+	//A mettre Ã  la fin de chaque tour
+	
+	/*				// A CHANGER MAIS PAS MAINTENANT
 	public static boolean verifGagnant(int numJr) // numJr = joueur qui vient de finir son tour
 	{
 		int nbrTer = 0;
 		for (int i = 1; i <= 42; i++)  // on parcours les 42 territoires 
 		{
-			if (Territoire.getNumero() == i & Territoire.getProprietaire() == numJr ) //et on vérifie s'ils appartiennent tous au même joueur
+			if (Territoire.getNumero() == i & Territoire.getProprietaire() == numJr ) //et on vÃ©rifie s'ils appartiennent tous au mÃªme joueur
 			{
 				nbrTer = nbrTer + 1;
 			}
 		}
 		
-		if (nbrTer == 42) // on vérifie si le joueur à les 42 territoires 
+		if (nbrTer == 42) // on vÃ©rifie si le joueur Ã  les 42 territoires 
 		{
 			return true;
 		}
@@ -97,8 +99,9 @@
 			return false;
 		}
 	}
+	*/
 	
-	// Fonction qui vérifie si la mission de joueur qui vient de finir son tour a été accomplie
+	// Fonction qui vÃ©rifie si la mission de joueur qui vient de finir son tour a Ã©tÃ© accomplie
 	public static void verifMission()
 	{
 		
