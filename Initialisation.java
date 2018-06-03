@@ -13,7 +13,7 @@ public class Initialisation {
 		int nbrJr = 0;
 		String cartePng = "nonselectionne";
 		
-		Plateau.CreaCanvas();
+		Plateau.CreaCanvas();	//Création d'un canvas adapté à la taille de la fenêtre
 		
 		
 		while (nbrJr == 0) //Séléction du nombre de joueurs
@@ -41,24 +41,11 @@ public class Initialisation {
 		Plateau.affichePlateau(cartePng);
 		Initialisation.attributionMissions(nbrJr);
 		Region.CreaRegTer(cartePng, nbrJr);
-		Initialisation.repartitionUnite(nbrJr);
+		Joueur.creaJoueur(nbrJr);
 		
 		return cartePng;
 	}
 	
-	
-	
-	//Fonction de création de Joueurs
-	public static void creaJoueur(int nbrJr)
-	{
-		ArrayList<Unite> listeUnite = new ArrayList <Unite>();
-		Color[] list = { Color.BLUE, Color.RED, Color.GREEN, Color.PINK, Color.YELLOW, Color.BLACK};
-		
-		for (int i = 0; i <= nbrJr-1 ; i++)
-		{
-			Joueur joueur = new Joueur (i+1, listeUnite ,"joueur" + i+1, list[i]);
-		}
-	}
 	
 	
 	//Etape 1 : Attribution des missions
@@ -151,7 +138,7 @@ public class Initialisation {
 				System.out.println("Mission joueur "+i+" : "+mission.contenu);
 			}
 			
-			else  if (mission.contenu == "Détruire le joueur") // Si la mission est "détruire le joueur" on doit choisir le numéro du joueur à détruir
+			else if (mission.contenu == "Détruire le joueur") // Si la mission est "détruire le joueur" on doit choisir le numéro du joueur à détruir
 			{
 				Random r = new Random();
 				int j = r.nextInt(nbrJr)+1;
@@ -166,61 +153,4 @@ public class Initialisation {
 		}
 	}
 	
-	
-	
-	
-	
-		//Etape 3 : Répartition d'un nombre de soldats pour chaque joueur
-		public static void repartitionUnite(int nbrJr)
-		{
-			int[] listePuissanceSoldat = {1,2,3,4,5,6};
-			switch(nbrJr) //On gère les différents cas
-			{
-			case 1 :
-				for(int i = 0; i < 40; i++)
-				{
-					Joueur.listeUnite.add(new Soldat(1, listePuissanceSoldat, 2, 1, 2, "Soldat"));
-				}
-				System.out.println("Le joueur et l'IA ont reçu 40 soldats");
-				break;
-			case 2 :
-				for(int i = 0; i < 40; i++)
-				{
-					Joueur.listeUnite.add(new Soldat(1, listePuissanceSoldat, 2, 1, 2, "Soldat"));
-				}
-				System.out.println("Les deux joueurs ont reçu 40 soldats");
-				break;
-			case 3 :
-				for(int i = 0; i < 35; i++)
-				{
-					Joueur.listeUnite.add(new Soldat(1, listePuissanceSoldat, 2, 1, 2, "Soldat"));
-				}
-				System.out.println("Les trois joueurs ont reçu 35 soldats");
-				break;
-			case 4 :
-				for(int i = 0; i < 30; i++)
-				{
-					Joueur.listeUnite.add(new Soldat(1, listePuissanceSoldat, 2, 1, 2, "Soldat"));
-				}
-				System.out.println("Les quatre joueurs ont reçu 30 soldats");
-				break;
-			case 5 :
-				for(int i = 0; i < 25; i++)
-				{
-					Joueur.listeUnite.add(new Soldat(1, listePuissanceSoldat, 2, 1, 2, "Soldat"));
-				}
-				System.out.println("Les cinq joueurs ont reçu 25 soldats");
-				break;
-			case 6 :
-				for(int i = 0; i < 20; i++)
-				{
-					Joueur.listeUnite.add(new Soldat(1, listePuissanceSoldat, 2, 1, 2, "Soldat"));
-				}
-				System.out.println("Les six joueurs ont reçu 20 soldats");
-				break;
-			}
-		}
-		
-
-		
 }
