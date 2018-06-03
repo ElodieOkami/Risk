@@ -13,6 +13,7 @@ public class RiskIsep {
 		while(true)
 		{
 		Interface.lectureClic(cartePng);
+		
 		}
 		//Tour.Tour(); (pour la future class tour)
 	}
