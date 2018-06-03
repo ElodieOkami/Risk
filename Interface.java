@@ -36,37 +36,37 @@ public class Interface {
 			{
 				if (width/3.9-15 < clickX && clickX < width/3.9+15) 
 				{
-					Initialisation.creaJoueur(1);
+					Joueur.creaJoueur(1);
 					return 1;
 				}
 				
 				else if (width/2.8-15 < clickX && clickX < width/2.8+15) 
 				{
-					Initialisation.creaJoueur(2);
+					Joueur.creaJoueur(2);
 					return 2;
 				}
 				
 				else if (width/2.2-15 < clickX && clickX < width/2.2+15)
 				{
-					Initialisation.creaJoueur(3);
+					Joueur.creaJoueur(3);
 					return 3;
 				}
 				
 				else if (width/1.8-15 < clickX && clickX < width/1.8+15)
 				{
-					Initialisation.creaJoueur(4);
+					Joueur.creaJoueur(4);
 					return 4;
 				}
 				
 				else if (width/1.55-15 < clickX && clickX < width/1.55+15)
 				{
-					Initialisation.creaJoueur(5);
+					Joueur.creaJoueur(5);
 					return 5;
 				}
 				
 				else if (width/1.35-15 < clickX && clickX < width/1.35+15)
 				{
-					Initialisation.creaJoueur(6);
+					Joueur.creaJoueur(6);
 					return 6;
 				}
 			}
