@@ -3,12 +3,12 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
 
-//Class permettant les étapes d'initialisation càd la créations des objets dont on a besoin
+//Class permettant les Ã©tapes d'initialisation cÃ d la crÃ©ations des objets dont on a besoin
 
 public class Initialisation {
 
 	
-	public static String initialisationJeu() //Fonction appellée par le Main
+	public static String initialisationJeu() //Fonction appellÃ©e par le Main
 	{
 		int nbrJr = 0;
 		String cartePng = "nonselectionne";
@@ -16,16 +16,15 @@ public class Initialisation {
 		Plateau.CreaCanvas();
 		
 		
-		while (nbrJr == 0) //Séléction du nombre de joueurs
+		while (nbrJr == 0) //SÃ©lÃ©ction du nombre de joueurs
 		{
 			nbrJr = Interface.MenuJoueur();
-			
 		}
 		
 		try {
 		    Thread.sleep(150);
 		} catch(InterruptedException e) {
-		    System.out.println("got interrupted!");
+		    System.out.println("Sommeil interrompu");
 		}
 		
 		while (cartePng == "nonselectionne")//Choix de la carte
@@ -36,21 +35,20 @@ public class Initialisation {
 		try {
 		    Thread.sleep(150);
 		} catch(InterruptedException e) {
-		    System.out.println("got interrupted!");
+		    System.out.println("Sommeil interrompu");
 		}
 		
 		Plateau.affichePlateau(cartePng);
 		Initialisation.attributionMissions(nbrJr);
-		CreaRegTer(cartePng, nbrJr);
+		Region.CreaRegTer(cartePng, nbrJr);
 		Initialisation.repartitionUnite(nbrJr);
 		
 		return cartePng;
-		
 	}
 	
 	
 	
-	//Fonction de création de Joueurs
+	//Fonction de crÃ©ation de Joueurs
 	public static void creaJoueur(int nbrJr)
 	{
 		ArrayList<Unite> listeUnite = new ArrayList <Unite>();
@@ -66,15 +64,15 @@ public class Initialisation {
 	//Etape 1 : Attribution des missions
 	public static void attributionMissions(int nbrJr)
 	{
-		//Définition du contenu des missions et de leur contenu
-		String mis1 = "Contôler 3 régions et au moins 18 territoires";
-		String mis2 = "Contrôler la plus grosse région + 1 autre région";
-		String mis3 = "Conquérir tous les territoires";
-		String mis4 = "Contrôler 30 territoires";
-		String mis5 = "Contrôler 18 territoires avec au moins 2 armées";
-		String mis6 = "Détruire le joueur";
-		String mis7 = "Contrôler 24 territoires";
-		String mis8 = "Contrôler 21 territoires";
+		//DÃ©finition du contenu des missions et de leur contenu
+		String mis1 = "ContÃ´ler 3 rÃ©gions et au moins 18 territoires";
+		String mis2 = "ContrÃ´ler la plus grosse rÃ©gion + 1 autre rÃ©gion";
+		String mis3 = "ConquÃ©rir tous les territoires";
+		String mis4 = "ContrÃ´ler 30 territoires";
+		String mis5 = "ContrÃ´ler 18 territoires avec au moins 2 armÃ©es";
+		String mis6 = "DÃ©truire le joueur";
+		String mis7 = "ContrÃ´ler 24 territoires";
+		String mis8 = "ContrÃ´ler 21 territoires";
 		
 		List<Mission> list = new ArrayList<Mission>();
 		
@@ -91,7 +89,7 @@ public class Initialisation {
 		list.add(mission1);
 		list.add(mission2);
 		
-		//On traite les différents cas selon le nombre de joueurs sur la partie
+		//On traite les diffÃ©rents cas selon le nombre de joueurs sur la partie
 		if (nbrJr ==1)
 		{
 			missionAlea(list, nbrJr);
@@ -138,7 +136,7 @@ public class Initialisation {
 		}
 	}
 	
-	//Fonction permettant d'attribuer aléatoirement la mission selon la liste des missions disponibles et le nombre de joueurs
+	//Fonction permettant d'attribuer alÃ©atoirement la mission selon la liste des missions disponibles et le nombre de joueurs
 	public static void missionAlea (List<Mission> list, int nbrJr)
 	{
 		int l = list.size(); //Nombre de missions disponibles
@@ -148,16 +146,16 @@ public class Initialisation {
 			int xAlea = x.nextInt(l) ;
 			Mission mission = list.get(xAlea);
 			
-			if(mission.contenu != "Détruire le joueur")
+			if(mission.contenu != "DÃ©truire le joueur")
 			{
 				System.out.println("Mission joueur "+i+" : "+mission.contenu);
 			}
 			
-			else  if (mission.contenu == "Détruire le joueur") // Si la mission est "détruire le joueur" on doit choisir le numéro du joueur à détruir
+			else  if (mission.contenu == "DÃ©truire le joueur") // Si la mission est "dÃ©truire le joueur" on doit choisir le numÃ©ro du joueur Ã  dÃ©truir
 			{
 				Random r = new Random();
 				int j = r.nextInt(nbrJr)+1;
-				while (j==i)   //Cela ne peut pas être le joueur lui-même
+				while (j==i)   //Cela ne peut pas Ãªtre le joueur lui-mÃªme
 				{
 					r = new Random();
 					j = r.nextInt(nbrJr)+1;
@@ -169,157 +167,56 @@ public class Initialisation {
 	}
 	
 	
-	//Etape 2 : Création et Attributions des régions et territoires
-	public static int creationRegions(String cartePng, int nbrJr)			//Crée les Régions ainsi que les territoires
-	{
-		int id = 0;								//id d'un unique territoire
-		
-		ArrayList <Integer> JrFull = new ArrayList<Integer>();				//On créé une liste du nombre de territoire qu'a chaque joueur lors de l'attribution aléatoire
-		for (int i=0; i<nbrJr; i++)
-		{
-			JrFull.add(0);													//Cette liste est initialement vide
-		}
-		
-		ArrayList <Integer> Joueur = new ArrayList<Integer>();				//On créé une liste de "l'id" de chaque joueur
-		for (int i=0; i<nbrJr; i++)
-		{
-			Joueur.add(i+1);													//Cette liste va de 1 au nombre de joueur
-		}
-		//System.out.println("Nombre de joueurs: " + Joueur.get(nbrJr-1));
-		
-		if (cartePng == "plateauElder.png")		//Si on utilise la carte TES
-		{
-			
-			Region provincesImperiales = new Region("provincesImperiales", 11);			//On créé la région a l'aide du constructeur
-			id = creaEtAttribTerritoires(provincesImperiales, id, nbrJr, Joueur, JrFull);	//On créé chaque territoire des régions et on les répartis aléatoirement parmi les joueurs.
-			Region lenclume = new Region("lenclume", 5);
-			id = creaEtAttribTerritoires(lenclume, id, nbrJr, Joueur, JrFull);
-			Region cyrodiil = new Region("cyrodiil", 8);
-			id = creaEtAttribTerritoires(cyrodiil, id, nbrJr, Joueur, JrFull);
-			Region archipelAutomne = new Region("archipelAutomne", 3);
-			id = creaEtAttribTerritoires(archipelAutomne, id, nbrJr, Joueur, JrFull);
-			Region aldmeri = new Region("aldmeri", 5);
-			id = creaEtAttribTerritoires(aldmeri, id, nbrJr, Joueur, JrFull);
-			Region argonie = new Region("argonie", 10);
-			id = creaEtAttribTerritoires(argonie, id, nbrJr, Joueur, JrFull);
-		}
-		
-		else if (cartePng == "plateauTerre.png")
-		{
-			Region northAmerica = new Region("northAmerica",9);
-			id = creaEtAttribTerritoires(northAmerica, id, nbrJr, Joueur, JrFull);
-			Region southAmerica = new Region("southAmerica",4);
-			id = creaEtAttribTerritoires(southAmerica, id, nbrJr, Joueur, JrFull);
-			Region europe = new Region("europe",7);
-			id = creaEtAttribTerritoires(europe, id, nbrJr, Joueur, JrFull);
-			Region africa = new Region("africa",6);
-			id = creaEtAttribTerritoires(africa, id, nbrJr, Joueur, JrFull);
-			Region asia = new Region("asia",12);
-			id = creaEtAttribTerritoires(asia, id, nbrJr, Joueur, JrFull);
-			Region australia = new Region("australia",4);
-			id = creaEtAttribTerritoires(australia, id, nbrJr, Joueur, JrFull);
-		}
-		return id;
-	}
-	
-	private static void ajouterTerritoires(int numero, int id)			//Ajoute un territoire dans l'arryalist territoires
-	{
-		Territoire territoire = new Territoire(numero, id);
-		Region.listeTerritoires.add(territoire);
-	}
 	
 	
-	public static int creaEtAttribTerritoires(Region region, int id, int nbrJr, ArrayList <Integer> Joueur, ArrayList <Integer> JrFull)		//Création des territoires de chaque région et répartion aléatoire parmi les joueurs
-	{
-		int terParJr=(int)(42/nbrJr);		//Nombre de territoire arrondi que se verra attribué chaque joueur
-		
-		
-		
-		for (int i=1; i<region.getTaille()+1; i++)
-		{
-			ajouterTerritoires(i, id);		//On ajoute le territoire dans l'arraylist territoires de cette région
-			id++;							//Le prochain territoire possède l'id suivant
-			
-			int j = (int)(Math.random()*(nbrJr-(nbrJr-Joueur.size()))+1);	//Nombre aléatoire entre 1 et le nbr de joueur pas encore full	
-			Region.listeTerritoires.get(i-1).setProprietaire(Joueur.get(j-1));		//On attribue le territoire à un joueur
-			
-			//System.out.println(Region.getNom()+Territoire.getNumero() + " Id : " +Region.listeTerritoires.get(i-1).getId() + " et Propri : " +Territoire.getProprietaire());
-			
-			JrFull.set(j-1, (1+JrFull.get(j-1)));	//On augmente la quantité de territoire que possède le joueur
-			if (JrFull.get(j-1)==terParJr)			//Si le joueur possède le nombre max de territoires
-			{
-				Joueur.remove(j-1);					//On supprime ce joueur des candidats
-				JrFull.remove(j-1);
-				if (Joueur.isEmpty())				//Si on a plus aucun candidat
-				{
-					
-					for (int z=0; z<nbrJr; z++)		//Jusqu'à ce qu'on atteigne le nombre total de joueurs
-					{
-						Joueur.add(z, z+1);			//On recréé chaque candidat
-						JrFull.add(z, terParJr-1); 	//On recréé un d'espace pour chaque candidat
-					}
-				}
-			}
-			//System.out.println(Joueur.get(j-1));
-		}
-		return id;
-		
-	}
 	
-	public static void CreaRegTer(String cartePng, int nbrJr)
-	{
-		Plateau.affichePlateau(cartePng);					//Affiche l'image du plateau de jeu
-		int idMax = creationRegions(cartePng, nbrJr);			//Crée les Régions ainsi que les territoires
-	}
-	
-	
-		//Etape 3 : Répartition d'un nombre de soldats pour chaque joueur
+		//Etape 3 : RÃ©partition d'un nombre de soldats pour chaque joueur
 		public static void repartitionUnite(int nbrJr)
 		{
 			int[] listePuissanceSoldat = {1,2,3,4,5,6};
-			switch(nbrJr) //On gère les différents cas
+			switch(nbrJr) //On gÃ¨re les diffÃ©rents cas
 			{
 			case 1 :
 				for(int i = 0; i < 40; i++)
 				{
 					Joueur.listeUnite.add(new Soldat(1, listePuissanceSoldat, 2, 1, 2, "Soldat"));
 				}
-				System.out.println("Le joueur et l'IA ont reçu 40 soldats");
+				System.out.println("Le joueur et l'IA ont reÃ§u 40 soldats");
 				break;
 			case 2 :
 				for(int i = 0; i < 40; i++)
 				{
 					Joueur.listeUnite.add(new Soldat(1, listePuissanceSoldat, 2, 1, 2, "Soldat"));
 				}
-				System.out.println("Les deux joueurs ont reçu 40 soldats");
+				System.out.println("Les deux joueurs ont reÃ§u 40 soldats");
 				break;
 			case 3 :
 				for(int i = 0; i < 35; i++)
 				{
 					Joueur.listeUnite.add(new Soldat(1, listePuissanceSoldat, 2, 1, 2, "Soldat"));
 				}
-				System.out.println("Les trois joueurs ont reçu 35 soldats");
+				System.out.println("Les trois joueurs ont reÃ§u 35 soldats");
 				break;
 			case 4 :
 				for(int i = 0; i < 30; i++)
 				{
 					Joueur.listeUnite.add(new Soldat(1, listePuissanceSoldat, 2, 1, 2, "Soldat"));
 				}
-				System.out.println("Les quatre joueurs ont reçu 30 soldats");
+				System.out.println("Les quatre joueurs ont reÃ§u 30 soldats");
 				break;
 			case 5 :
 				for(int i = 0; i < 25; i++)
 				{
 					Joueur.listeUnite.add(new Soldat(1, listePuissanceSoldat, 2, 1, 2, "Soldat"));
 				}
-				System.out.println("Les cinq joueurs ont reçu 25 soldats");
+				System.out.println("Les cinq joueurs ont reÃ§u 25 soldats");
 				break;
 			case 6 :
 				for(int i = 0; i < 20; i++)
 				{
 					Joueur.listeUnite.add(new Soldat(1, listePuissanceSoldat, 2, 1, 2, "Soldat"));
 				}
-				System.out.println("Les six joueurs ont reçu 20 soldats");
+				System.out.println("Les six joueurs ont reÃ§u 20 soldats");
 				break;
 			}
 		}
