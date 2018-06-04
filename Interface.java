@@ -36,37 +36,37 @@ public class Interface {
 			{
 				if (width/3.9-15 < clickX && clickX < width/3.9+15) 
 				{
-					Joueur.creaJoueur(1);
+					Initialisation.creaJoueur(1);
 					return 1;
 				}
 				
 				else if (width/2.8-15 < clickX && clickX < width/2.8+15) 
 				{
-					Joueur.creaJoueur(2);
+					Initialisation.creaJoueur(2);
 					return 2;
 				}
 				
 				else if (width/2.2-15 < clickX && clickX < width/2.2+15)
 				{
-					Joueur.creaJoueur(3);
+					Initialisation.creaJoueur(3);
 					return 3;
 				}
 				
 				else if (width/1.8-15 < clickX && clickX < width/1.8+15)
 				{
-					Joueur.creaJoueur(4);
+					Initialisation.creaJoueur(4);
 					return 4;
 				}
 				
 				else if (width/1.55-15 < clickX && clickX < width/1.55+15)
 				{
-					Joueur.creaJoueur(5);
+					Initialisation.creaJoueur(5);
 					return 5;
 				}
 				
 				else if (width/1.35-15 < clickX && clickX < width/1.35+15)
 				{
-					Joueur.creaJoueur(6);
+					Initialisation.creaJoueur(6);
 					return 6;
 				}
 			}
@@ -118,7 +118,7 @@ public class Interface {
 	}
 	
 	//Jeu
-	public static void lectureClic(String cartePng) {
+	public static int lectureClic(String cartePng) {
 	    try {
 	        BufferedImage image = ImageIO.read(new File(cartePng));    
 	        Color couleur;
@@ -128,12 +128,33 @@ public class Interface {
 			int width  = (int)dimension.getWidth();
 			
 	        if(StdDraw.isMousePressed())
-	        		{
-	        			int clickX=(int) StdDraw.mouseX();
+	        		{        			
+	        			/*double RapportE = (double)width/height;
+	        	        double RapportI = (double) image.getWidth()/image.getHeight();
+	        	        double scaleX;
+	        	        double scaleY;
+	        	        
+	        	        if(RapportE>RapportI)
+	        	        {
+	        	        	scaleX = (double)image.getWidth()*height/image.getHeight();
+	        	        	scaleY = (double)height;
+	        	        }
+	        	        else
+	        	        {
+	        	        	scaleY = (double)image.getHeight()*width/image.getWidth();
+	        	        	scaleX = (double)width;
+	        	        }		*/ //A travailler pour le rescale
+	        	        
+	        	        int clickX=(int) StdDraw.mouseX();
 	        			int clickY=(int) StdDraw.mouseY()-clicTropBas;
 	        			
 	        			clickX = clickX-((width-image.getWidth())/2);
 	        			clickY = clickY-((height-image.getHeight())/2);
+	        			
+	        			/*double multiX = scaleX/width;
+	        			double multiY = scaleY/height;
+	        			clickX = (int)(clickX*multiX);
+	        			clickY = (int)(clickY*multiY);*/ //A travailler pour le rescale
 	        			
 	        			
 	        			couleur = new Color(image.getRGB(clickX, image.getHeight()-clickY));
@@ -141,12 +162,14 @@ public class Interface {
 	        			System.out.println("R = " + couleur.getRed());
 	        			System.out.println("G = " + couleur.getGreen());
 	        			System.out.println("B = " + couleur.getBlue());
-	        			correspondClic(cartePng, couleur);
+	        			return correspondClic(cartePng, couleur);
 	        		}
 	            }
+	    
 	    catch (FileNotFoundException e) 
 	    {
 	        e.printStackTrace();
+	        
 	    } 
 	    catch (IOException e) 
 	    {
@@ -156,9 +179,10 @@ public class Interface {
 	    {
 	        e.printStackTrace();
 	    }
+	    return -1;
 	}
 	
-	public static int correspondClic(String cartePng, Color couleur)
+	private static int correspondClic(String cartePng, Color couleur)
 	{
 		if (cartePng == "plateauElder.png")
 		{
