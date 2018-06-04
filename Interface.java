@@ -10,6 +10,10 @@ import edu.princeton.cs.introcs.StdDraw;
 //Class permettant de récupérer et analyser des informations selon la position des clics
 
 public class Interface {
+	
+	static Dimension dimension = java.awt.Toolkit.getDefaultToolkit().getScreenSize();
+	final static int height = (int)dimension.getHeight();
+    final static int width  = (int)dimension.getWidth();
 
 	static final int clicTropBas = 20; //A cause de la barre en haut de la fenêtre, tous les clics sont trop bas
 	
@@ -36,37 +40,31 @@ public class Interface {
 			{
 				if (width/3.9-15 < clickX && clickX < width/3.9+15) 
 				{
-					Initialisation.creaJoueur(1);
-					return 1;
+					return 2; //2 car un joueur et une IA
 				}
 				
 				else if (width/2.8-15 < clickX && clickX < width/2.8+15) 
 				{
-					Initialisation.creaJoueur(2);
 					return 2;
 				}
 				
 				else if (width/2.2-15 < clickX && clickX < width/2.2+15)
 				{
-					Initialisation.creaJoueur(3);
 					return 3;
 				}
 				
 				else if (width/1.8-15 < clickX && clickX < width/1.8+15)
 				{
-					Initialisation.creaJoueur(4);
 					return 4;
 				}
 				
 				else if (width/1.55-15 < clickX && clickX < width/1.55+15)
 				{
-					Initialisation.creaJoueur(5);
 					return 5;
 				}
 				
 				else if (width/1.35-15 < clickX && clickX < width/1.35+15)
 				{
-					Initialisation.creaJoueur(6);
 					return 6;
 				}
 			}
@@ -118,58 +116,16 @@ public class Interface {
 	}
 	
 	//Jeu
-	public static int lectureClic(String cartePng) {
-	    try {
-	        BufferedImage image = ImageIO.read(new File(cartePng));    
-	        Color couleur;
-	        
-	        Dimension dimension = java.awt.Toolkit.getDefaultToolkit().getScreenSize();
-			int height = (int)dimension.getHeight();
-			int width  = (int)dimension.getWidth();
-			
-	        if(StdDraw.isMousePressed())
-	        		{        			
-	        			/*double RapportE = (double)width/height;
-	        	        double RapportI = (double) image.getWidth()/image.getHeight();
-	        	        double scaleX;
-	        	        double scaleY;
-	        	        
-	        	        if(RapportE>RapportI)
-	        	        {
-	        	        	scaleX = (double)image.getWidth()*height/image.getHeight();
-	        	        	scaleY = (double)height;
-	        	        }
-	        	        else
-	        	        {
-	        	        	scaleY = (double)image.getHeight()*width/image.getWidth();
-	        	        	scaleX = (double)width;
-	        	        }		*/ //A travailler pour le rescale
-	        	        
-	        	        int clickX=(int) StdDraw.mouseX();
-	        			int clickY=(int) StdDraw.mouseY()-clicTropBas;
-	        			
-	        			clickX = clickX-((width-image.getWidth())/2);
-	        			clickY = clickY-((height-image.getHeight())/2);
-	        			
-	        			/*double multiX = scaleX/width;
-	        			double multiY = scaleY/height;
-	        			clickX = (int)(clickX*multiX);
-	        			clickY = (int)(clickY*multiY);*/ //A travailler pour le rescale
-	        			
-	        			
-	        			couleur = new Color(image.getRGB(clickX, image.getHeight()-clickY));
-	        			
-	        			System.out.println("R = " + couleur.getRed());
-	        			System.out.println("G = " + couleur.getGreen());
-	        			System.out.println("B = " + couleur.getBlue());
-	        			return correspondClic(cartePng, couleur);
-	        		}
-	            }
-	    
-	    catch (FileNotFoundException e) 
+	public static BufferedImage buffImage(String cartePng)
+	{
+		try
+		{
+	        BufferedImage image = ImageIO.read(new File(cartePng));
+	        return image;
+		}
+		 catch (FileNotFoundException e) 
 	    {
-	        e.printStackTrace();
-	        
+	        e.printStackTrace();  
 	    } 
 	    catch (IOException e) 
 	    {
@@ -179,6 +135,56 @@ public class Interface {
 	    {
 	        e.printStackTrace();
 	    }
+		return null;
+	}
+	public static int lectureClic(String cartePng) {
+	    	
+		BufferedImage image =buffImage(cartePng);
+	    Color couleur;
+	        
+	    if(StdDraw.isMousePressed())
+	    {        			
+	        /*double RapportE = (double)width/height;
+	       	double RapportI = (double) image.getWidth()/image.getHeight();
+	        double scaleX;
+	        double scaleY;
+	        
+	        if(RapportE>RapportI)
+	        {
+	        	scaleX = (double)image.getWidth()*height/image.getHeight();
+	        	scaleY = (double)height;
+	        }
+	        else
+	        {
+	        	scaleY = (double)image.getHeight()*width/image.getWidth();
+	        	scaleX = (double)width;
+	        }		*/ //A travailler pour le rescale
+	        	        
+	    	int clickX=(int) StdDraw.mouseX();
+	        int clickY=(int) StdDraw.mouseY()-clicTropBas;
+	        			
+	        clickX = clickX-((width-image.getWidth())/2);
+	        clickY = clickY-((height-image.getHeight())/2);
+	        			
+	        /*double multiX = scaleX/width;
+	        double multiY = scaleY/height;
+	        clickX = (int)(clickX*multiX);
+	        clickY = (int)(clickY*multiY);*/ //A travailler pour le rescale
+	        			
+	        couleur = new Color(image.getRGB(clickX, image.getHeight()-clickY));
+	        			
+	        //System.out.println("R = " + couleur.getRed());
+	        //System.out.println("G = " + couleur.getGreen());
+	        //System.out.println("B = " + couleur.getBlue());
+	        try {
+			    Thread.sleep(150);
+			} catch(InterruptedException e) {
+			    System.out.println("Sommeil interrompu");
+			}
+	        return correspondClic(cartePng, couleur);
+	        
+	    }
+	            
 	    return -1;
 	}
 	
@@ -201,7 +207,7 @@ public class Interface {
 			else if (R == 168 && G == 168 && B == 168)
 			{
 				System.out.println("Cette zone est non habitable");
-				return -2;
+				return -1;
 			}
 			
 			else
@@ -210,16 +216,16 @@ public class Interface {
 				{
 					if (tabCoul[i][0] == R && tabCoul[i][1] == G && tabCoul[i][2] == B)
 					{
-						System.out.println("Vous cliquez sur le territoire " + i);
+						//System.out.println("Vous cliquez sur le territoire " + i);
 						return i;
 					}
 				}
 				System.out.println("Erreur, veuillez ré-essayer de cliquer sur un territoire");
 			}
-			return -3;
+			return -1;
 		}
 		
-		return -4;
+		return -1;
 		
 	}
 	
@@ -259,7 +265,8 @@ public class Interface {
 		}
 		int[][] tabVide = new int[2][3];
 		return tabVide;
-	}	
+	}
+	
 	
 	
 }
