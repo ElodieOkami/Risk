@@ -81,18 +81,18 @@ public class Region {
 		}
 		
 		
-		public void getPossesseurDsRegion()
+		public int getPossesseurDsRegion(int idTerr)
 		{
 			int numPropri;
-			int idTerr = 0;
+			
 			for (int i=0; i<this.getTaille(); i++)
 			{
-				numPropri = this.listeTerritoires.get(idTerr).getProprietaire();
+				numPropri = this.listeTerritoires.get(i).getProprietaire();
 				Color couleur = Initialisation.getCouleurPropri(numPropri);
 				Plateau.affichePointProprio(idTerr, couleur);
 				idTerr++;
 			}
-			
+			return idTerr;
 			
 			
 		}
