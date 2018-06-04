@@ -36,7 +36,7 @@ public class Mission {
 		this.proprietaire = proprietaire;
 	}
 	
-	public static void attributionMissions(int nbrJr)
+	public static void attributionMissions(int nbrJr)		//ATTENTION la fonction print juste des messages, elle n'associe aucune mission
 	{
 		//Définition du contenu des missions et de leur contenu
 		String mis1 = "Contôler 3 régions et au moins 18 territoires";
@@ -122,7 +122,7 @@ public class Mission {
 			
 			if(mission.contenu != "Détruire le joueur")
 			{
-				System.out.println("Mission joueur "+i+" : "+mission.contenu);
+				//System.out.println("Mission joueur "+i+" : "+mission.contenu);
 			}
 			
 			else if (mission.contenu == "Détruire le joueur") // Si la mission est "détruire le joueur" on doit choisir le numéro du joueur à détruir
@@ -134,7 +134,7 @@ public class Mission {
 					r = new Random();
 					j = r.nextInt(nbrJr)+1;
 				}
-				System.out.println("Mission joueur "+i+" : "+mission.contenu +j);
+				//System.out.println("Mission joueur "+i+" : "+mission.contenu +j);
 			}
 				
 		}
