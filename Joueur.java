@@ -4,8 +4,10 @@
 	public class Joueur {
 		int idJoueur;
 		ArrayList<Unite> listeUnite = new ArrayList <Unite>();
+		ArrayList<Territoire> listeTerrPoss = new ArrayList <Territoire>();
 		String pseudo;
 		Color couleur;
+		
 		
 		//----------------------    Constructeur     ---------------------------//
 		
@@ -30,6 +32,12 @@
 		public void setListeUnite(ArrayList<Unite> listeUnite) {
 			this.listeUnite = listeUnite;
 		}
+		public ArrayList<Territoire> getListeTerrPoss() {
+			return listeTerrPoss;
+		}
+		public void setListeTerrPoss(ArrayList<Territoire> listeTerrPoss) {
+			this.listeTerrPoss = listeTerrPoss;
+		}
 		public String getPseudo() {
 			return pseudo;
 		}
@@ -47,7 +55,7 @@
 		
 		//Etape 3 : Répartition d'un nombre de soldats pour chaque joueur
 		
-		
+
 		public void repartitionUnite(int nbrJr)
 		{
 			int[] listePuissanceSoldat = {1,2,3,4,5,6};
@@ -56,51 +64,71 @@
 			case 1 :
 				for(int i = 0; i < 40; i++)
 				{
-					this.listeUnite.add(new Soldat(1, listePuissanceSoldat, 2, 1, 2, "Soldat"));
+					this.listeUnite.add(new Soldat(1, listePuissanceSoldat, 2, 1, 2, -1, "Soldat"));
 				}
-				System.out.println("Le joueur et l'IA ont reçu 40 soldats");
+				//System.out.println("Le joueur et l'IA ont reçu 40 soldats");
 				break;
 			case 2 :
 				for(int i = 0; i < 40; i++)
 				{
-					this.listeUnite.add(new Soldat(1, listePuissanceSoldat, 2, 1, 2, "Soldat"));
+					this.listeUnite.add(new Soldat(1, listePuissanceSoldat, 2, 1, 2, -1, "Soldat"));
 				}
-				System.out.println("Les deux joueurs ont reçu 40 soldats");
+				//System.out.println("Les deux joueurs ont reçu 40 soldats");
 				break;
 			case 3 :
 				for(int i = 0; i < 35; i++)
 				{
-					this.listeUnite.add(new Soldat(1, listePuissanceSoldat, 2, 1, 2, "Soldat"));
+					this.listeUnite.add(new Soldat(1, listePuissanceSoldat, 2, 1, 2, -1, "Soldat"));
 				}
-				System.out.println("Les trois joueurs ont reçu 35 soldats");
+				//System.out.println("Les trois joueurs ont reçu 35 soldats");
 				break;
 			case 4 :
 				for(int i = 0; i < 30; i++)
 				{
-					this.listeUnite.add(new Soldat(1, listePuissanceSoldat, 2, 1, 2, "Soldat"));
+					this.listeUnite.add(new Soldat(1, listePuissanceSoldat, 2, 1, 2, -1, "Soldat"));
 				}
-				System.out.println("Les quatre joueurs ont reçu 30 soldats");
+				//System.out.println("Les quatre joueurs ont reçu 30 soldats");
 				break;
 			case 5 :
 				for(int i = 0; i < 25; i++)
 				{
-					this.listeUnite.add(new Soldat(1, listePuissanceSoldat, 2, 1, 2, "Soldat"));
+					this.listeUnite.add(new Soldat(1, listePuissanceSoldat, 2, 1, 2, -1, "Soldat"));
 				}
-				System.out.println("Les cinq joueurs ont reçu 25 soldats");
+				//System.out.println("Les cinq joueurs ont reçu 25 soldats");
 				break;
 			case 6 :
 				for(int i = 0; i < 20; i++)
 				{
-					this.listeUnite.add(new Soldat(1, listePuissanceSoldat, 2, 1, 2, "Soldat"));
+					this.listeUnite.add(new Soldat(1, listePuissanceSoldat, 2, 1, 2, -1, "Soldat"));
 				}
-				System.out.println("Les six joueurs ont reçu 20 soldats");
+				//System.out.println("Les six joueurs ont reçu 20 soldats");
 				break;
 			}
 		}
 		
-		public static void placerUniteIni(int nbrJr)
+		public void rempliListTerrJoueur()
 		{
-			//System.out.println("Vous possédez " + this.listeUnite.size()+ " soldats, veuillez les placer sur vos territoires" );
+			for (int i=0; i<6; i++)
+			{
+				for (int j=0; j<Initialisation.getRegion(i).getTaille(); j++)
+				{
+					if (Initialisation.getRegion(i).getTerritoires().get(j).getProprietaire() == this.getIdJoueur())
+					{
+						this.getListeTerrPoss().add(Initialisation.getRegion(i).getTerritoires().get(j));
+					}
+				}
+			}
+		}
+		
+		public int placeSoldatParDefault(int numeroSoldat)
+		{
+			for (int i=0; i<this.getListeTerrPoss().size(); i++)
+			{
+				Initialisation.regionClicked(this.getListeTerrPoss().get(i).getId()).listeTerritoires.get(Initialisation.territoireDsRegion(this.getListeTerrPoss().get(i).getId())).setNbrSoldat(Initialisation.regionClicked(this.getListeTerrPoss().get(i).getId()).listeTerritoires.get(Initialisation.territoireDsRegion(this.getListeTerrPoss().get(i).getId())).getNbrSoldat()+1);	//Le territoire se voit automatiquement attribué un soldat 
+				this.getListeUnite().get(numeroSoldat).setIdPosition(this.getListeTerrPoss().get(i).getId()); 	//On dit sur quel territoire le soldat a été placé
+				numeroSoldat++;
+			}
+			return numeroSoldat;
 		}
 		
 		
