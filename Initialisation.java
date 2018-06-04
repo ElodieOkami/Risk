@@ -163,12 +163,12 @@ public class Initialisation {
 					listeJoueurs.add(joueur4);
 					if(nbrJr >=5)
 					{
-						Joueur joueur5 = new Joueur (5,"joueur"+5, Color.ORANGE);
+						Joueur joueur5 = new Joueur (5,"joueur"+5, Color.CYAN);
 						joueur5.repartitionUnite(nbrJr);
 						listeJoueurs.add(joueur5);
 						if(nbrJr == 6)
 						{
-							Joueur joueur6 = new Joueur (6,"joueur"+6, Color.PINK);
+							Joueur joueur6 = new Joueur (6,"joueur"+6, Color.MAGENTA);
 							joueur6.repartitionUnite(nbrJr);
 							listeJoueurs.add(joueur6);
 						}
@@ -179,11 +179,13 @@ public class Initialisation {
 	
 	public static void affichePossesseurTerris(String cartePng)
 	{
+		int idTerr = 0;
 		if (cartePng == "plateauElder.png")
 		{
 			for (int i=0; i<6; i++)
 			{
-				listeRegions.get(i).getPossesseurDsRegion();
+				System.out.println();
+				idTerr = listeRegions.get(i).getPossesseurDsRegion(idTerr);
 				StdDraw.show();
 			}
 		}
