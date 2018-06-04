@@ -8,15 +8,17 @@ import java.awt.Color;
 import java.awt.Dimension;
 import java.util.ArrayList;
 
+
 import javax.imageio.ImageIO;
 
 public class Plateau
 {
+	static Dimension dimension = java.awt.Toolkit.getDefaultToolkit().getScreenSize();
+	final static int height = (int)dimension.getHeight();
+    final static int width  = (int)dimension.getWidth();
+    
 	public static void CreaCanvas()
 	{
-		Dimension dimension = java.awt.Toolkit.getDefaultToolkit().getScreenSize();
-		int height = (int)dimension.getHeight();
-		int width  = (int)dimension.getWidth();
 		StdDraw.setCanvasSize(width,height);
 		StdDraw.setXscale(0, width);
 		StdDraw.setYscale(0, height);
@@ -25,9 +27,6 @@ public class Plateau
 	public static void afficheMenuJoueur()	// Affiche le choix du nombre de joueurs en début de partie
 	{
 		String cartePng = "plateauMenu.png";
-		Dimension dimension = java.awt.Toolkit.getDefaultToolkit().getScreenSize();
-		int height = (int)dimension.getHeight();
-		int width  = (int)dimension.getWidth();
 		
 		try {
 	        StdDraw.clear();
@@ -94,14 +93,11 @@ public class Plateau
 		StdDraw.circle(width/1.35, height/1.5+5, 20);
 				
 		StdDraw.show(1);
+		StdDraw.clear();
 	}
 	
 	public static void afficheMenuCarte()
 	{
-		Dimension dimension = java.awt.Toolkit.getDefaultToolkit().getScreenSize();
-		int height = (int)dimension.getHeight();
-		int width  = (int)dimension.getWidth();
-		
 		StdDraw.setPenColor(50,100,255);				//Couleur du titre en bleu
 		Font font = new Font("Arial", Font.BOLD, 60);	//En gros en gras
 		StdDraw.setFont(font);
@@ -109,7 +105,7 @@ public class Plateau
 		StdDraw.text(width/2,height/1.1,"RiskIsep");
 		
 		StdDraw.setPenColor();							//Couleur en noir
-		font = new Font("Arial", Font.PLAIN, 40);		//En plus petit et pas en gras
+		font = new Font("Arial", Font.PLAIN, 30);		//En plus petit et pas en gras
 		StdDraw.setFont(font);
 				
 		StdDraw.text(width/2, height/1.3, "Choix de la carte :");
@@ -118,17 +114,13 @@ public class Plateau
 		StdDraw.text(width/1.8, height/1.5, "Tamriel");
 		StdDraw.rectangle(width/1.8, height/1.5+5, width/25, 30);
 		
-		StdDraw.show();
+		StdDraw.show(1);
 		StdDraw.clear();	
 	}
 
 	
 	public static void affichePlateau(String cartePng)			//Affiche l'image du plateau de jeu
 	{
-		Dimension dimension = java.awt.Toolkit.getDefaultToolkit().getScreenSize();
-		int height = (int)dimension.getHeight();
-        int width  = (int)dimension.getWidth();
-        
 		try {
 	        StdDraw.clear();
 	        BufferedImage image = ImageIO.read(new File(cartePng)); 
@@ -149,8 +141,8 @@ public class Plateau
 	        	scaleX = (double)width;
 	        }		 
 		
-	        StdDraw.picture(width/2, height/2, cartePng, scaleX, scaleY); //Rajouter ",scaleX ,scaleY" dans la parenthèse pour avoir du rescale mais perturbe les clics
-	        StdDraw.show();
+	        StdDraw.picture(width/2, height/2, cartePng); //Rajouter ",scaleX ,scaleY" dans la parenthèse pour avoir du rescale mais perturbe les clics
+	        StdDraw.show(1);
 	        
 			}
 	        catch (FileNotFoundException e) 
@@ -167,9 +159,107 @@ public class Plateau
 		    }
 	}
 	
+	
+	
+	
 	public static void afficheUnite()
 	{
 		
 	}
+	
+	
+	public static void affichePointProprio(int idTerr, Color couleur)
+	{
+		if (idTerr==0)
+		{
+			StdDraw.setPenColor(couleur);
+			StdDraw.filledCircle(width/3.4, height/1.17, 7);
+			StdDraw.setPenColor();
+			StdDraw.circle(width/3.4, height/1.17, 7);
+		}
+		if (idTerr==1)
+		{
+			StdDraw.setPenColor(couleur);
+			StdDraw.filledCircle(width/2.5, height/1.16, 7);
+			StdDraw.setPenColor();
+			StdDraw.circle(width/2.5, height/1.16, 7);
+		}
+		if (idTerr==2)
+		{
+			StdDraw.setPenColor(couleur);
+			StdDraw.filledCircle(width/2.22, height/1.25, 7);
+			StdDraw.setPenColor();
+			StdDraw.circle(width/2.22, height/1.25, 7);
+		}
+		if (idTerr==3)
+		{
+			StdDraw.setPenColor(couleur);
+			StdDraw.filledCircle(width/2.18, height/1.11, 7);
+			StdDraw.setPenColor();
+			StdDraw.circle(width/2.18, height/1.11, 7);
+		}
+		if (idTerr==4)
+		{
+			StdDraw.setPenColor(couleur);
+			StdDraw.filledCircle(width/2.03, height/1.375, 7);
+			StdDraw.setPenColor();
+			StdDraw.circle(width/2.03, height/1.375, 7);
+		}
+		if (idTerr==5)
+		{
+			StdDraw.setPenColor(couleur);
+			StdDraw.filledCircle(width/1.82, height/1.275, 7);
+			StdDraw.setPenColor();
+			StdDraw.circle(width/1.82, height/1.275, 7);
+		}
+		if (idTerr==6)
+		{
+			StdDraw.setPenColor(couleur);
+			StdDraw.filledCircle(width/1.83, height/1.37, 7);
+			StdDraw.setPenColor();
+			StdDraw.circle(width/1.83, height/1.37, 7);
+		}
+		if (idTerr==7)
+		{
+			StdDraw.setPenColor(couleur);
+			StdDraw.filledCircle(width/1.67, height/1.38, 7);
+			StdDraw.setPenColor();
+			StdDraw.circle(width/1.67, height/1.38, 7);
+		}
+		if (idTerr==8)
+		{
+			StdDraw.setPenColor(couleur);
+			StdDraw.filledCircle(width/1.70, height/1.268, 7);
+			StdDraw.setPenColor();
+			StdDraw.circle(width/1.70, height/1.268, 7);
+		}
+		if (idTerr==9)
+		{
+			StdDraw.setPenColor(couleur);
+			StdDraw.filledCircle(width/1.71, height/1.175, 7);
+			StdDraw.setPenColor();
+			StdDraw.circle(width/1.71, height/1.175, 7);
+		}
+		if (idTerr==10)
+		{
+			StdDraw.setPenColor(couleur);
+			StdDraw.filledCircle(width/1.87, height/1.15, 7);
+			StdDraw.setPenColor();
+			StdDraw.circle(width/1.87, height/1.15, 7);
+		}
+		if (idTerr==11)
+		{
+			System.out.println("cc");
+			StdDraw.setPenColor(couleur);
+			StdDraw.filledCircle(width/3.5, height/1.5, 7);
+			StdDraw.setPenColor();
+			StdDraw.circle(width/3.5, height/1.5, 7);
+		}
+		
+	}
+	
+	
+	
+	
 	
 }
