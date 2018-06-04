@@ -173,88 +173,297 @@ public class Plateau
 		if (idTerr==0)
 		{
 			StdDraw.setPenColor(couleur);
-			StdDraw.filledCircle(width/3.3, height/1.18, 7);
+			StdDraw.filledCircle(width/3.3, height/1.18, 6);
 			StdDraw.setPenColor();
-			StdDraw.circle(width/3.3, height/1.18, 7);
+			StdDraw.circle(width/3.3, height/1.18, 6);
 		}
 		if (idTerr==1)
 		{
 			StdDraw.setPenColor(couleur);
-			StdDraw.filledCircle(width/2.45, height/1.18, 7);
+			StdDraw.filledCircle(width/2.45, height/1.18, 6);
 			StdDraw.setPenColor();
-			StdDraw.circle(width/2.45, height/1.18, 7);
+			StdDraw.circle(width/2.45, height/1.18, 6);
 		}
 		if (idTerr==2)
 		{
 			StdDraw.setPenColor(couleur);
-			StdDraw.filledCircle(width/2.21, height/1.27, 7);
+			StdDraw.filledCircle(width/2.21, height/1.27, 6);
 			StdDraw.setPenColor();
-			StdDraw.circle(width/2.21, height/1.27, 7);
+			StdDraw.circle(width/2.21, height/1.27, 6);
 		}
 		if (idTerr==3)
 		{
 			StdDraw.setPenColor(couleur);
-			StdDraw.filledCircle(width/2.17, height/1.13, 7);
+			StdDraw.filledCircle(width/2.17, height/1.13, 6);
 			StdDraw.setPenColor();
-			StdDraw.circle(width/2.17, height/1.13, 7);
+			StdDraw.circle(width/2.17, height/1.13, 6);
 		}
 		if (idTerr==4)
 		{
 			StdDraw.setPenColor(couleur);
-			StdDraw.filledCircle(width/2.03, height/1.385, 7);
+			StdDraw.filledCircle(width/2.03, height/1.385, 6);
 			StdDraw.setPenColor();
-			StdDraw.circle(width/2.03, height/1.385, 7);
+			StdDraw.circle(width/2.03, height/1.385, 6);
 		}
 		if (idTerr==5)
 		{
 			StdDraw.setPenColor(couleur);
-			StdDraw.filledCircle(width/1.83, height/1.288, 7);
+			StdDraw.filledCircle(width/1.83, height/1.288, 6);
 			StdDraw.setPenColor();
-			StdDraw.circle(width/1.83, height/1.288, 7);
+			StdDraw.circle(width/1.83, height/1.288, 6);
 		}
 		if (idTerr==6)
 		{
 			StdDraw.setPenColor(couleur);
-			StdDraw.filledCircle(width/1.83, height/1.38, 7);
+			StdDraw.filledCircle(width/1.83, height/1.38, 6);
 			StdDraw.setPenColor();
-			StdDraw.circle(width/1.83, height/1.38, 7);
+			StdDraw.circle(width/1.83, height/1.38, 6);
 		}
 		if (idTerr==7)
 		{
 			StdDraw.setPenColor(couleur);
-			StdDraw.filledCircle(width/1.68, height/1.39, 7);
+			StdDraw.filledCircle(width/1.68, height/1.39, 6);
 			StdDraw.setPenColor();
-			StdDraw.circle(width/1.68, height/1.39, 7);
+			StdDraw.circle(width/1.68, height/1.39, 6);
 		}
 		if (idTerr==8)
 		{
 			StdDraw.setPenColor(couleur);
-			StdDraw.filledCircle(width/1.71, height/1.277, 7);
+			StdDraw.filledCircle(width/1.71, height/1.277, 6);
 			StdDraw.setPenColor();
-			StdDraw.circle(width/1.71, height/1.277, 7);
+			StdDraw.circle(width/1.71, height/1.277, 6);
 		}
 		if (idTerr==9)
 		{
 			StdDraw.setPenColor(couleur);
-			StdDraw.filledCircle(width/1.72, height/1.19, 7);
+			StdDraw.filledCircle(width/1.72, height/1.19, 6);
 			StdDraw.setPenColor();
-			StdDraw.circle(width/1.72, height/1.19, 7);
+			StdDraw.circle(width/1.72, height/1.19, 6);
 		}
 		if (idTerr==10)
 		{
 			StdDraw.setPenColor(couleur);
-			StdDraw.filledCircle(width/1.875, height/1.168, 7);
+			StdDraw.filledCircle(width/1.875, height/1.168, 6);
 			StdDraw.setPenColor();
-			StdDraw.circle(width/1.875, height/1.168, 7);
+			StdDraw.circle(width/1.875, height/1.168, 6);
 		}
 		if (idTerr==11)
 		{
 			StdDraw.setPenColor(couleur);
-			StdDraw.filledCircle(width/3.5, height/1.5, 7);
+			StdDraw.filledCircle(width/3.845, height/1.58, 6);
 			StdDraw.setPenColor();
-			StdDraw.circle(width/3.5, height/1.5, 7);
+			StdDraw.circle(width/3.845, height/1.58, 6);
 		}
-		
+		if (idTerr==12)
+		{
+			StdDraw.setPenColor(couleur);
+			StdDraw.filledCircle(width/3.12, height/1.42, 6);
+			StdDraw.setPenColor();
+			StdDraw.circle(width/3.12, height/1.42, 6);
+		}
+		if (idTerr==13)
+		{
+			StdDraw.setPenColor(couleur);
+			StdDraw.filledCircle(width/2.57, height/1.31, 6);
+			StdDraw.setPenColor();
+			StdDraw.circle(width/2.57, height/1.31, 6);
+		}
+		if (idTerr==14)
+		{
+			StdDraw.setPenColor(couleur);
+			StdDraw.filledCircle(width/2.175, height/1.59, 6);
+			StdDraw.setPenColor();
+			StdDraw.circle(width/2.175, height/1.59, 6);
+		}
+		if (idTerr==15)
+		{
+			StdDraw.setPenColor(couleur);
+			StdDraw.filledCircle(width/2.31, height/1.77, 6);
+			StdDraw.setPenColor();
+			StdDraw.circle(width/2.31, height/1.77, 6);
+		}
+		if (idTerr==16)
+		{
+			StdDraw.setPenColor(couleur);
+			StdDraw.filledCircle(width/2.37, height/1.99, 6);
+			StdDraw.setPenColor();
+			StdDraw.circle(width/2.37, height/1.99, 6);
+		}
+		if (idTerr==17)
+		{
+			StdDraw.setPenColor(couleur);
+			StdDraw.filledCircle(width/2, height/1.95, 6);
+			StdDraw.setPenColor();
+			StdDraw.circle(width/2, height/1.95, 6);
+		}
+		if (idTerr==18)
+		{
+			StdDraw.setPenColor(couleur);
+			StdDraw.filledCircle(width/1.92, height/1.52, 6);
+			StdDraw.setPenColor();
+			StdDraw.circle(width/1.92, height/1.52, 6);
+		}
+		if (idTerr==19)
+		{
+			StdDraw.setPenColor(couleur);
+			StdDraw.filledCircle(width/1.665, height/1.575, 6);
+			StdDraw.setPenColor();
+			StdDraw.circle(width/1.665, height/1.575, 6);
+		}
+		if (idTerr==20)
+		{
+			StdDraw.setPenColor(couleur);
+			StdDraw.filledCircle(width/1.6, height/1.85, 6);
+			StdDraw.setPenColor();
+			StdDraw.circle(width/1.6, height/1.85, 6);
+		}
+		if (idTerr==21)
+		{
+			StdDraw.setPenColor(couleur);
+			StdDraw.filledCircle(width/1.53, height/2.55, 6);
+			StdDraw.setPenColor();
+			StdDraw.circle(width/1.53, height/2.55, 6);
+		}
+		if (idTerr==22)
+		{
+			StdDraw.setPenColor(couleur);
+			StdDraw.filledCircle(width/1.823, height/2.2, 6);
+			StdDraw.setPenColor();
+			StdDraw.circle(width/1.823, height/2.2, 6);
+		}
+		if (idTerr==23)
+		{
+			StdDraw.setPenColor(couleur);
+			StdDraw.filledCircle(width/1.825, height/1.9, 6);
+			StdDraw.setPenColor();
+			StdDraw.circle(width/1.825, height/1.9, 6);
+		}
+		if (idTerr==24)
+		{
+			StdDraw.setPenColor(couleur);
+			StdDraw.filledCircle(width/3.75, height/4.8, 6);
+			StdDraw.setPenColor();
+			StdDraw.circle(width/3.75, height/4.8, 6);
+		}
+		if (idTerr==25)
+		{
+			StdDraw.setPenColor(couleur);
+			StdDraw.filledCircle(width/4.15, height/3.2, 6);
+			StdDraw.setPenColor();
+			StdDraw.circle(width/4.15, height/3.2, 6);
+		}
+		if (idTerr==26)
+		{
+			StdDraw.setPenColor(couleur);
+			StdDraw.filledCircle(width/3.65, height/3.02, 6);
+			StdDraw.setPenColor();
+			StdDraw.circle(width/3.65, height/3.02, 6);
+		}
+		if (idTerr==27)
+		{
+			StdDraw.setPenColor(couleur);
+			StdDraw.filledCircle(width/2.1, height/2.55, 6);
+			StdDraw.setPenColor();
+			StdDraw.circle(width/2.1, height/2.55, 6);
+		}
+		if (idTerr==28)
+		{
+			StdDraw.setPenColor(couleur);
+			StdDraw.filledCircle(width/2.16, height/3.3, 6);
+			StdDraw.setPenColor();
+			StdDraw.circle(width/2.16, height/3.3, 6);
+		}
+		if (idTerr==29)
+		{
+			StdDraw.setPenColor(couleur);
+			StdDraw.filledCircle(width/1.98, height/2.6, 6);
+			StdDraw.setPenColor();
+			StdDraw.circle(width/1.98, height/2.6, 6);
+		}
+		if (idTerr==30)
+		{
+			StdDraw.setPenColor(couleur);
+			StdDraw.filledCircle(width/1.78, height/3.9, 6);
+			StdDraw.setPenColor();
+			StdDraw.circle(width/1.78, height/3.9, 6);
+		}
+		if (idTerr==31)
+		{
+			StdDraw.setPenColor(couleur);
+			StdDraw.filledCircle(width/1.77, height/2.87, 6);
+			StdDraw.setPenColor();
+			StdDraw.circle(width/1.77, height/2.87, 6);
+		}
+		if (idTerr==32)
+		{
+			StdDraw.setPenColor(couleur);
+			StdDraw.filledCircle(width/1.63, height/1.21, 6);
+			StdDraw.setPenColor();
+			StdDraw.circle(width/1.63, height/1.21, 6);
+		}
+		if (idTerr==33)
+		{
+			StdDraw.setPenColor(couleur);
+			StdDraw.filledCircle(width/1.463, height/1.78, 6);
+			StdDraw.setPenColor();
+			StdDraw.circle(width/1.463, height/1.78, 6);
+		}
+		if (idTerr==34)
+		{
+			StdDraw.setPenColor(couleur);
+			StdDraw.filledCircle(width/1.285, height/1.275, 6);
+			StdDraw.setPenColor();
+			StdDraw.circle(width/1.285, height/1.275, 6);
+		}
+		if (idTerr==35)
+		{
+			StdDraw.setPenColor(couleur);
+			StdDraw.filledCircle(width/1.335, height/2.57, 6);
+			StdDraw.setPenColor();
+			StdDraw.circle(width/1.335, height/2.57, 6);
+		}
+		if (idTerr==36)
+		{
+			StdDraw.setPenColor(couleur);
+			StdDraw.filledCircle(width/1.425, height/2.57, 6);
+			StdDraw.setPenColor();
+			StdDraw.circle(width/1.425, height/2.57, 6);
+		}
+		if (idTerr==37)
+		{
+			StdDraw.setPenColor(couleur);
+			StdDraw.filledCircle(width/1.47, height/4.6, 6);
+			StdDraw.setPenColor();
+			StdDraw.circle(width/1.47, height/4.6, 6);
+		}
+		if (idTerr==38)
+		{
+			StdDraw.setPenColor(couleur);
+			StdDraw.filledCircle(width/1.35, height/6, 6);
+			StdDraw.setPenColor();
+			StdDraw.circle(width/1.35, height/6, 6);
+		}
+		if (idTerr==39)
+		{
+			StdDraw.setPenColor(couleur);
+			StdDraw.filledCircle(width/1.47, height/7, 6);
+			StdDraw.setPenColor();
+			StdDraw.circle(width/1.47, height/7, 6);
+		}
+		if (idTerr==40)
+		{
+			StdDraw.setPenColor(couleur);
+			StdDraw.filledCircle(width/1.215, height/1.183, 6);
+			StdDraw.setPenColor();
+			StdDraw.circle(width/1.215, height/1.183, 6);
+		}
+		if (idTerr==41)
+		{
+			StdDraw.setPenColor(couleur);
+			StdDraw.filledCircle(width/1.355, height/1.135, 6);
+			StdDraw.setPenColor();
+			StdDraw.circle(width/1.355, height/1.135, 6);
+		}
 	}
 	
 	
