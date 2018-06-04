@@ -173,83 +173,82 @@ public class Plateau
 		if (idTerr==0)
 		{
 			StdDraw.setPenColor(couleur);
-			StdDraw.filledCircle(width/3.4, height/1.17, 7);
+			StdDraw.filledCircle(width/3.3, height/1.18, 7);
 			StdDraw.setPenColor();
-			StdDraw.circle(width/3.4, height/1.17, 7);
+			StdDraw.circle(width/3.3, height/1.18, 7);
 		}
 		if (idTerr==1)
 		{
 			StdDraw.setPenColor(couleur);
-			StdDraw.filledCircle(width/2.5, height/1.16, 7);
+			StdDraw.filledCircle(width/2.45, height/1.18, 7);
 			StdDraw.setPenColor();
-			StdDraw.circle(width/2.5, height/1.16, 7);
+			StdDraw.circle(width/2.45, height/1.18, 7);
 		}
 		if (idTerr==2)
 		{
 			StdDraw.setPenColor(couleur);
-			StdDraw.filledCircle(width/2.22, height/1.25, 7);
+			StdDraw.filledCircle(width/2.21, height/1.27, 7);
 			StdDraw.setPenColor();
-			StdDraw.circle(width/2.22, height/1.25, 7);
+			StdDraw.circle(width/2.21, height/1.27, 7);
 		}
 		if (idTerr==3)
 		{
 			StdDraw.setPenColor(couleur);
-			StdDraw.filledCircle(width/2.18, height/1.11, 7);
+			StdDraw.filledCircle(width/2.17, height/1.13, 7);
 			StdDraw.setPenColor();
-			StdDraw.circle(width/2.18, height/1.11, 7);
+			StdDraw.circle(width/2.17, height/1.13, 7);
 		}
 		if (idTerr==4)
 		{
 			StdDraw.setPenColor(couleur);
-			StdDraw.filledCircle(width/2.03, height/1.375, 7);
+			StdDraw.filledCircle(width/2.03, height/1.385, 7);
 			StdDraw.setPenColor();
-			StdDraw.circle(width/2.03, height/1.375, 7);
+			StdDraw.circle(width/2.03, height/1.385, 7);
 		}
 		if (idTerr==5)
 		{
 			StdDraw.setPenColor(couleur);
-			StdDraw.filledCircle(width/1.82, height/1.275, 7);
+			StdDraw.filledCircle(width/1.83, height/1.288, 7);
 			StdDraw.setPenColor();
-			StdDraw.circle(width/1.82, height/1.275, 7);
+			StdDraw.circle(width/1.83, height/1.288, 7);
 		}
 		if (idTerr==6)
 		{
 			StdDraw.setPenColor(couleur);
-			StdDraw.filledCircle(width/1.83, height/1.37, 7);
+			StdDraw.filledCircle(width/1.83, height/1.38, 7);
 			StdDraw.setPenColor();
-			StdDraw.circle(width/1.83, height/1.37, 7);
+			StdDraw.circle(width/1.83, height/1.38, 7);
 		}
 		if (idTerr==7)
 		{
 			StdDraw.setPenColor(couleur);
-			StdDraw.filledCircle(width/1.67, height/1.38, 7);
+			StdDraw.filledCircle(width/1.68, height/1.39, 7);
 			StdDraw.setPenColor();
-			StdDraw.circle(width/1.67, height/1.38, 7);
+			StdDraw.circle(width/1.68, height/1.39, 7);
 		}
 		if (idTerr==8)
 		{
 			StdDraw.setPenColor(couleur);
-			StdDraw.filledCircle(width/1.70, height/1.268, 7);
+			StdDraw.filledCircle(width/1.71, height/1.277, 7);
 			StdDraw.setPenColor();
-			StdDraw.circle(width/1.70, height/1.268, 7);
+			StdDraw.circle(width/1.71, height/1.277, 7);
 		}
 		if (idTerr==9)
 		{
 			StdDraw.setPenColor(couleur);
-			StdDraw.filledCircle(width/1.71, height/1.175, 7);
+			StdDraw.filledCircle(width/1.72, height/1.19, 7);
 			StdDraw.setPenColor();
-			StdDraw.circle(width/1.71, height/1.175, 7);
+			StdDraw.circle(width/1.72, height/1.19, 7);
 		}
 		if (idTerr==10)
 		{
 			StdDraw.setPenColor(couleur);
-			StdDraw.filledCircle(width/1.87, height/1.15, 7);
+			StdDraw.filledCircle(width/1.875, height/1.168, 7);
 			StdDraw.setPenColor();
-			StdDraw.circle(width/1.87, height/1.15, 7);
+			StdDraw.circle(width/1.875, height/1.168, 7);
 		}
 		if (idTerr==11)
 		{
-			System.out.println("cc");
 			StdDraw.setPenColor(couleur);
 			StdDraw.filledCircle(width/3.5, height/1.5, 7);
 			StdDraw.setPenColor();
