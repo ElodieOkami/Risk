@@ -1,3 +1,4 @@
+
 public class Cavalier extends Unite{
 
 	public Cavalier(int cout, int[] puissance, int prioriteATT, int prioriteDEF, int mvtTour, String token) {
