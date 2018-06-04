@@ -46,38 +46,9 @@ public class Joueur {
 	
 	
 	//Etape 3 : Répartition d'un nombre de soldats pour chaque joueur
-	public static void creaJoueur(int nbrJr)
-	{
-			if (nbrJr <= 2)
-			{
-				Joueur joueur1 = new Joueur (1,"joueur"+1, Color.BLUE);
-				joueur1.repartitionUnite(nbrJr);
-				Joueur joueur2 = new Joueur (2,"joueur"+2, Color.RED);
-				joueur2.repartitionUnite(nbrJr);
-				if(nbrJr >=3)
-				{
-					Joueur joueur3 = new Joueur (3,"joueur"+3, Color.GREEN);
-					joueur3.repartitionUnite(nbrJr);
-					if(nbrJr >= 4)
-					{
-						Joueur joueur4 = new Joueur (4,"joueur"+4, Color.PINK);
-						joueur4.repartitionUnite(nbrJr);
-						if(nbrJr >=5)
-						{
-							Joueur joueur5 = new Joueur (5,"joueur"+5, Color.YELLOW);
-							joueur5.repartitionUnite(nbrJr);
-							if(nbrJr == 6)
-							{
-								Joueur joueur6 = new Joueur (6,"joueur"+6, Color.ORANGE);
-								joueur6.repartitionUnite(nbrJr);
-							}
-						}
-					}
-				}
-			}
-	}	
 	
-	private void repartitionUnite(int nbrJr)
+	
+	public void repartitionUnite(int nbrJr)
 	{
 		int[] listePuissanceSoldat = {1,2,3,4,5,6};
 		switch(nbrJr) //On gère les différents cas
@@ -126,5 +97,12 @@ public class Joueur {
 			break;
 		}
 	}
+	
+	public static void placerUniteIni(int nbrJr)
+	{
+		//System.out.println("Vous possédez " + this.listeUnite.size()+ " soldats, veuillez les placer sur vos territoires" );
+	}
+	
+	
 	
 }
