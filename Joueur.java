@@ -110,11 +110,11 @@
 		{
 			for (int i=0; i<6; i++)
 			{
-				for (int j=0; j<Initialisation.getRegion(i).getTaille(); j++)
+				for (int j=0; j<RiskIsep.getRegion(i).getTaille(); j++)
 				{
-					if (Initialisation.getRegion(i).getTerritoires().get(j).getProprietaire() == this.getIdJoueur())
+					if (RiskIsep.getRegion(i).getTerritoires().get(j).getProprietaire() == this.getIdJoueur())
 					{
-						this.getListeTerrPoss().add(Initialisation.getRegion(i).getTerritoires().get(j));
+						this.getListeTerrPoss().add(RiskIsep.getRegion(i).getTerritoires().get(j));
 					}
 				}
 			}
@@ -124,7 +124,7 @@
 		{
 			for (int i=0; i<this.getListeTerrPoss().size(); i++)
 			{
-				Initialisation.regionClicked(this.getListeTerrPoss().get(i).getId()).listeTerritoires.get(Initialisation.territoireDsRegion(this.getListeTerrPoss().get(i).getId())).setNbrSoldat(Initialisation.regionClicked(this.getListeTerrPoss().get(i).getId()).listeTerritoires.get(Initialisation.territoireDsRegion(this.getListeTerrPoss().get(i).getId())).getNbrSoldat()+1);	//Le territoire se voit automatiquement attribué un soldat 
+				RiskIsep.regionClicked(this.getListeTerrPoss().get(i).getId()).listeTerritoires.get(Territoire.territoireDsRegion(this.getListeTerrPoss().get(i).getId())).setNbrSoldat(RiskIsep.regionClicked(this.getListeTerrPoss().get(i).getId()).listeTerritoires.get(Territoire.territoireDsRegion(this.getListeTerrPoss().get(i).getId())).getNbrSoldat()+1);	//Le territoire se voit automatiquement attribué un soldat 
 				this.getListeUnite().get(numeroSoldat).setIdPosition(this.getListeTerrPoss().get(i).getId()); 	//On dit sur quel territoire le soldat a été placé
 				numeroSoldat++;
 			}
