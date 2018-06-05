@@ -56,5 +56,32 @@ public class Territoire {
 	}
 	
 	
-	
+
+	public static int territoireDsRegion(int idTerri)
+	{
+		if (idTerri<11)
+		{
+			return idTerri;
+		}
+		else if (idTerri <16)
+		{
+			return idTerri-11;
+		}
+		else if (idTerri <24)
+		{
+			return idTerri-16;
+		}
+		else if (idTerri < 27)
+		{
+			return idTerri-24;
+		}
+		else if (idTerri < 32)
+		{
+			return idTerri-27;
+		}
+		else
+		{
+			return idTerri-32;
+		} 
+	}
 }
