@@ -42,20 +42,11 @@ public class Initialisation {
 		
 		Plateau.affichePlateau(cartePng);
 		Mission.attributionMissions(nbrJr);
-		Initialisation.CreaRegTer(cartePng, nbrJr);
+		Region.CreaRegTer(cartePng, nbrJr);
 		RiskIsep.creaJoueur(nbrJr);
 		RiskIsep.PossesseurTerris(cartePng);
 		RiskIsep.placementUniteIni(nbrJr, cartePng);	
 		return cartePng;
 	}
 
-	
-	public static void CreaRegTer(String cartePng, int nbrJr)
-	{
-		int idTerritoire=0;
-		RiskIsep.creationRegions(cartePng, nbrJr, idTerritoire);			//Crée les Régions ainsi que les territoires
-	}
-	
-	
-	
 }
