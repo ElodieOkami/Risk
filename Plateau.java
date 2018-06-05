@@ -6,8 +6,6 @@ import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.awt.Color;
 import java.awt.Dimension;
-import java.util.ArrayList;
-
 
 import javax.imageio.ImageIO;
 
@@ -98,6 +96,43 @@ public class Plateau
 	
 	public static void afficheMenuCarte()
 	{
+		String cartePng = "plateauMenu.png";
+		
+		try {
+	        StdDraw.clear();
+	        BufferedImage image = ImageIO.read(new File(cartePng)); 
+	        
+	        double RapportE = (double)width/height;
+	        double RapportI = (double) image.getWidth()/image.getHeight();
+	        double scaleX;
+	        double scaleY;
+	        
+	        if(RapportE>RapportI)
+	        {
+	        	scaleX = (double)image.getWidth()*height/image.getHeight();
+	        	scaleY = (double)height;
+	        }
+	        else
+	        {
+	        	scaleY = (double)image.getHeight()*width/image.getWidth();
+	        	scaleX = (double)width;
+	        }		 
+		
+	        StdDraw.picture(width/2, height/2, cartePng, scaleX, scaleY);
+		}
+        catch (FileNotFoundException e) 
+	    {
+	        e.printStackTrace();
+	    } 
+	    catch (IOException e) 
+	    {
+	        e.printStackTrace();
+	    } 
+	    catch (Exception e) 
+	    {
+	        e.printStackTrace();
+	    }
+		
 		StdDraw.setPenColor(Color.red);				//Couleur du titre en rouge
 		Font font = new Font("Papyrus", Font.BOLD, 60);	//En gros en gras
 		StdDraw.setFont(font);
@@ -105,13 +140,13 @@ public class Plateau
 		StdDraw.text(width/2,height/1.1,"Bienvenue dans RiskIsep");
 		
 		StdDraw.setPenColor();							//Couleur en noir
-		font = new Font("Papyrus", Font.PLAIN, 30);		//En plus petit et pas en gras
+		font = new Font("Papyrus", Font.PLAIN, 40);		//En plus petit et pas en gras
 		StdDraw.setFont(font);
 				
 		StdDraw.text(width/2, height/1.3, "Choix de la carte :");
+		
 		font = new Font("Times New Roman", Font.PLAIN, 30);		//En plus petit et pas en gras
 		StdDraw.setFont(font);
-		
 		StdDraw.text(width/2.3, height/1.5, "Terre");
 		StdDraw.rectangle(width/2.3, height/1.5+5, width/25, 30);
 		StdDraw.text(width/1.8, height/1.5, "Tamriel");
