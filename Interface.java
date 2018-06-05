@@ -11,31 +11,27 @@ import edu.princeton.cs.introcs.StdDraw;
 
 public class Interface {
 	
-	static Dimension dimension = java.awt.Toolkit.getDefaultToolkit().getScreenSize();
-	final static int height = (int)dimension.getHeight();
-    final static int width  = (int)dimension.getWidth();
+	static Dimension dimension = java.awt.Toolkit.getDefaultToolkit().getScreenSize();		//Permet d'avoir la largeur et la hauteur d'un écran
+	final static int height = (int)dimension.getHeight();								//hauteur
+    final static int width  = (int)dimension.getWidth();								//largeur
 
 	static final int clicTropBas = 20; //A cause de la barre en haut de la fenêtre, tous les clics sont trop bas
 	
 	//Interface 1er Menu (séléction du nombre de joueurs)
-	public static int MenuJoueur() 
+	public static int MenuJoueur() 			
 	{
-		Plateau.afficheMenuJoueur();
+		Plateau.afficheMenuJoueur();		//Visuel
 		if(StdDraw.isMousePressed())
 		{
 			double clickX=StdDraw.mouseX();
 			double clickY=StdDraw.mouseY()-clicTropBas;		
-			return nombreJoueurs(clickX, clickY);
+			return nombreJoueurs(clickX, clickY);		//Quel nombre de joueur a été cliqué
 		}
 		return 0;
 	}
 	
-	public static int nombreJoueurs(double clickX, double clickY)
-	{
-		Dimension dimension = java.awt.Toolkit.getDefaultToolkit().getScreenSize();
-		int height = (int)dimension.getHeight();
-		int width  = (int)dimension.getWidth();
-					
+	public static int nombreJoueurs(double clickX, double clickY) //Quel nombre de joueur a été cliqué
+	{					
 			if(height/1.5-20 < clickY && clickY < height/1.5+20) 
 			{
 				if (width/3.9-15 < clickX && clickX < width/3.9+15) 
@@ -75,12 +71,12 @@ public class Interface {
 	//Interface 2ème Menu (séléction de la carte)
 	public static String MenuCarte() 
 	{
-		Plateau.afficheMenuCarte();
+		Plateau.afficheMenuCarte();		//Visuel
 		if(StdDraw.isMousePressed())
 		{
 			double clickX=StdDraw.mouseX();
 			double clickY=StdDraw.mouseY()-clicTropBas;
-			int indice = choixCarte(clickX, clickY);
+			int indice = choixCarte(clickX, clickY);		//Quelle carte a été cliquée
 			if(indice == 1)
 			{
 				return "plateauTerre.png";
@@ -93,12 +89,8 @@ public class Interface {
 		return "nonselectionne";
 	}
 	
-	public static int choixCarte(double clickX, double clickY)
+	public static int choixCarte(double clickX, double clickY)	//Quelle carte a été cliquée
 	{
-		Dimension dimension = java.awt.Toolkit.getDefaultToolkit().getScreenSize();
-		int height = (int)dimension.getHeight();
-		int width  = (int)dimension.getWidth();
-		
 		
 		if(height/1.5-height/45 < clickY && clickY < height/1.5+height/30) 
 		{
@@ -116,7 +108,7 @@ public class Interface {
 	}
 	
 	//Jeu
-	public static BufferedImage buffImage(String cartePng)
+	public static BufferedImage buffImage(String cartePng)		//Fonction qui enregistre l'image dans le buffer (sert à l'obtention du RGB de où on clique)
 	{
 		try
 		{
@@ -137,7 +129,7 @@ public class Interface {
 	    }
 		return null;
 	}
-	public static int lectureClic(String cartePng) {
+	public static int lectureClic(String cartePng) {		//A partir de la couleur d'où on clique, ressort le territoire cliqué
 	    	
 		BufferedImage image =buffImage(cartePng);
 	    Color couleur;
@@ -171,7 +163,7 @@ public class Interface {
 	        clickX = (int)(clickX*multiX);
 	        clickY = (int)(clickY*multiY);*/ //A travailler pour le rescale
 	        			
-	        couleur = new Color(image.getRGB(clickX, image.getHeight()-clickY));
+	        couleur = new Color(image.getRGB(clickX, image.getHeight()-clickY));	//Couleur aux coordonnées du clic
 	        			
 	        //System.out.println("R = " + couleur.getRed());
 	        //System.out.println("G = " + couleur.getGreen());
@@ -181,7 +173,7 @@ public class Interface {
 			} catch(InterruptedException e) {
 			    System.out.println("Sommeil interrompu");
 			}
-	        return correspondClic(cartePng, couleur);
+	        return correspondClic(cartePng, couleur);		//Return id territoire
 	        
 	    }
 	            
@@ -198,13 +190,13 @@ public class Interface {
 			int G = couleur.getGreen();
 			int B = couleur.getBlue();
 			
-			if (R == 255 && G == 255 && B == 255)
+			if (R == 255 && G == 255 && B == 255)		//Si on clique sur du blanc
 			{
-				System.out.println("Veuillez cliquez sur un des 42 territoires en couleurs");
+				System.out.println("Veuillez cliquez sur un des territoires en couleurs");
 				return -1;
 			}
 			
-			else if (R == 168 && G == 168 && B == 168)
+			else if (R == 168 && G == 168 && B == 168)		//Si on clique sur du gris
 			{
 				System.out.println("Cette zone est non habitable");
 				return -1;
@@ -222,14 +214,13 @@ public class Interface {
 				}
 				System.out.println("Erreur, veuillez ré-essayer de cliquer sur un territoire");
 			}
-			return -1;
 		}
 		
 		return -1;
 		
 	}
 	
-	public static int[][] creaTableauCouleurs(String cartePng)
+	public static int[][] creaTableauCouleurs(String cartePng)		//Table qui dit quelle couleur correspond à quel idTerritoire
 	{
 		
 		if (cartePng == "plateauElder.png")
