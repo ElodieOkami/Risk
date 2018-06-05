@@ -84,4 +84,5 @@ public class Territoire {
 			return idTerri-32;
 		} 
 	}
+	
 }
