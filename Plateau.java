@@ -98,17 +98,20 @@ public class Plateau
 	
 	public static void afficheMenuCarte()
 	{
-		StdDraw.setPenColor(50,100,255);				//Couleur du titre en bleu
-		Font font = new Font("Arial", Font.BOLD, 60);	//En gros en gras
+		StdDraw.setPenColor(Color.red);				//Couleur du titre en rouge
+		Font font = new Font("Papyrus", Font.BOLD, 60);	//En gros en gras
 		StdDraw.setFont(font);
 		
-		StdDraw.text(width/2,height/1.1,"RiskIsep");
+		StdDraw.text(width/2,height/1.1,"Bienvenue dans RiskIsep");
 		
 		StdDraw.setPenColor();							//Couleur en noir
-		font = new Font("Arial", Font.PLAIN, 30);		//En plus petit et pas en gras
+		font = new Font("Papyrus", Font.PLAIN, 30);		//En plus petit et pas en gras
 		StdDraw.setFont(font);
 				
 		StdDraw.text(width/2, height/1.3, "Choix de la carte :");
+		font = new Font("Times New Roman", Font.PLAIN, 30);		//En plus petit et pas en gras
+		StdDraw.setFont(font);
+		
 		StdDraw.text(width/2.3, height/1.5, "Terre");
 		StdDraw.rectangle(width/2.3, height/1.5+5, width/25, 30);
 		StdDraw.text(width/1.8, height/1.5, "Tamriel");
