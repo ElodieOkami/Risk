@@ -5,28 +5,20 @@ import edu.princeton.cs.introcs.StdDraw;
 
 public class RiskIsep {
 	
-	public static ArrayList <Region> listeRegions=new ArrayList<Region>();
+	public static ArrayList <Region> listeRegions=new ArrayList<Region>();		//On créé ces listes en static pour pouvoir les réutiliser dans toute la classe
 	public static ArrayList <Joueur> listeJoueurs=new ArrayList<Joueur>();
 	
-	public static void main(String[] args) {
-		Jeu();
-		//new Panel();
-	}
-	
-	public static void Jeu()
+	public static void main(String[] args)
 	{
-		int nbrJr = Initialisation.initialisationJoueur();
-		String cartePng = Initialisation.initialisationJeu(nbrJr);
+		//- - - - - - -Initialisation- - - - - - -//
+		int nbrJr = Initialisation.initialisationJoueur();			//nbrJr est le nombre de joueurs dans la partie
+		String cartePng = Initialisation.initialisationJeu(nbrJr);	//cartePng est soit la carte "plateauElder.png"(tamriel) soit "plateauTerre.png"(Terre)
 		
-		
-		
-		while(true)
-		{
-			//Region.appelAfficheProprio(cartePng);
-		}
-		//Tour.Tour(); (pour la future class tour)
+		//- - - - - - - - - Jeu - - - - - - - - -//
+		Jeu.partieDeRisk(nbrJr);			//Début du vrai jeu
 	}
 	
+		
 	
 	public static void creationRegions(String cartePng, int nbrJr, int idTerritoire)			//Crée les Régions ainsi que les territoires
 	{
@@ -42,7 +34,6 @@ public class RiskIsep {
 		{
 			listIdJoueur.add(i+1);													//Cette liste va de 1 au nombre de joueur
 		}
-		//System.out.println("Nombre de joueurs: " + Joueur.get(nbrJr-1));
 		
 		if (cartePng == "plateauElder.png")		//Si on utilise la carte TES
 		{
@@ -116,7 +107,7 @@ public class RiskIsep {
 	{
 			Joueur joueur1 = new Joueur (1,"joueur"+1, Color.BLUE);		//On créé un objet joueur
 			joueur1.repartitionUnite(nbrJr);							//On lui donne un certain nombre de soldat
-			joueur1.rempliListTerrJoueur();
+			joueur1.rempliListTerrJoueur();								//On remplit la liste des territoires que possède le joueur
 			listeJoueurs.add(joueur1);									//On ajoute ce joueur à la liste Joueur
 			Joueur joueur2 = new Joueur (2,"joueur"+2, Color.RED);
 			joueur2.repartitionUnite(nbrJr);
@@ -153,7 +144,7 @@ public class RiskIsep {
 			}
 	}
 	
-	public static Region getRegion(int i)
+	public static Region getRegion(int i)		//Permet d'avoir accès aux infos de la listeRegion depuis toutes les classes
 	{
 		return listeRegions.get(i);
 	}
@@ -171,35 +162,35 @@ public class RiskIsep {
 		}
 	}
 	
-	public static Color getCouleurPropri(int numPropri)			//Ressort la couleur d'un joueur
+	public static Color getCouleurPropri(int numPropri)			//Ressort la couleur d'un joueur dans toutes les classes
 	{
 		return listeJoueurs.get(numPropri-1).getCouleur();
 	}
 	
 	
 	
-	public static void placementUniteIni(int nbrJr, String cartePng)
+	public static void placementUniteIni(int nbrJr, String cartePng)	//Placement des soldats reçus au début
 	{
-		int numeroJoueur;
-		int soldatsRestants;
+		int numeroJoueur;	//Numéro du joueur (idJoueur+1)
+		int soldatsRestants;	//Soldats restants à placer
 		for (int i=0; i<nbrJr; i++)		//Pour chaque joueur
 		{
 			numeroJoueur=i+1;
 			
 			int idTerri = -1;
-			int numeroSoldat=0;
-			int nbrSoldats = listeJoueurs.get(i).getListeUnite().size();
+			int idSoldat=0;		//id du soldat parmis la liste des soldats du Joueur
+			int nbrSoldats = listeJoueurs.get(i).getListeUnite().size();	//Nombre de soldats que possède le joueur
 			
-			numeroSoldat = listeJoueurs.get(i).placeSoldatParDefault(numeroSoldat);
-			System.out.println("Par respect des règles, on place un de vos soldats sur chacun de vos territoires : ");
-			for (int j=0; j<numeroSoldat; j++)
+			idSoldat = listeJoueurs.get(i).placeSoldatParDefault(idSoldat);	//Place un soldat par territoire du joueur
+			System.out.println("Par respect des règles, on place automatiquement un de vos soldats sur chacun de vos territoires : ");
+			for (int j=0; j<idSoldat; j++)
 			{
 				System.out.println("Soldat placé en "+ listeJoueurs.get(i).getListeUnite().get(j).getIdPosition());
 			}
-			soldatsRestants=nbrSoldats-numeroSoldat;
+			soldatsRestants=nbrSoldats-idSoldat;	//Nombre de soldats restant à placer après le placement automatique
 			System.out.println("Joueur"+numeroJoueur+ "(" + listeJoueurs.get(i).getCouleur()+"), c'est à vous de placer vos "+soldatsRestants+ " soldats");
 			
-			while (listeJoueurs.get(i).getListeUnite().get(nbrSoldats-1).getIdPosition() == -1)		//Tant que le dernier soldat du joueur n'a pas été placé
+			while (listeJoueurs.get(i).getListeUnite().get(nbrSoldats-1).getIdPosition() == -1)		//Tant que le dernier soldat du soldat n'a pas été placé
 			{
 				while(idTerri == -1)		//Tant que aucun territoire n'a été cliqué
 				{
@@ -211,11 +202,11 @@ public class RiskIsep {
 					}
 				}
 				regionClicked(idTerri).listeTerritoires.get(Territoire.territoireDsRegion(idTerri)).setNbrSoldat(regionClicked(idTerri).listeTerritoires.get(Territoire.territoireDsRegion(idTerri)).getNbrSoldat()+1);	//Le territoire qui a été cliqué gagne un soldat supplémentaire
-				listeJoueurs.get(i).getListeUnite().get(numeroSoldat).setIdPosition(idTerri); 	//On dit sur quel territoire le soldat a été placé
-				soldatsRestants=nbrSoldats-(numeroSoldat+1);
+				listeJoueurs.get(i).getListeUnite().get(idSoldat).setIdPosition(idTerri); 	//On dit sur quel territoire le soldat a été placé
+				soldatsRestants=nbrSoldats-(idSoldat+1);
 				System.out.println("Soldat placé sur le territoire " +regionClicked(idTerri).listeTerritoires.get(Territoire.territoireDsRegion(idTerri)).getId()+". Plus que "+soldatsRestants+" soldats à placer");
-				idTerri = -1;
-				numeroSoldat++;
+				idTerri = -1; //On remet le territoire cliqué à -1 pour recommencer la boucle while
+				idSoldat++; //On passe au soldat suivant
 			}
 		}
 	}
@@ -246,6 +237,25 @@ public class RiskIsep {
 		{
 			return listeRegions.get(5);
 		}
+	}
+	
+	public static int allRegionPoss(int nbrJr)		//Vérifie si un des joueurs possède tous les territoires du jeu
+	{
+		for (int i=0; i<nbrJr; i++)				//Pour chaque joueur
+		{
+			if (listeJoueurs.get(i).getListeTerrPoss().size() == 42)	//Si un joueur possède tous les territoires
+			{
+				System.out.println("Victoire du Joueur "+i+1);
+				return i;
+			}
+		}
+		return -1;
+	}
+	
+	public static int appelFonctionRenforts(int idJoueur) //Appelle la fonction renforts dans Joueur
+	{
+		int renforts = listeJoueurs.get(idJoueur).receptionRenforts();
+		return renforts;
 	}
 	
 
