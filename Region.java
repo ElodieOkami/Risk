@@ -74,10 +74,7 @@ public class Region {
 						}
 					}
 				}
-				
 			}
-			
-			
 		}
 		
 		
@@ -93,12 +90,12 @@ public class Region {
 				idTerr++;
 			}
 			return idTerr;
-			
-			
 		}
 		
-		
-	
-	
-	
+		public static void CreaRegTer(String cartePng, int nbrJr)
+		{
+			int idTerritoire=0;
+			RiskIsep.creationRegions(cartePng, nbrJr, idTerritoire);			//Crée les Régions ainsi que les territoires
+		}
+
 }
