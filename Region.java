@@ -88,7 +88,7 @@ public class Region {
 			for (int i=0; i<this.getTaille(); i++)	//Pour chaque territoire de la Région
 			{
 				numPropri = this.listeTerritoires.get(i).getProprietaire();		//Ressort le proprietaire de chaque territoire de la Région
-				Color couleur = Initialisation.getCouleurPropri(numPropri);		//Ressort la couleur de ce propriétaire
+				Color couleur = RiskIsep.getCouleurPropri(numPropri);		//Ressort la couleur de ce propriétaire
 				Plateau.affichePointProprio(idTerr, couleur);					//Affiche un point de la couleur du joueur sur le territoire qu'il occupe 
 				idTerr++;
 			}
