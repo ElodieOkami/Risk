@@ -48,5 +48,5 @@ public class Initialisation {
 		RiskIsep.placementUniteIni(nbrJr, cartePng);	
 		return cartePng;
 	}
-
+	
 }
