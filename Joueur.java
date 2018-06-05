@@ -3,6 +3,7 @@
 	
 	public class Joueur {
 		int idJoueur;
+		int nbrTerrCaptured;
 		ArrayList<Unite> listeUnite = new ArrayList <Unite>();
 		ArrayList<Territoire> listeTerrPoss = new ArrayList <Territoire>();
 		String pseudo;
@@ -25,6 +26,12 @@
 		}
 		public void setIdJoueur(int idJoueur) {
 			this.idJoueur = idJoueur;
+		}
+		public int getNbrTerrCaptured() {
+			return nbrTerrCaptured;
+		}
+		public void setNbrTerrCaptured(int nbrTerrCaptured) {
+			this.nbrTerrCaptured = nbrTerrCaptured;
 		}
 		public ArrayList<Unite> getListeUnite() {
 			return listeUnite;
@@ -131,6 +138,62 @@
 			return numeroSoldat;
 		}
 		
+		public int receptionRenforts()
+		{
+			int renforts = 0;
+			
+			int renfTerr = (int)this.getListeTerrPoss().size()/3;
+			int renfReg = returnRenfRegIfComplete(this.getIdJoueur());
+			int renfCapture = returnRenfCapture(this.getNbrTerrCaptured());
+			
+			renforts = renfTerr+renfReg+renfCapture;
+			return renforts;
+		}
 		
+		private int returnRenfRegIfComplete(int idJoueur)
+		{
+			int renfReg=0;
+			for (int i=0; i<6; i++)
+			{
+				boolean regionPossede = true;
+				Region region = RiskIsep.getRegion(i);
+				for (int j=0; j<region.getTerritoires().size(); j++)
+				{
+					if (region.getTerritoires().get(j).getProprietaire() != idJoueur)
+					{
+						regionPossede = false;
+					}
+				}
+				if (regionPossede == true)
+				{
+					renfReg += (int)region.getTerritoires().size()/2;
+				}
+			}
+			return renfReg;
+		}
+		
+		private int returnRenfCapture(int terrCaptured)
+		{
+			int renfCapture = 0;
+			if (terrCaptured==0)
+			{
+				return 0;
+			}
+			else
+			{
+				for (int i=0; i<terrCaptured; i++)
+				{
+					int r = (int)Math.round(Math.random());
+					System.out.println(r);
+					renfCapture += r;
+				}
+			}
+			return renfCapture;
+		}
+		
+		public static void placerRenforts(int nbr)
+		{
+			
+		}
 		
 	}
