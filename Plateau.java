@@ -503,9 +503,5 @@ public class Plateau
 			StdDraw.circle(width/1.355, height/1.135, 6);
 		}
 	}
-	
-	
-	
-	
-	
+
 }
