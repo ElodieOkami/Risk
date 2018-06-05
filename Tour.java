@@ -1,18 +1,36 @@
 
 	public class Tour {
-
-	public static void tour()
+		
+		
+	public static void tour(int idJoueur)
 	{
-
+			RiskIsep.appelFonctionRenforts(idJoueur);
 	}  
   
-	// Focntion qui retourne true si le joueur a cliqué sur un pays voisin du sien
-	public static boolean defVoisins(int ter, int clickTer) 
+	
+	public static boolean defVoisins(int ter, int clickTer)	// Fonction qui retourne true si le joueur a cliqué sur un pays voisin du sien
 	//ter = id du territoire où se trouve le joueur
 	//clickTer = id du territoire ou le joueur a cliqué
 	{
-		//matrice adjancente déffinissant les pays voisins
-		int[][] matriceVoisins= 
+		if (matriceVoisins[ter - 1][clickTer - 1]==1) // on vérifi si les pays destination et départ sont voisins
+		{
+			return true;
+		}
+		else
+		{
+			return false;
+		}
+			
+	}
+	
+	
+	// Fonction qui vérifie si la mission de joueur qui vient de finir son tour a été accomplie
+	public static void verifMission()
+	{
+		
+	}
+	
+	final static int[][] matriceVoisins= //matrice adjancente déffinissant les pays voisins
 		{
 			{0,1,0,0,0,0,0,0,0,0,0, 1,0,0,0,0, 0,0,0,0,0,0,0,0, 0,0,0, 0,0,0,0,0, 0,0,0,0,0,0,0,0,0,0},
 			{1,0,1,1,0,0,0,0,0,0,0, 0,1,1,0,0, 0,0,0,0,0,0,0,0, 0,0,0, 0,0,0,0,0, 0,0,0,0,0,0,0,0,0,0},
@@ -62,48 +80,5 @@
 			{0,0,0,0,0,0,0,0,0,0,0, 0,0,0,0,0, 0,0,0,0,0,0,0,0, 0,0,0, 0,0,0,0,0, 0,0,1,0,0,0,0,0,0,1},
 			{0,0,0,0,0,0,0,0,0,0,0, 0,0,0,0,0, 0,0,0,0,0,0,0,0, 0,0,0, 0,0,0,0,0, 0,0,1,0,0,0,0,0,1,0},			
 		};
-			
-		if (matriceVoisins[ter - 1][clickTer - 1]==1) // on vérifi si les pays destination et départ sont voisins
-		{
-			return true;
-		}
-		else
-		{
-			return false;
-		}
-			
-	}
-	
-	
-  	// Fonction pour vérifier si le joueur à gagné la partie 
-	//A mettre à la fin de chaque tour
-	
-	/*				// A CHANGER MAIS PAS MAINTENANT
-	public static boolean verifGagnant(int numJr) // numJr = joueur qui vient de finir son tour
-	{
-		int nbrTer = 0;
-		for (int i = 1; i <= 42; i++)  // on parcours les 42 territoires 
-		{
-			if (Territoire.getNumero() == i & Territoire.getProprietaire() == numJr ) //et on vérifie s'ils appartiennent tous au même joueur
-			{
-				nbrTer = nbrTer + 1;
-			}
-		}
-		
-		if (nbrTer == 42) // on vérifie si le joueur à les 42 territoires 
-		{
-			return true;
-		}
-		else 
-		{
-			return false;
-		}
-	}
-	*/
-	
-	// Fonction qui vérifie si la mission de joueur qui vient de finir son tour a été accomplie
-	public static void verifMission()
-	{
-		
-	}
+
 }
