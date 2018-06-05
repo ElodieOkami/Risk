@@ -2,7 +2,7 @@
 public class Jeu {
 	
 	
-	public static int initialisationJoueur(int nbrJr) //Fonction appellée par le Main
+	public static int partieDeRisk(int nbrJr) //Fonction appellÃ©e par le Main
 	{
 		int joueurGagnant =-1;
 		while(joueurGagnant ==-1)
