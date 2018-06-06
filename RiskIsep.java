@@ -15,7 +15,7 @@ public class RiskIsep {
 		String cartePng = Initialisation.initialisationJeu(nbrJr);	//cartePng est soit la carte "plateauElder.png"(tamriel) soit "plateauTerre.png"(Terre)
 		
 		//- - - - - - - - - Jeu - - - - - - - - -//
-		Jeu.partieDeRisk(nbrJr);			//Début du vrai jeu
+		Jeu.partieDeRisk(nbrJr, cartePng);			//Début du vrai jeu
 	}
 	
 		
@@ -144,7 +144,7 @@ public class RiskIsep {
 			}
 	}
 	
-	public static Region getRegion(int i)		//Permet d'avoir accès aux infos de la listeRegion depuis toutes les classes
+	public static Region getRegion(int i)		//Permet d'avoir accès aux infos de la listeRegion depuis toutes les classes (ATTENTION mais pas de modifier directement la liste)
 	{
 		return listeRegions.get(i);
 	}
@@ -195,16 +195,16 @@ public class RiskIsep {
 				while(idTerri == -1)		//Tant que aucun territoire n'a été cliqué
 				{
 					idTerri=Interface.lectureClic(cartePng);		//On regarde ou clic le joueur
-					if (idTerri != -1 && regionClicked(idTerri).listeTerritoires.get(Territoire.territoireDsRegion(idTerri)).getProprietaire() != listeJoueurs.get(i).getIdJoueur()) //Si on a cliqué sur un territoire mais que ce territoire n'appartient pas au joueur
+					if (idTerri != -1 && regionClicked(idTerri).getTerritoires().get(Territoire.territoireDsRegion(idTerri)).getProprietaire() != listeJoueurs.get(i).getIdJoueur()) //Si on a cliqué sur un territoire mais que ce territoire n'appartient pas au joueur
 					{
 						System.out.println("Veuillez cliquer sur un de vos territoires");
 						idTerri = -1;
 					}
 				}
-				regionClicked(idTerri).listeTerritoires.get(Territoire.territoireDsRegion(idTerri)).setNbrSoldat(regionClicked(idTerri).listeTerritoires.get(Territoire.territoireDsRegion(idTerri)).getNbrSoldat()+1);	//Le territoire qui a été cliqué gagne un soldat supplémentaire
+				regionClicked(idTerri).getTerritoires().get(Territoire.territoireDsRegion(idTerri)).setNbrSoldat(regionClicked(idTerri).getTerritoires().get(Territoire.territoireDsRegion(idTerri)).getNbrSoldat()+1);	//Le territoire qui a été cliqué gagne un soldat supplémentaire
 				listeJoueurs.get(i).getListeUnite().get(idSoldat).setIdPosition(idTerri); 	//On dit sur quel territoire le soldat a été placé
 				soldatsRestants=nbrSoldats-(idSoldat+1);
-				System.out.println("Soldat placé sur le territoire " +regionClicked(idTerri).listeTerritoires.get(Territoire.territoireDsRegion(idTerri)).getId()+". Plus que "+soldatsRestants+" soldats à placer");
+				System.out.println("Soldat placé sur le territoire " +regionClicked(idTerri).getTerritoires().get(Territoire.territoireDsRegion(idTerri)).getId()+". Plus que "+soldatsRestants+" soldats à placer");
 				idTerri = -1; //On remet le territoire cliqué à -1 pour recommencer la boucle while
 				idSoldat++; //On passe au soldat suivant
 			}
@@ -265,16 +265,29 @@ public class RiskIsep {
 		int idTerri;
 		while (renforts >0)
 		{
-			typeUnite="Soldat";		//Appeler fonction clique bouton maya qui ressort soit "soldat", "cavalier", "canon" ou "sélectionnez une unité à placer avant de séléctionner un territoire"
+			typeUnite="soldat";		//Appeler fonction clique bouton maya qui ressort soit "soldat", "cavalier", "canon" ou "sélectionnez une unité à placer avant de séléctionner un territoire"
 			renfEntreIf =renforts;
+			System.out.println("renforts restants pour Joueur"+idJoueur+ " "+ renforts);
 			if (typeUnite == "soldat")
 			{
 				while (renfEntreIf == renforts)
 				{
 					idTerri = Interface.lectureClic(cartePng);
-					listeJoueurs.get(idJoueur).ajouterRenfortJoueur(typeUnite, idTerri);
-					regionClicked(idTerri).ajouterRenfortRegion(typeUnite,idTerri);
-					renforts--;
+					if (idTerri>=0)
+					{
+						if (regionClicked(idTerri).getTerritoires().get(Territoire.territoireDsRegion(idTerri)).getProprietaire() == listeJoueurs.get(idJoueur).getIdJoueur())
+						{
+							listeJoueurs.get(idJoueur).ajouterRenfortJoueur(typeUnite, idTerri);
+							regionClicked(idTerri).ajouterRenfortRegion(typeUnite,idTerri);
+							renforts--;
+						}
+						else
+						{
+							System.out.println("Veuillez cliquer sur un de vos territoires");
+						}
+						
+					}
+					
 				}
 			}
 			else if (typeUnite == "cavalier" && renforts>=3)
@@ -282,9 +295,19 @@ public class RiskIsep {
 				while (renfEntreIf == renforts)
 				{
 					idTerri = Interface.lectureClic(cartePng);
-					listeJoueurs.get(idJoueur).ajouterRenfortJoueur(typeUnite, idTerri);
-					regionClicked(idTerri).ajouterRenfortRegion(typeUnite,idTerri);
-					renforts -= 3;
+					if (idTerri>=0)
+					{
+						if (regionClicked(idTerri).getTerritoires().get(Territoire.territoireDsRegion(idTerri)).getProprietaire() == listeJoueurs.get(idJoueur).getIdJoueur())
+						{
+							listeJoueurs.get(idJoueur).ajouterRenfortJoueur(typeUnite, idTerri);
+							regionClicked(idTerri).ajouterRenfortRegion(typeUnite,idTerri);
+							renforts -= 3;
+						}
+						else
+						{
+							System.out.println("Veuillez cliquer sur un de vos territoires");
+						}
+					}
 				}
 			}
 			else if (typeUnite =="canon" && renforts>=7)
@@ -292,14 +315,142 @@ public class RiskIsep {
 				while (renfEntreIf == renforts)
 				{
 					idTerri = Interface.lectureClic(cartePng);
-					listeJoueurs.get(idJoueur).ajouterRenfortJoueur(typeUnite, idTerri);
-					regionClicked(idTerri).ajouterRenfortRegion(typeUnite,idTerri);
-					renforts -= 7;
+					if (idTerri>=0)
+					{
+						if (regionClicked(idTerri).getTerritoires().get(Territoire.territoireDsRegion(idTerri)).getProprietaire() == listeJoueurs.get(idJoueur).getIdJoueur())
+						{
+							listeJoueurs.get(idJoueur).ajouterRenfortJoueur(typeUnite, idTerri);
+							regionClicked(idTerri).ajouterRenfortRegion(typeUnite,idTerri);
+							renforts -= 7;
+						}
+						else
+						{
+							System.out.println("Veuillez cliquer sur un de vos territoires");
+						}
+					}
 				}
 			}
-			
 		}
 	}
 	
+		
+	public static void deplacerSoldat(int nbrSoldatsDepl, int idTerrIni, int idTerrCible, int idJoueur)
+	{
+		int nbrSoldatTired = 0;
+		for (int i=0; i<nbrSoldatsDepl; i++)
+		{
+			//Coté Territoire
+			regionClicked(idTerrIni).getTerritoires().get(Territoire.territoireDsRegion(idTerrIni)).setNbrSoldat(regionClicked(idTerrIni).getTerritoires().get(Territoire.territoireDsRegion(idTerrIni)).getNbrSoldat()-1); //On retire un soldat dans le territoire de départ
+			regionClicked(idTerrCible).getTerritoires().get(Territoire.territoireDsRegion(idTerrCible)).setNbrSoldat(regionClicked(idTerrCible).getTerritoires().get(Territoire.territoireDsRegion(idTerrCible)).getNbrSoldat()+1);		//On rajoute un soldat dans le territoire cible
+				
+			//Coté Unité
+			boolean soldatBouged = false;
+			int j=0;
+			while(soldatBouged== false)
+			{
+				if (listeJoueurs.get(idJoueur).getListeUnite().get(j).getType() == "soldat")
+				{
+					if (listeJoueurs.get(idJoueur).getListeUnite().get(j).getIdPosition()==idTerrIni)
+					{
+						listeJoueurs.get(idJoueur).getListeUnite().get(j).setIdPosition(idTerrCible);
+						listeJoueurs.get(idJoueur).getListeUnite().get(j).setMvtLeft(listeJoueurs.get(idJoueur).getListeUnite().get(j).getMvtLeft()-1);
+						if(listeJoueurs.get(idJoueur).getListeUnite().get(j).getMvtLeft()==0)
+						{
+							nbrSoldatTired++;
+						}
+						soldatBouged =true;
+					}
+				}
+				j++;
+			}
+		}
+		if (nbrSoldatTired == 1)
+		{
+			System.out.println("Ce déplacement a fatigué 1 soldat, il ne peut plus bouger ni attaquer pendant ce tour");
+		}
+		if (nbrSoldatTired >1)
+		{
+			System.out.println("Ce déplacement a fatigué " + nbrSoldatTired + " soldats, ils ne peuvent plus bouger ni attaquer pendant ce tour");
+		}
+	}
+	
+	
+	public static void deplacerCavalier(int nbrCavalsDepl, int idTerrIni, int idTerrCible, int idJoueur)
+	{
+		int nbrCavalTired = 0;
+		for (int i=0; i<nbrCavalsDepl; i++)
+		{
+			//Coté Territoire
+			regionClicked(idTerrIni).getTerritoires().get(Territoire.territoireDsRegion(idTerrIni)).setNbrCaval(regionClicked(idTerrIni).getTerritoires().get(Territoire.territoireDsRegion(idTerrIni)).getNbrCaval()-1); //On retire un cavalier dans le territoire de départ
+			regionClicked(idTerrCible).getTerritoires().get(Territoire.territoireDsRegion(idTerrCible)).setNbrCaval(regionClicked(idTerrCible).getTerritoires().get(Territoire.territoireDsRegion(idTerrCible)).getNbrCaval()+1);		//On rajoute un cavalier dans le territoire cible
+				
+			//Coté Unité
+			boolean cavalbouged = false;
+			int j=0;
+			while(cavalbouged== false)
+			{
+				if (listeJoueurs.get(idJoueur).getListeUnite().get(j).getType() == "cavalier")
+				{
+					if (listeJoueurs.get(idJoueur).getListeUnite().get(j).getIdPosition()==idTerrIni)
+					{
+						listeJoueurs.get(idJoueur).getListeUnite().get(j).setIdPosition(idTerrCible);
+						listeJoueurs.get(idJoueur).getListeUnite().get(j).setMvtLeft(listeJoueurs.get(idJoueur).getListeUnite().get(j).getMvtLeft()-1);
+						if(listeJoueurs.get(idJoueur).getListeUnite().get(j).getMvtLeft()==0)
+						{
+							nbrCavalTired++;
+						}
+						cavalbouged =true;
+					}
+				}
+				j++;
+			}
+		}
+		if (nbrCavalTired == 1)
+		{
+			System.out.println("Ce déplacement a fatigué 1 magicien, il ne peut plus bouger ni attaquer pendant ce tour");
+		}
+		if (nbrCavalTired >1)
+		{
+			System.out.println("Ce déplacement a fatigué " + nbrCavalTired + " magiciens, ils ne peuvent plus bouger ni attaquer pendant ce tour");
+		}
+	}
+	
+	
+	public static void deplacerCanon(int nbrCanonsDepl, int idTerrIni, int idTerrCible, int idJoueur)
+	{
+		int nbrCanonTired = 0;
+		for (int i=0; i<nbrCanonsDepl; i++)
+		{
+			//Coté Territoire
+			regionClicked(idTerrIni).getTerritoires().get(Territoire.territoireDsRegion(idTerrIni)).setNbrCanon(regionClicked(idTerrIni).getTerritoires().get(Territoire.territoireDsRegion(idTerrIni)).getNbrCanon()-1); //On retire un soldat dans le territoire de départ
+			regionClicked(idTerrCible).getTerritoires().get(Territoire.territoireDsRegion(idTerrCible)).setNbrCanon(regionClicked(idTerrCible).getTerritoires().get(Territoire.territoireDsRegion(idTerrCible)).getNbrCanon()+1);		//On rajoute un soldat dans le territoire cible
+				
+			//Coté Unité
+			boolean canonBouged = false;
+			int j=0;
+			while(canonBouged== false)
+			{
+				if (listeJoueurs.get(idJoueur).getListeUnite().get(j).getType() == "canon")
+				{
+					if (listeJoueurs.get(idJoueur).getListeUnite().get(j).getIdPosition()==idTerrIni)
+					{
+						listeJoueurs.get(idJoueur).getListeUnite().get(j).setIdPosition(idTerrCible);
+						listeJoueurs.get(idJoueur).getListeUnite().get(j).setMvtLeft(listeJoueurs.get(idJoueur).getListeUnite().get(j).getMvtLeft()-1);
+						nbrCanonTired++;
+						canonBouged =true;
+					}
+				}
+				j++;
+			}
+		}
+		if (nbrCanonTired == 1)
+		{
+			System.out.println("Ce déplacement a fatigué le dragon, il ne peut plus bouger ni attaquer pendant ce tour");
+		}
+		if (nbrCanonTired >1)
+		{
+			System.out.println("Ce déplacement a fatigué " + nbrCanonTired + " dragons, ils ne peuvent plus bouger ni attaquer pendant ce tour");
+		}
+	}
 
 }
