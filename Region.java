@@ -97,5 +97,21 @@ public class Region {
 			int idTerritoire=0;
 			RiskIsep.creationRegions(cartePng, nbrJr, idTerritoire);			//Crée les Régions ainsi que les territoires
 		}
+		
+		public void ajouterRenfortRegion(String typeUnite, int idTerr)
+		{
+			if (typeUnite == "soldat")
+			{
+				this.listeTerritoires.get(Territoire.territoireDsRegion(idTerr)).setNbrSoldat(this.listeTerritoires.get(Territoire.territoireDsRegion(idTerr)).getNbrSoldat()+1);
+			}
+			else if (typeUnite == "cavalier")
+			{
+				this.listeTerritoires.get(Territoire.territoireDsRegion(idTerr)).setNbrCaval(this.listeTerritoires.get(Territoire.territoireDsRegion(idTerr)).getNbrCaval()+1);
+			}
+			else if (typeUnite == "canon")
+			{
+				this.listeTerritoires.get(Territoire.territoireDsRegion(idTerr)).setNbrCanon(this.listeTerritoires.get(Territoire.territoireDsRegion(idTerr)).getNbrCanon()+1);
+			}
+		}
 
 }
