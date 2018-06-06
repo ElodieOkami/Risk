@@ -155,9 +155,6 @@ public class Interface {
 	    	int clickX=(int) StdDraw.mouseX();
 	        int clickY=(int) StdDraw.mouseY()-clicTropBas;
 	        
-	        System.out.println(clickX);
-	        System.out.println(clickY);
-	        
 	        if (clickX<200)
 	        {
 	        	System.out.println("Veuillez cliquez sur un des territoires en couleurs");
