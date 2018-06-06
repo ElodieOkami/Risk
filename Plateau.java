@@ -205,24 +205,60 @@ public class Plateau
 		
 	}
 	
-	public static void afficheInfosIni(String cartePng, int nbrJoueur)
+	public static String playerToken(int numeroJoueur)
+	{
+		String token = "notoken";
+		if(numeroJoueur == 1)
+		{
+			token = "playerBlue.png";
+		}
+		else if(numeroJoueur == 2)
+		{
+			token = "playerRed.png";
+		}
+		else if(numeroJoueur == 3)
+		{
+			token = "playerGreen.png";
+		}
+		else if(numeroJoueur == 4)
+		{
+			token = "playerYellow.png";
+		}
+		else if(numeroJoueur == 5)
+		{
+			token = "playerCyan.png";
+		}
+		
+		else if(numeroJoueur == 6)
+		{
+			token = "playerMagenta.png";
+		}
+		return token;
+	}
+	
+	public static void afficheInfosJoueurIni(String cartePng, int numeroJoueur, int soldatsRestants)
 	{		
 		if(cartePng == "plateauElder.png")
 		{
 			StdDraw.picture(width/9.5, height/1.17, "infosTer.png");
-			Font font = new Font("Papyrus",Font.ITALIC, 15);
-			StdDraw.setFont(font);
-			StdDraw.text(width/9.5, height/1.15, "Cliquez sur vos territoires pour");
-			StdDraw.text(width/9.5, height/1.20, "placer vos armées non placées");
-			
 			StdDraw.picture(width/1.1, height/2, "infosJoueur.png");
-			font = new Font("Papyrus", Font.BOLD, 20);		//En plus petit et pas en gras
+			
+			Font font = new Font("Papyrus", Font.BOLD, 20);
 			StdDraw.setFont(font);
 			StdDraw.text(width/1.1, height/1.35 , " Au tour du");
-			StdDraw.picture(width/1.1, height/1.49, "playerBlue.png");
-			StdDraw.text(width/1.1, height/1.6 , "Joueur 1");
+			StdDraw.picture(width/1.1, height/1.49, playerToken(numeroJoueur));
+			StdDraw.text(width/1.1, height/1.6 , "Joueur " + numeroJoueur);
+			
+			font = new Font("Papyrus",Font.ITALIC, 13);
+			StdDraw.setFont(font);
+			StdDraw.text(width/1.1, height/1.70 , "Sur chacun de vos territoires");
+			StdDraw.text(width/1.1, height/1.80, "on place 1 de vos soldats");
+			StdDraw.text(width/1.1, height/1.95 , "Cliquez sur vos territoires pour");
+			StdDraw.text(width/1.1, height/2.05 , "placer vos armées non placées");
+			StdDraw.text(width/1.1, height/2.30, "Encore " + soldatsRestants + " soldats à placer");
 			StdDraw.show();
 		}
+	}
 	
 	public static void affichePointProprio(int idTerr, Color couleur)
 	{
