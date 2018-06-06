@@ -260,24 +260,25 @@ public class Plateau
 		}
 	}
 	
-	public static void afficheInfosJoueur(String cartePng)
+	public static void afficheInfosJoueur(String cartePng, int numeroJoueur)
 	{
 		if(cartePng == "plateauElder.png")
 		{
-			Font font = new Font("Papyrus", Font.BOLD, 20);		//En plus petit et pas en gras
+			Font font = new Font("Papyrus", Font.BOLD, 20);	
 			StdDraw.setFont(font);
 			StdDraw.text(width/1.1, height/1.35 , " Au tour du");
-			StdDraw.picture(width/1.1, height/1.49, "playerBlue.png");
-			StdDraw.text(width/1.1, height/1.6 , "Joueur 1");
-			font = new Font("Papyrus", Font.BOLD, 14);		//En plus petit et pas en gras
+			StdDraw.picture(width/1.1, height/1.49, playerToken(numeroJoueur));
+			StdDraw.text(width/1.1, height/1.6 , "Joueur " + numeroJoueur);
+			font = new Font("Papyrus", Font.BOLD, 14);		
 			StdDraw.setFont(font);
-			Joueur joueur = new Joueur (1,"joueur"+1, Color.BLUE);
+			Joueur joueur = RiskIsep.listeJoueurs.get(numeroJoueur-1);
+			//Infos
 			StdDraw.text(width/1.1, height/1.75 , "Soldats : " + Tour.nombreSoldatJoueur(joueur));
 			StdDraw.text(width/1.1, height/1.85, "Cavaliers : " + Tour.nombreCavalierJoueur(joueur));
 			StdDraw.text(width/1.1, height/1.95 , "Canons : " + Tour.nombreCanonJoueur(joueur));
 			StdDraw.text(width/1.1, height/2.05 , "Renforts : " + joueur.receptionRenforts());
-			
-			//StdDraw.text(width/1.1, height/2.15 , "Déplacements : 0");
+		
+			//Boutons
 			StdDraw.text(width/1.1, height/2.4 , "Se déplacer");
 			StdDraw.rectangle(width/1.1, height/2.4 , 50, 11);
 			StdDraw.text(width/1.1, height/2.65 , "Attaquer");
@@ -289,25 +290,6 @@ public class Plateau
 			
 			StdDraw.show();
 		}
-	}
-	
-	public static void afficheInfosArmees(String cartePng)
-	{
-		while(Interface.lectureClic(cartePng) == -1 )
-		{
-			Font font = new Font("Papyrus",Font.ITALIC, 14);
-			StdDraw.setFont(font);
-			StdDraw.text(width/9.5, height/1.15, "Cliquez sur un territoire pour");
-			StdDraw.setFont(font);
-			StdDraw.text(width/9.5, height/1.20, "afficher ici son nombre d'armées");
-		}
-			
-		Font font = new Font("Papyrus",Font.PLAIN, 14);
-		StdDraw.setFont(font);
-		StdDraw.text(width/10, height/1.10, "Soldats sur le territoire cliqué : 10");
-		StdDraw.text(width/10, height/1.15, "Cavaliers sur le territoire cliqué : 2");
-		StdDraw.text(width/10, height/1.20, "Canons sur le territoire cliqué : 0");
-		StdDraw.show();
 	}
 	
 	public static void affichePointProprio(int idTerr, Color couleur)
