@@ -12,7 +12,7 @@
 			switch(deplAttqTerm)
 			{
 			case "deplacement" :
-				Territoire.deplacement(idJoueur, cartePng); //Fonction dÃ©placement
+				Territoire.deplacement(idJoueur, cartePng); //Fonction déplacement
 				
 				break;
 			
@@ -32,7 +32,7 @@
 	
 	
 	
-	// Fonction qui vÃ©rifie si la mission de joueur qui vient de finir son tour a Ã©tÃ© accomplie
+	// Fonction qui vérifie si la mission de joueur qui vient de finir son tour a été accomplie
 	public static void verifMission()
 	{
 		

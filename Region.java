@@ -3,9 +3,9 @@ import java.util.ArrayList;
 
 public class Region {
 	
-	public String nom;				//Nom de la rÃ©gion
-	public int taille;				//Nombre de territoires dans cette rÃ©gion
-	ArrayList <Territoire> listeTerritoires=new ArrayList<Territoire>();		//Liste des territoires dans cette rÃ©gion
+	public String nom;				//Nom de la région
+	public int taille;				//Nombre de territoires dans cette région
+	ArrayList <Territoire> listeTerritoires=new ArrayList<Territoire>();		//Liste des territoires dans cette région
 	
 	
 	//----------------------    Constructeur     ---------------------------//
@@ -40,37 +40,37 @@ public class Region {
 	private void ajouterTerritoires(int numero, int id)			//Ajoute un territoire dans l'arryalist territoires
 	{
 		Territoire territoire = new Territoire(numero, id);
-		this.listeTerritoires.add(territoire);
+		this.getTerritoires().add(territoire);
 	}
 		
-	public void creaEtAttribTerritoires(int idTerritoire, int nbrJr, ArrayList <Integer> listIdJoueur, ArrayList <Integer> JrFull)		//CrÃ©ation des territoires de chaque rÃ©gion et rÃ©partion alÃ©atoire parmi les joueurs
+	public void creaEtAttribTerritoires(int idTerritoire, int nbrJr, ArrayList <Integer> listIdJoueur, ArrayList <Integer> JrFull)		//Création des territoires de chaque région et répartion aléatoire parmi les joueurs
 	{
-		int terParJr=(int)(42/nbrJr);		//Nombre de territoire arrondi que se verra attribuÃ© chaque joueur
+		int terParJr=(int)(42/nbrJr);		//Nombre de territoire arrondi que se verra attribué chaque joueur
 			
 			
 			
 		for (int i=1; i<this.getTaille()+1; i++)
 		{
-			this.ajouterTerritoires(i, idTerritoire);		//On ajoute le territoire dans l'arraylist territoires de cette rÃ©gion
-			idTerritoire++;							//Le prochain territoire possÃ¨de l'id suivant
+			this.ajouterTerritoires(i, idTerritoire);		//On ajoute le territoire dans l'arraylist territoires de cette région
+			idTerritoire++;							//Le prochain territoire possède l'id suivant
 				
-			int j = (int)(Math.random()*(nbrJr-(nbrJr-listIdJoueur.size()))+1);	//Nombre alÃ©atoire entre 1 et le nbr de joueur pas encore full	
-			this.listeTerritoires.get(i-1).setProprietaire(listIdJoueur.get(j-1));		//On attribue le territoire Ã  un joueur
+			int j = (int)(Math.random()*(nbrJr-(nbrJr-listIdJoueur.size()))+1);	//Nombre aléatoire entre 1 et le nbr de joueur pas encore full	
+			this.getTerritoires().get(i-1).setProprietaire(listIdJoueur.get(j-1));		//On attribue le territoire à un joueur
 				
 			//System.out.println(this.getNom()+Territoire.getNumero() + " Id : " +this.listeTerritoires.get(i-1).getId() + " et Propri : " +this.listeTerritoires.get(i-1).getProprietaire());
 				
-			JrFull.set(j-1, (1+JrFull.get(j-1)));	//On augmente la quantitÃ© de territoire que possÃ¨de le joueur
-			if (JrFull.get(j-1)==terParJr)			//Si le joueur possÃ¨de le nombre max de territoires
+			JrFull.set(j-1, (1+JrFull.get(j-1)));	//On augmente la quantité de territoire que possède le joueur
+			if (JrFull.get(j-1)==terParJr)			//Si le joueur possède le nombre max de territoires
 			{
 				listIdJoueur.remove(j-1);					//On supprime ce joueur des candidats
 				JrFull.remove(j-1);
 				if (listIdJoueur.isEmpty())				//Si on a plus aucun candidat
 				{
 						
-					for (int z=0; z<nbrJr; z++)		//Jusqu'Ã  ce qu'on atteigne le nombre total de joueurs
+					for (int z=0; z<nbrJr; z++)		//Jusqu'à ce qu'on atteigne le nombre total de joueurs
 					{
-						listIdJoueur.add(z, z+1);			//On recrÃ©Ã© chaque candidat
-						JrFull.add(z, terParJr-1); 	//On recrÃ©Ã© un d'espace pour chaque candidat
+						listIdJoueur.add(z, z);			//On recréé chaque candidat
+						JrFull.add(z, terParJr-1); 	//On recréé un d'espace pour chaque candidat
 					}
 				}
 			}
@@ -80,12 +80,12 @@ public class Region {
 		
 	public int getPossesseurDsRegion(int idTerr)
 	{
-		int numPropri;
+		int idPropri;
 			
-		for (int i=0; i<this.getTaille(); i++)	//Pour chaque territoire de la RÃ©gion
+		for (int i=0; i<this.getTerritoires().size(); i++)	//Pour chaque territoire de la Région
 		{
-			numPropri = this.listeTerritoires.get(i).getProprietaire();		//Ressort le proprietaire de chaque territoire de la RÃ©gion
-			Color couleur = RiskIsep.getCouleurPropri(numPropri);		//Ressort la couleur de ce propriÃ©taire
+			idPropri = this.getTerritoires().get(i).getProprietaire();		//Ressort le proprietaire de chaque territoire de la Région
+			Color couleur = RiskIsep.getCouleurPropri(idPropri);		//Ressort la couleur de ce propriétaire
 			Plateau.affichePointProprio(idTerr, couleur);					//Affiche un point de la couleur du joueur sur le territoire qu'il occupe 
 			idTerr++;
 		}
@@ -95,7 +95,7 @@ public class Region {
 	public static void CreaRegTer(String cartePng, int nbrJr)
 	{
 		int idTerritoire=0;
-		RiskIsep.creationRegions(cartePng, nbrJr, idTerritoire);			//CrÃ©e les RÃ©gions ainsi que les territoires
+		RiskIsep.creationRegions(cartePng, nbrJr, idTerritoire);			//Crée les Régions ainsi que les territoires
 	}
 	
 	public void ajouterRenfortRegion(String typeUnite, int idTerr)

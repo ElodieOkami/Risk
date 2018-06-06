@@ -5,7 +5,7 @@ import edu.princeton.cs.introcs.StdDraw;
 
 public class RiskIsep {
 	
-	public static ArrayList <Region> listeRegions=new ArrayList<Region>();		//On crÃ©Ã© ces listes en static pour pouvoir les rÃ©utiliser dans toute la classe
+	public static ArrayList <Region> listeRegions=new ArrayList<Region>();		//On créé ces listes en static pour pouvoir les réutiliser dans toute la classe
 	public static ArrayList <Joueur> listeJoueurs=new ArrayList<Joueur>();
 	
 	public static void main(String[] args)
@@ -15,33 +15,34 @@ public class RiskIsep {
 		String cartePng = Initialisation.initialisationJeu(nbrJr);	//cartePng est soit la carte "plateauElder.png"(tamriel) soit "plateauTerre.png"(Terre)
 		
 		//- - - - - - - - - Jeu - - - - - - - - -//
-		Jeu.partieDeRisk(nbrJr, cartePng);			//DÃ©but du vrai jeu
+		Jeu.partieDeRisk(nbrJr, cartePng);			//Début du vrai jeu
 	}
 	
 		
 	
-	public static void creationRegions(String cartePng, int nbrJr, int idTerritoire)			//CrÃ©e les RÃ©gions ainsi que les territoires
+	public static void creationRegions(String cartePng, int nbrJr, int idTerritoire)			//Crée les Régions ainsi que les territoires
 	{
 		
-		ArrayList <Integer> JrFull = new ArrayList<Integer>();				//On crÃ©Ã© une liste du nombre de territoire qu'a chaque joueur lors de l'attribution alÃ©atoire
+		ArrayList <Integer> JrFull = new ArrayList<Integer>();				//On créé une liste du nombre de territoire qu'a chaque joueur lors de l'attribution aléatoire
 		for (int i=0; i<nbrJr; i++)
 		{
 			JrFull.add(0);													//Cette liste est initialement vide
 		}
 		
-		ArrayList <Integer> listIdJoueur = new ArrayList<Integer>();				//On crÃ©Ã© une liste de "l'id" de chaque joueur
+		ArrayList <Integer> listIdJoueur = new ArrayList<Integer>();				//On créé une liste de "l'id" de chaque joueur
 		for (int i=0; i<nbrJr; i++)
 		{
-			listIdJoueur.add(i+1);													//Cette liste va de 1 au nombre de joueur
+			listIdJoueur.add(i);													//Cette liste va de 1 au nombre de joueur
+			System.out.println(i);
 		}
 		
 		if (cartePng == "plateauElder.png")		//Si on utilise la carte TES
 		{
 			
-			Region provincesImperiales = new Region("provincesImperiales", 11);			//On crÃ©Ã© la rÃ©gion a l'aide du constructeur
-			provincesImperiales.creaEtAttribTerritoires(idTerritoire, nbrJr, listIdJoueur, JrFull);	//On crÃ©Ã© chaque territoire des rÃ©gions et on les rÃ©partis alÃ©atoirement parmi les joueurs.
-			idTerritoire += provincesImperiales.getTaille()-1;								//On incrÃ©mente l'id du nombre de Territoires dans la rÃ©gion prÃ©cÃ©dente
-			listeRegions.add(provincesImperiales);											//On ajoute cette rÃ©gion Ã  la liste des rÃ©gions
+			Region provincesImperiales = new Region("provincesImperiales", 11);			//On créé la région a l'aide du constructeur
+			provincesImperiales.creaEtAttribTerritoires(idTerritoire, nbrJr, listIdJoueur, JrFull);	//On créé chaque territoire des régions et on les répartis aléatoirement parmi les joueurs.
+			idTerritoire += provincesImperiales.getTaille()-1;								//On incrémente l'id du nombre de Territoires dans la région précédente
+			listeRegions.add(provincesImperiales);											//On ajoute cette région à la liste des régions
 			
 			Region lenclume = new Region("lenclume", 5);
 			lenclume.creaEtAttribTerritoires(idTerritoire, nbrJr, listIdJoueur, JrFull);
@@ -105,36 +106,36 @@ public class RiskIsep {
 	
 	public static void creaJoueur(int nbrJr)
 	{
-			Joueur joueur1 = new Joueur (1,"joueur"+1, Color.BLUE);		//On crÃ©Ã© un objet joueur
+			Joueur joueur1 = new Joueur (0,"joueur"+1, Color.BLUE);		//On créé un objet joueur
 			joueur1.repartitionUnite(nbrJr);							//On lui donne un certain nombre de soldat
-			joueur1.rempliListTerrJoueur();								//On remplit la liste des territoires que possÃ¨de le joueur
-			listeJoueurs.add(joueur1);									//On ajoute ce joueur Ã  la liste Joueur
-			Joueur joueur2 = new Joueur (2,"joueur"+2, Color.RED);
+			joueur1.rempliListTerrJoueur();								//On remplit la liste des territoires que possède le joueur
+			listeJoueurs.add(joueur1);									//On ajoute ce joueur à la liste Joueur
+			Joueur joueur2 = new Joueur (1,"joueur"+2, Color.RED);
 			joueur2.repartitionUnite(nbrJr);
 			joueur2.rempliListTerrJoueur();
 			listeJoueurs.add(joueur2);
 			
 			if(nbrJr >=3)
 			{
-				Joueur joueur3 = new Joueur (3,"joueur"+3, Color.GREEN);
+				Joueur joueur3 = new Joueur (2,"joueur"+3, Color.GREEN);
 				joueur3.repartitionUnite(nbrJr);
 				joueur3.rempliListTerrJoueur();
 				listeJoueurs.add(joueur3);
 				if(nbrJr >= 4)
 				{
-					Joueur joueur4 = new Joueur (4,"joueur"+4, Color.YELLOW);
+					Joueur joueur4 = new Joueur (3,"joueur"+4, Color.YELLOW);
 					joueur4.repartitionUnite(nbrJr);
 					joueur4.rempliListTerrJoueur();
 					listeJoueurs.add(joueur4);
 					if(nbrJr >=5)
 					{
-						Joueur joueur5 = new Joueur (5,"joueur"+5, Color.CYAN);
+						Joueur joueur5 = new Joueur (4,"joueur"+5, Color.CYAN);
 						joueur5.repartitionUnite(nbrJr);
 						joueur5.rempliListTerrJoueur();
 						listeJoueurs.add(joueur5);
 						if(nbrJr == 6)
 						{
-							Joueur joueur6 = new Joueur (6,"joueur"+6, Color.MAGENTA);
+							Joueur joueur6 = new Joueur (5,"joueur"+6, Color.MAGENTA);
 							joueur6.repartitionUnite(nbrJr);
 							joueur6.rempliListTerrJoueur();
 							listeJoueurs.add(joueur6);
@@ -142,9 +143,10 @@ public class RiskIsep {
 					}
 				}
 			}
+		doubleCheckBonneAttriTerr(nbrJr);
 	}
 	
-	public static Region getRegion(int i)		//Permet d'avoir accÃ¨s aux infos de la listeRegion depuis toutes les classes (ATTENTION mais pas de modifier directement la liste)
+	public static Region getRegion(int i)		//Permet d'avoir accès aux infos de la listeRegion depuis toutes les classes (ATTENTION mais pas de modifier directement la liste)
 	{
 		return listeRegions.get(i);
 	}
@@ -154,58 +156,59 @@ public class RiskIsep {
 		int idTerr = 0;
 		if (cartePng == "plateauElder.png")
 		{
-			for (int i=0; i<6; i++)		//Pour chaque rÃ©gion
+			for (int i=0; i<6; i++)		//Pour chaque région
 			{	
-				idTerr = listeRegions.get(i).getPossesseurDsRegion(idTerr);		//On appelle la fÂ° dans Region
+				idTerr = listeRegions.get(i).getPossesseurDsRegion(idTerr);		//On appelle la f° dans Region
 				StdDraw.show();
 			}
 		}
 	}
 	
-	public static Color getCouleurPropri(int numPropri)			//Ressort la couleur d'un joueur dans toutes les classes
+	public static Color getCouleurPropri(int idPropri)			//Ressort la couleur d'un joueur dans toutes les classes
 	{
-		return listeJoueurs.get(numPropri-1).getCouleur();
+		return listeJoueurs.get(idPropri).getCouleur();
 	}
 	
 	
 	
-	public static void placementUniteIni(int nbrJr, String cartePng)	//Placement des soldats reÃ§us au dÃ©but
+	public static void placementUniteIni(int nbrJr, String cartePng)	//Placement des soldats reçus au début
 	{
-		int numeroJoueur;	//NumÃ©ro du joueur (idJoueur+1)
-		int soldatsRestants;	//Soldats restants Ã  placer
+		int numeroJoueur;	//Numéro du joueur (idJoueur+1)
+		int soldatsRestants;	//Soldats restants à placer
 		for (int i=0; i<nbrJr; i++)		//Pour chaque joueur
 		{
 			numeroJoueur=i+1;
 			
 			int idTerri = -1;
 			int idSoldat=0;		//id du soldat parmis la liste des soldats du Joueur
-			int nbrSoldats = listeJoueurs.get(i).getListeUnite().size();	//Nombre de soldats que possÃ¨de le joueur
+			int nbrSoldats = listeJoueurs.get(i).getListeUnite().size();	//Nombre de soldats que possède le joueur
 			
 			idSoldat = listeJoueurs.get(i).placeSoldatParDefault(idSoldat);	//Place un soldat par territoire du joueur
-			System.out.println("Par respect des rÃ¨gles, on place automatiquement un de vos soldats sur chacun de vos territoires : ");
+			System.out.println("Par respect des règles, on place automatiquement un de vos soldats sur chacun de vos territoires : ");
 			for (int j=0; j<idSoldat; j++)
 			{
-				System.out.println("Soldat placÃ© en "+ listeJoueurs.get(i).getListeUnite().get(j).getIdPosition());
+				System.out.println("Soldat placé en "+ listeJoueurs.get(i).getListeUnite().get(j).getIdPosition());
 			}
-			soldatsRestants=nbrSoldats-idSoldat;	//Nombre de soldats restant Ã  placer aprÃ¨s le placement automatique
-			System.out.println("Joueur"+numeroJoueur+ "(" + listeJoueurs.get(i).getCouleur()+"), c'est Ã  vous de placer vos "+soldatsRestants+ " soldats");
+			tousUnSoldat();
+			soldatsRestants=nbrSoldats-idSoldat;	//Nombre de soldats restant à placer après le placement automatique
+			System.out.println("Joueur"+numeroJoueur+ "(" + listeJoueurs.get(i).getCouleur()+"), c'est à vous de placer vos "+soldatsRestants+ " soldats");
 			
-			while (listeJoueurs.get(i).getListeUnite().get(nbrSoldats-1).getIdPosition() == -1)		//Tant que le dernier soldat du soldat n'a pas Ã©tÃ© placÃ©
+			while (listeJoueurs.get(i).getListeUnite().get(nbrSoldats-1).getIdPosition() == -1)		//Tant que le dernier soldat du soldat n'a pas été placé
 			{
-				while(idTerri == -1)		//Tant que aucun territoire n'a Ã©tÃ© cliquÃ©
+				while(idTerri == -1)		//Tant que aucun territoire n'a été cliqué
 				{
 					idTerri=Interface.lectureClic(cartePng);		//On regarde ou clic le joueur
-					if (idTerri != -1 && regionClicked(idTerri).getTerritoires().get(Territoire.territoireDsRegion(idTerri)).getProprietaire() != listeJoueurs.get(i).getIdJoueur()) //Si on a cliquÃ© sur un territoire mais que ce territoire n'appartient pas au joueur
+					if (idTerri != -1 && regionClicked(idTerri).getTerritoires().get(Territoire.territoireDsRegion(idTerri)).getProprietaire() != listeJoueurs.get(i).getIdJoueur()) //Si on a cliqué sur un territoire mais que ce territoire n'appartient pas au joueur
 					{
 						System.out.println("Veuillez cliquer sur un de vos territoires");
 						idTerri = -1;
 					}
 				}
-				regionClicked(idTerri).getTerritoires().get(Territoire.territoireDsRegion(idTerri)).setNbrSoldat(regionClicked(idTerri).getTerritoires().get(Territoire.territoireDsRegion(idTerri)).getNbrSoldat()+1);	//Le territoire qui a Ã©tÃ© cliquÃ© gagne un soldat supplÃ©mentaire
-				listeJoueurs.get(i).getListeUnite().get(idSoldat).setIdPosition(idTerri); 	//On dit sur quel territoire le soldat a Ã©tÃ© placÃ©
+				regionClicked(idTerri).getTerritoires().get(Territoire.territoireDsRegion(idTerri)).setNbrSoldat(regionClicked(idTerri).getTerritoires().get(Territoire.territoireDsRegion(idTerri)).getNbrSoldat()+1);	//Le territoire qui a été cliqué gagne un soldat supplémentaire
+				listeJoueurs.get(i).getListeUnite().get(idSoldat).setIdPosition(idTerri); 	//On dit sur quel territoire le soldat a été placé
 				soldatsRestants=nbrSoldats-(idSoldat+1);
-				System.out.println("Soldat placÃ© sur le territoire " +regionClicked(idTerri).getTerritoires().get(Territoire.territoireDsRegion(idTerri)).getId()+". Plus que "+soldatsRestants+" soldats Ã  placer");
-				idTerri = -1; //On remet le territoire cliquÃ© Ã  -1 pour recommencer la boucle while
+				System.out.println("Soldat placé sur le territoire " +regionClicked(idTerri).getTerritoires().get(Territoire.territoireDsRegion(idTerri)).getId()+". Plus que "+soldatsRestants+" soldats à placer");
+				idTerri = -1; //On remet le territoire cliqué à -1 pour recommencer la boucle while
 				idSoldat++; //On passe au soldat suivant
 			}
 		}
@@ -239,11 +242,11 @@ public class RiskIsep {
 		}
 	}
 	
-	public static int allRegionPoss(int nbrJr)		//VÃ©rifie si un des joueurs possÃ¨de tous les territoires du jeu
+	public static int allRegionPoss(int nbrJr)		//Vérifie si un des joueurs possède tous les territoires du jeu
 	{
 		for (int i=0; i<nbrJr; i++)				//Pour chaque joueur
 		{
-			if (listeJoueurs.get(i).getListeTerrPoss().size() == 42)	//Si un joueur possÃ¨de tous les territoires
+			if (listeJoueurs.get(i).getListeTerrPoss().size() == 42)	//Si un joueur possède tous les territoires
 			{
 				System.out.println("Victoire du Joueur "+i+1);
 				return i;
@@ -265,7 +268,7 @@ public class RiskIsep {
 		int idTerri;
 		while (renforts >0)
 		{
-			typeUnite="soldat";		//Appeler fonction clique bouton maya qui ressort soit "soldat", "cavalier", "canon" ou "sÃ©lectionnez une unitÃ© Ã  placer avant de sÃ©lÃ©ctionner un territoire"
+			typeUnite="soldat";		//Appeler fonction clique bouton maya qui ressort soit "soldat", "cavalier", "canon" ou "sélectionnez une unité à placer avant de séléctionner un territoire"
 			renfEntreIf =renforts;
 			System.out.println("renforts restants pour Joueur"+idJoueur+ " "+ renforts);
 			if (typeUnite == "soldat")
@@ -339,11 +342,11 @@ public class RiskIsep {
 		int nbrSoldatTired = 0;
 		for (int i=0; i<nbrSoldatsDepl; i++)
 		{
-			//CotÃ© Territoire
-			regionClicked(idTerrIni).getTerritoires().get(Territoire.territoireDsRegion(idTerrIni)).setNbrSoldat(regionClicked(idTerrIni).getTerritoires().get(Territoire.territoireDsRegion(idTerrIni)).getNbrSoldat()-1); //On retire un soldat dans le territoire de dÃ©part
+			//Coté Territoire
+			regionClicked(idTerrIni).getTerritoires().get(Territoire.territoireDsRegion(idTerrIni)).setNbrSoldat(regionClicked(idTerrIni).getTerritoires().get(Territoire.territoireDsRegion(idTerrIni)).getNbrSoldat()-1); //On retire un soldat dans le territoire de départ
 			regionClicked(idTerrCible).getTerritoires().get(Territoire.territoireDsRegion(idTerrCible)).setNbrSoldat(regionClicked(idTerrCible).getTerritoires().get(Territoire.territoireDsRegion(idTerrCible)).getNbrSoldat()+1);		//On rajoute un soldat dans le territoire cible
 				
-			//CotÃ© UnitÃ©
+			//Coté Unité
 			boolean soldatBouged = false;
 			int j=0;
 			while(soldatBouged== false)
@@ -366,11 +369,11 @@ public class RiskIsep {
 		}
 		if (nbrSoldatTired == 1)
 		{
-			System.out.println("Ce dÃ©placement a fatiguÃ© 1 soldat, il ne peut plus bouger ni attaquer pendant ce tour");
+			System.out.println("Ce déplacement a fatigué 1 soldat, il ne peut plus bouger ni attaquer pendant ce tour");
 		}
 		if (nbrSoldatTired >1)
 		{
-			System.out.println("Ce dÃ©placement a fatiguÃ© " + nbrSoldatTired + " soldats, ils ne peuvent plus bouger ni attaquer pendant ce tour");
+			System.out.println("Ce déplacement a fatigué " + nbrSoldatTired + " soldats, ils ne peuvent plus bouger ni attaquer pendant ce tour");
 		}
 	}
 	
@@ -380,11 +383,11 @@ public class RiskIsep {
 		int nbrCavalTired = 0;
 		for (int i=0; i<nbrCavalsDepl; i++)
 		{
-			//CotÃ© Territoire
-			regionClicked(idTerrIni).getTerritoires().get(Territoire.territoireDsRegion(idTerrIni)).setNbrCaval(regionClicked(idTerrIni).getTerritoires().get(Territoire.territoireDsRegion(idTerrIni)).getNbrCaval()-1); //On retire un cavalier dans le territoire de dÃ©part
+			//Coté Territoire
+			regionClicked(idTerrIni).getTerritoires().get(Territoire.territoireDsRegion(idTerrIni)).setNbrCaval(regionClicked(idTerrIni).getTerritoires().get(Territoire.territoireDsRegion(idTerrIni)).getNbrCaval()-1); //On retire un cavalier dans le territoire de départ
 			regionClicked(idTerrCible).getTerritoires().get(Territoire.territoireDsRegion(idTerrCible)).setNbrCaval(regionClicked(idTerrCible).getTerritoires().get(Territoire.territoireDsRegion(idTerrCible)).getNbrCaval()+1);		//On rajoute un cavalier dans le territoire cible
 				
-			//CotÃ© UnitÃ©
+			//Coté Unité
 			boolean cavalbouged = false;
 			int j=0;
 			while(cavalbouged== false)
@@ -407,11 +410,11 @@ public class RiskIsep {
 		}
 		if (nbrCavalTired == 1)
 		{
-			System.out.println("Ce dÃ©placement a fatiguÃ© 1 magicien, il ne peut plus bouger ni attaquer pendant ce tour");
+			System.out.println("Ce déplacement a fatigué 1 magicien, il ne peut plus bouger ni attaquer pendant ce tour");
 		}
 		if (nbrCavalTired >1)
 		{
-			System.out.println("Ce dÃ©placement a fatiguÃ© " + nbrCavalTired + " magiciens, ils ne peuvent plus bouger ni attaquer pendant ce tour");
+			System.out.println("Ce déplacement a fatigué " + nbrCavalTired + " magiciens, ils ne peuvent plus bouger ni attaquer pendant ce tour");
 		}
 	}
 	
@@ -421,11 +424,11 @@ public class RiskIsep {
 		int nbrCanonTired = 0;
 		for (int i=0; i<nbrCanonsDepl; i++)
 		{
-			//CotÃ© Territoire
-			regionClicked(idTerrIni).getTerritoires().get(Territoire.territoireDsRegion(idTerrIni)).setNbrCanon(regionClicked(idTerrIni).getTerritoires().get(Territoire.territoireDsRegion(idTerrIni)).getNbrCanon()-1); //On retire un soldat dans le territoire de dÃ©part
+			//Coté Territoire
+			regionClicked(idTerrIni).getTerritoires().get(Territoire.territoireDsRegion(idTerrIni)).setNbrCanon(regionClicked(idTerrIni).getTerritoires().get(Territoire.territoireDsRegion(idTerrIni)).getNbrCanon()-1); //On retire un soldat dans le territoire de départ
 			regionClicked(idTerrCible).getTerritoires().get(Territoire.territoireDsRegion(idTerrCible)).setNbrCanon(regionClicked(idTerrCible).getTerritoires().get(Territoire.territoireDsRegion(idTerrCible)).getNbrCanon()+1);		//On rajoute un soldat dans le territoire cible
 				
-			//CotÃ© UnitÃ©
+			//Coté Unité
 			boolean canonBouged = false;
 			int j=0;
 			while(canonBouged== false)
@@ -445,12 +448,42 @@ public class RiskIsep {
 		}
 		if (nbrCanonTired == 1)
 		{
-			System.out.println("Ce dÃ©placement a fatiguÃ© le dragon, il ne peut plus bouger ni attaquer pendant ce tour");
+			System.out.println("Ce déplacement a fatigué le dragon, il ne peut plus bouger ni attaquer pendant ce tour");
 		}
 		if (nbrCanonTired >1)
 		{
-			System.out.println("Ce dÃ©placement a fatiguÃ© " + nbrCanonTired + " dragons, ils ne peuvent plus bouger ni attaquer pendant ce tour");
+			System.out.println("Ce déplacement a fatigué " + nbrCanonTired + " dragons, ils ne peuvent plus bouger ni attaquer pendant ce tour");
 		}
 	}
 
+	
+	
+	public static void tousUnSoldat()
+	{
+		int k=0;
+		for (int i=0; i<listeRegions.size(); i++)
+		{
+			for (int j=0; j<listeRegions.get(i).getTerritoires().size();j++)
+			{
+				System.out.println("Le territoire " + k + " dont le propriétaire est le joueur" +listeRegions.get(i).getTerritoires().get(j).getProprietaire() +"possède " + listeRegions.get(i).getTerritoires().get(j).getNbrSoldat());
+				k++;
+				if (j<4)
+				{
+					for (int z=0; z<listeJoueurs.get(j).getListeTerrPoss().size(); z++)
+					System.out.println("Le joueur"+j+ " possède le territoire "+ listeJoueurs.get(j).getListeTerrPoss().get(z).getId());
+				}
+			}
+		}
+	}
+	
+	public static void doubleCheckBonneAttriTerr(int nbrJr)
+	{
+		for (int i=0; i<nbrJr; i++)
+		{
+			for (int j=0; j<listeJoueurs.get(i).getListeTerrPoss().size(); j++)
+			{
+			regionClicked(listeJoueurs.get(i).getListeTerrPoss().get(j).getId()).getTerritoires().get(Territoire.territoireDsRegion(listeJoueurs.get(i).getListeTerrPoss().get(j).getId())).setProprietaire(i);
+			}
+		}
+	}
 }

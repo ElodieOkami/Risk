@@ -1,6 +1,6 @@
 public class Territoire {
-	public static int numero;			//NumÃ©ro dans la rÃ©gion
-	public int proprietaire;	//PropriÃ©taire de ce territoire
+	public static int numero;			//Numéro dans la région
+	public int proprietaire;	//Propriétaire de ce territoire
 	public int id;		//id parmi les 42 du plateau
 	public int nbrCanon;
 	public int nbrCaval;
@@ -63,13 +63,13 @@ public class Territoire {
 		int nbrSoldatsDepl=0;
 		int nbrCavalsDepl=0;
 		int nbrCanonsDepl=0;
-		System.out.println("Veuillez sÃ©lectionner le territoire d'oÃ¹ vous voulez dÃ©placer des unitÃ©s");
+		System.out.println("Veuillez sélectionner le territoire d'où vous voulez déplacer des unités");
 		while(idTerrIni == -1)
 		{
 			idTerrIni = Interface.lectureClic(cartePng);
 		}
 		
-		System.out.println("Veuillez sÃ©lectionner le nombre d'unitÃ©s Ã  dÃ©placer puis sÃ©lectionnez le territoire oÃ¹ vous souhaitez les envoyer");
+		System.out.println("Veuillez sélectionner le nombre d'unités à déplacer puis sélectionnez le territoire où vous souhaitez les envoyer");
 		while(idTerrCible == -1)
 		{
 			nbrSoldatsDepl = Unite.nbrSoldatsDeplacer(cartePng);
@@ -80,11 +80,11 @@ public class Territoire {
 		}
 		if(nbrSoldatsDepl==0 && nbrCavalsDepl==0 && nbrCanonsDepl==0)
 		{
-			System.out.println("Vous n'avez sÃ©lectionnÃ© aucune unitÃ© Ã  dÃ©placer");
+			System.out.println("Vous n'avez sélectionné aucune unité à déplacer");
 		}
 		else if (matriceVoisins[idTerrIni][idTerrCible] != 1)
 		{
-			System.out.println("Veuillez dÃ©placer vos unitÃ©s case par case");
+			System.out.println("Veuillez déplacer vos unités case par case");
 		}
 		else
 		{
@@ -135,7 +135,7 @@ public class Territoire {
 	}
 	
 	
-	final static int[][] matriceVoisins= //matrice adjancente dÃ©ffinissant les pays voisins
+	final static int[][] matriceVoisins= //matrice adjancente déffinissant les pays voisins
 		{
 			{0,1,0,0,0,0,0,0,0,0,0, 1,0,0,0,0, 0,0,0,0,0,0,0,0, 0,0,0, 0,0,0,0,0, 0,0,0,0,0,0,0,0,0,0},
 			{1,0,1,1,0,0,0,0,0,0,0, 0,1,1,0,0, 0,0,0,0,0,0,0,0, 0,0,0, 0,0,0,0,0, 0,0,0,0,0,0,0,0,0,0},

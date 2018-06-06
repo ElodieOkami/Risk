@@ -22,7 +22,7 @@ public class Plateau
 		StdDraw.setYscale(0, height);
 	}
 
-	public static void afficheMenuJoueur()	// Affiche le choix du nombre de joueurs en dÃ©but de partie
+	public static void afficheMenuJoueur()	// Affiche le choix du nombre de joueurs en début de partie
 	{
 		String cartePng = "plateauMenu.png";
 		
@@ -72,7 +72,7 @@ public class Plateau
 		font = new Font("Papyrus", Font.PLAIN, 40);		//En plus petit et pas en gras
 		StdDraw.setFont(font);
 		
-		StdDraw.text(width/2, height/1.3, "Combien de joueurs Ãªtes-vous ?");
+		StdDraw.text(width/2, height/1.3, "Combien de joueurs êtes-vous ?");
 
 		font = new Font("Times new roman", Font.PLAIN, 40);
 		StdDraw.setFont(font);
@@ -179,7 +179,7 @@ public class Plateau
 	        	scaleX = (double)width;
 	        }		 
 		
-	        StdDraw.picture(width/2, height/2, cartePng); //Rajouter ",scaleX ,scaleY" dans la parenthÃ¨se pour avoir du rescale mais perturbe les clics
+	        StdDraw.picture(width/2, height/2, cartePng); //Rajouter ",scaleX ,scaleY" dans la parenthèse pour avoir du rescale mais perturbe les clics
 	        StdDraw.show(1);
 	        
 			}
@@ -213,7 +213,7 @@ public class Plateau
 			Font font = new Font("Papyrus",Font.ITALIC, 15);
 			StdDraw.setFont(font);
 			StdDraw.text(width/9.5, height/1.15, "Cliquez sur vos territoires pour");
-			StdDraw.text(width/9.5, height/1.20, "placer vos armÃ©es non placÃ©es");
+			StdDraw.text(width/9.5, height/1.20, "placer vos armées non placées");
 			
 			StdDraw.picture(width/1.1, height/2, "infosJoueur.png");
 			font = new Font("Papyrus", Font.BOLD, 20);		//En plus petit et pas en gras

@@ -38,15 +38,15 @@ public class Mission {
 	
 	public static void attributionMissions(int nbrJr)		//ATTENTION la fonction print juste des messages, elle n'associe aucune mission
 	{
-		//DÃ©finition du contenu des missions et de leur contenu
-		String mis1 = "ContÃ´ler 3 rÃ©gions et au moins 18 territoires";
-		String mis2 = "ContrÃ´ler la plus grosse rÃ©gion + 1 autre rÃ©gion";
-		String mis3 = "ConquÃ©rir tous les territoires";
-		String mis4 = "ContrÃ´ler 30 territoires";
-		String mis5 = "ContrÃ´ler 18 territoires avec au moins 2 armÃ©es";
-		String mis6 = "DÃ©truire le joueur";
-		String mis7 = "ContrÃ´ler 24 territoires";
-		String mis8 = "ContrÃ´ler 21 territoires";
+		//Définition du contenu des missions et de leur contenu
+		String mis1 = "Contôler 3 régions et au moins 18 territoires";
+		String mis2 = "Contrôler la plus grosse région + 1 autre région";
+		String mis3 = "Conquérir tous les territoires";
+		String mis4 = "Contrôler 30 territoires";
+		String mis5 = "Contrôler 18 territoires avec au moins 2 armées";
+		String mis6 = "Détruire le joueur";
+		String mis7 = "Contrôler 24 territoires";
+		String mis8 = "Contrôler 21 territoires";
 		
 		List<Mission> list = new ArrayList<Mission>();
 		
@@ -63,7 +63,7 @@ public class Mission {
 		list.add(mission1);
 		list.add(mission2);
 		
-		//On traite les diffÃ©rents cas selon le nombre de joueurs sur la partie
+		//On traite les différents cas selon le nombre de joueurs sur la partie
 		if (nbrJr ==1)
 		{
 			missionAlea(list, nbrJr);
@@ -110,7 +110,7 @@ public class Mission {
 		}
 	}
 	
-	//Fonction permettant d'attribuer alÃ©atoirement la mission selon la liste des missions disponibles et le nombre de joueurs
+	//Fonction permettant d'attribuer aléatoirement la mission selon la liste des missions disponibles et le nombre de joueurs
 	public static void missionAlea (List<Mission> list, int nbrJr)
 	{
 		int l = list.size(); //Nombre de missions disponibles
@@ -120,16 +120,16 @@ public class Mission {
 			int xAlea = x.nextInt(l) ;
 			Mission mission = list.get(xAlea);
 			
-			if(mission.contenu != "DÃ©truire le joueur")
+			if(mission.contenu != "Détruire le joueur")
 			{
 				//System.out.println("Mission joueur "+i+" : "+mission.contenu);
 			}
 			
-			else if (mission.contenu == "DÃ©truire le joueur") // Si la mission est "dÃ©truire le joueur" on doit choisir le numÃ©ro du joueur Ã  dÃ©truir
+			else if (mission.contenu == "Détruire le joueur") // Si la mission est "détruire le joueur" on doit choisir le numéro du joueur à détruir
 			{
 				Random r = new Random();
 				int j = r.nextInt(nbrJr)+1;
-				while (j==i)   //Cela ne peut pas Ãªtre le joueur lui-mÃªme
+				while (j==i)   //Cela ne peut pas être le joueur lui-même
 				{
 					r = new Random();
 					j = r.nextInt(nbrJr)+1;
