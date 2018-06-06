@@ -6,6 +6,48 @@
 	{
 			RiskIsep.appelFonctionRenforts(idJoueur);
 	}  
+		
+	public static int nombreSoldatJoueur(Joueur joueur) //renvoie le nombre de soldats d'un joueur
+	{
+		int compteur = 0;
+		int nbrUnites = joueur.getListeUnite().size();
+		for(int i = 0; i < nbrUnites; i++)
+		{
+			if(joueur.getListeUnite().get(i).type == "soldat")
+				{
+					compteur = compteur + 1;
+				}
+		}
+		return compteur;
+	}
+	
+	public static int nombreCavalierJoueur(Joueur joueur) //renvoie le nombre de cavaliers d'un joueur
+	{
+		int compteur = 0;
+		int nbrUnites = joueur.getListeUnite().size();
+		for(int i = 0; i < nbrUnites; i++)
+		{
+			if(joueur.getListeUnite().get(i).type == "cavalier")
+				{
+					compteur = compteur + 1;
+				}
+		}
+		return compteur;
+	}
+	
+	public static int nombreCanonJoueur(Joueur joueur) //renvoie le nombre de canons d'un joueur
+	{
+		int compteur = 0;
+		int nbrUnites = joueur.getListeUnite().size();
+		for(int i = 0; i < nbrUnites; i++)
+		{
+			if(joueur.getListeUnite().get(i).type == "canon")
+				{
+					compteur = compteur + 1;
+				}
+		}
+		return compteur;
+	}
   
 	
 	public static boolean defVoisins(int ter, int clickTer)	// Fonction qui retourne true si le joueur a cliqué sur un pays voisin du sien
