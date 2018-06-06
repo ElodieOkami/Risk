@@ -4,9 +4,23 @@
 		
 	public static void tour(int idJoueur)
 	{
-			RiskIsep.appelFonctionRenforts(idJoueur);
+			String cartePng = "plateauElder.png";
+			Plateau.afficheInfosJoueur(cartePng, idJoueur + 1);
+			if(Interface.isAttaquerPressed(idJoueur))
+			{
+				Plateau.afficheInfosAttaquer(cartePng, idJoueur);
+			}
+			if(Interface.isSeDeplacerPressed(idJoueur))
+			{
+				Plateau.afficheInfosSeDeplacer(cartePng, idJoueur);
+			}
+			if(Interface.isRenfortPressed(idJoueur))
+			{
+				Plateau.afficheInfosRenforts(cartePng, idJoueur);
+			}
+			//RiskIsep.appelFonctionRenforts(idJoueur);
 	}  
-		
+  
 	public static int nombreSoldatJoueur(Joueur joueur) //renvoie le nombre de soldats d'un joueur
 	{
 		int compteur = 0;
@@ -48,7 +62,6 @@
 		}
 		return compteur;
 	}
-  
 	
 	public static boolean defVoisins(int ter, int clickTer)	// Fonction qui retourne true si le joueur a cliqué sur un pays voisin du sien
 	//ter = id du territoire où se trouve le joueur
