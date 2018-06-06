@@ -292,6 +292,47 @@ public class Plateau
 		}
 	}
 	
+	public static void afficheInfosRenforts(String cartePng, int idJoueur)
+	{
+		if(cartePng == "plateauElder.png")
+		{
+			Joueur joueur = RiskIsep.listeJoueurs.get(idJoueur);
+			StdDraw.picture(width/10, height/3.4, "infosBoutons.png");
+			Font font = new Font("Papyrus", Font.ITALIC, 13);	
+			StdDraw.setFont(font);
+			StdDraw.text(width/10, height/2.4 , "Renforts : " + joueur.receptionRenforts());
+			StdDraw.text(width/10, height/2.6 , "Cliquez sur un bouton");
+			StdDraw.text(width/10, height/2.75 , "puis sur un territoire");
+			StdDraw.text(width/10, height/2.9,  "pour ajouter et placer");
+			StdDraw.text(width/10, height/3.05,  "votre nouvelle armée");
+			
+			StdDraw.text(width/10, height/3.80,  "Soldat : 1");
+			StdDraw.rectangle(width/10, height/3.80, 50, 11);
+			StdDraw.text(width/10, height/4.50,  "Cavalier : 3");
+			StdDraw.rectangle(width/10, height/4.50, 50, 11);
+			StdDraw.text(width/10, height/5.6,  "Canon : 7");
+			StdDraw.rectangle(width/10, height/5.6, 50, 11);
+		}
+	}
+	
+	public static void afficheInfosAttaquer(String cartePng, int idJoueur)
+	{
+		if(cartePng == "plateauElder.png")
+		{
+			Joueur joueur = RiskIsep.listeJoueurs.get(idJoueur);
+			StdDraw.picture(width/10, height/3.4, "infosBoutons.png");
+		}
+	}
+	
+	public static void afficheInfosSeDeplacer(String cartePng, int idJoueur)
+	{
+		if(cartePng == "plateauElder.png")
+		{
+			Joueur joueur = RiskIsep.listeJoueurs.get(idJoueur);
+			StdDraw.picture(width/10, height/3.4, "infosBoutons.png");
+		}
+	}
+	
 	public static void affichePointProprio(int idTerr, Color couleur)
 	{
 		if (idTerr==0)
