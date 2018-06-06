@@ -260,6 +260,56 @@ public class Plateau
 		}
 	}
 	
+	public static void afficheInfosJoueur(String cartePng)
+	{
+		if(cartePng == "plateauElder.png")
+		{
+			Font font = new Font("Papyrus", Font.BOLD, 20);		//En plus petit et pas en gras
+			StdDraw.setFont(font);
+			StdDraw.text(width/1.1, height/1.35 , " Au tour du");
+			StdDraw.picture(width/1.1, height/1.49, "playerBlue.png");
+			StdDraw.text(width/1.1, height/1.6 , "Joueur 1");
+			font = new Font("Papyrus", Font.BOLD, 14);		//En plus petit et pas en gras
+			StdDraw.setFont(font);
+			Joueur joueur = new Joueur (1,"joueur"+1, Color.BLUE);
+			StdDraw.text(width/1.1, height/1.75 , "Soldats : " + Tour.nombreSoldatJoueur(joueur));
+			StdDraw.text(width/1.1, height/1.85, "Cavaliers : " + Tour.nombreCavalierJoueur(joueur));
+			StdDraw.text(width/1.1, height/1.95 , "Canons : " + Tour.nombreCanonJoueur(joueur));
+			StdDraw.text(width/1.1, height/2.05 , "Renforts : " + joueur.receptionRenforts());
+			
+			//StdDraw.text(width/1.1, height/2.15 , "Déplacements : 0");
+			StdDraw.text(width/1.1, height/2.4 , "Se déplacer");
+			StdDraw.rectangle(width/1.1, height/2.4 , 50, 11);
+			StdDraw.text(width/1.1, height/2.65 , "Attaquer");
+			StdDraw.rectangle(width/1.1, height/2.67 , 50, 11);
+			StdDraw.text(width/1.1, height/3.0 , "Renfort");
+			StdDraw.rectangle(width/1.1, height/3.02 , 50, 11);
+			StdDraw.text(width/1.1, height/3.35 , "Fin de tour");
+			StdDraw.rectangle(width/1.1, height/3.4 , 50, 11);
+			
+			StdDraw.show();
+		}
+	}
+	
+	public static void afficheInfosArmees(String cartePng)
+	{
+		while(Interface.lectureClic(cartePng) == -1 )
+		{
+			Font font = new Font("Papyrus",Font.ITALIC, 14);
+			StdDraw.setFont(font);
+			StdDraw.text(width/9.5, height/1.15, "Cliquez sur un territoire pour");
+			StdDraw.setFont(font);
+			StdDraw.text(width/9.5, height/1.20, "afficher ici son nombre d'armées");
+		}
+			
+		Font font = new Font("Papyrus",Font.PLAIN, 14);
+		StdDraw.setFont(font);
+		StdDraw.text(width/10, height/1.10, "Soldats sur le territoire cliqué : 10");
+		StdDraw.text(width/10, height/1.15, "Cavaliers sur le territoire cliqué : 2");
+		StdDraw.text(width/10, height/1.20, "Canons sur le territoire cliqué : 0");
+		StdDraw.show();
+	}
+	
 	public static void affichePointProprio(int idTerr, Color couleur)
 	{
 		if (idTerr==0)
