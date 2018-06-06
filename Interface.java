@@ -257,7 +257,78 @@ public class Interface {
 		int[][] tabVide = new int[2][3];
 		return tabVide;
 	}
+
+	public static boolean isFinDeTourPressed(int idJoueur)
+	{
+		//si le joueur clique sur fin de Tour alors on return True
+		if(StdDraw.isMousePressed())
+		{
+			double clickX=StdDraw.mouseX();
+			double clickY=StdDraw.mouseY();		
+			if(height/3.4-height/45 < clickY && clickY < height/3.4+height/30) 
+			{
+				if (width/1.1-width/25 < clickX && clickX < width/1.1+width/25) 
+				{
+					return true;
+				}
+			}
+		}
+		return false;
+	}
 	
+	public static boolean isSeDeplacerPressed(int idJoueur)
+	{
+		//si le joueur clique sur fin de Tour alors on return True
+		if(StdDraw.isMousePressed())
+		{
+			double clickX=StdDraw.mouseX();
+			double clickY=StdDraw.mouseY();		
+			if(height/2.4-height/45 < clickY && clickY < height/2.4+height/30) 
+			{
+				if (width/1.1-width/25 < clickX && clickX < width/1.1+width/25) 
+				{
+					return true;
+				}
+			}
+		}
+		return false;
+	}
+	
+	public static boolean isAttaquerPressed(int idJoueur)
+	{
+		//si le joueur clique sur fin de Tour alors on return True
+		if(StdDraw.isMousePressed())
+		{
+			double clickX=StdDraw.mouseX();
+			double clickY=StdDraw.mouseY();		
+			if(height/2.65-height/45 < clickY && clickY < height/2.65+height/30) 
+			{
+				if (width/1.1-width/25 < clickX && clickX < width/1.1+width/25) 
+				{
+					return true;
+				}
+			}
+		}
+		return false;
+	}
+	
+	public static boolean isRenfortPressed(int idJoueur)
+	{
+		//si le joueur clique sur fin de Tour alors on return True
+		if(StdDraw.isMousePressed())
+		{
+			double clickX=StdDraw.mouseX();
+			double clickY=StdDraw.mouseY();		
+			if(height/3.0-height/45 < clickY && clickY < height/3.0+height/30) 
+			{
+				if (width/1.1-width/25 < clickX && clickX < width/1.1+width/25) 
+				{
+					return true;
+				}
+			}
+		}
+		return false;
+	}
 	
 	
 }
