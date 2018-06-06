@@ -154,29 +154,56 @@ public class Interface {
 	        	        
 	    	int clickX=(int) StdDraw.mouseX();
 	        int clickY=(int) StdDraw.mouseY()-clicTropBas;
-	        			
-	        clickX = clickX-((width-image.getWidth())/2);
-	        clickY = clickY-((height-image.getHeight())/2);
-	        			
-	        /*double multiX = scaleX/width;
-	        double multiY = scaleY/height;
-	        clickX = (int)(clickX*multiX);
-	        clickY = (int)(clickY*multiY);*/ //A travailler pour le rescale
-	        			
-	        couleur = new Color(image.getRGB(clickX, image.getHeight()-clickY));	//Couleur aux coordonnées du clic
-	        			
-	        //System.out.println("R = " + couleur.getRed());
-	        //System.out.println("G = " + couleur.getGreen());
-	        //System.out.println("B = " + couleur.getBlue());
-	        try {
-			    Thread.sleep(150);
-			} catch(InterruptedException e) {
-			    System.out.println("Sommeil interrompu");
-			}
-	        return correspondClic(cartePng, couleur);		//Return id territoire
 	        
+	        System.out.println(clickX);
+	        System.out.println(clickY);
+	        
+	        if (clickX<200)
+	        {
+	        	System.out.println("Veuillez cliquez sur un des territoires en couleurs");
+	        	return -1;
+	        }
+	        else if (clickX >1600)
+	        {
+	        	if (clickY>630)
+	        	{
+	        		
+	        	}
+	        	else if(clickY<300)
+	        	{
+	        		
+	        	}
+	        	else
+	        	{
+	        		System.out.println("Veuillez recliquer sur un bouton");
+	        	}
+	        	return -1;
+	        }
+	        else
+	        {
+	        			
+	        	clickX = clickX-((width-image.getWidth())/2);
+	        	clickY = clickY-((height-image.getHeight())/2);
+	        			
+	        	/*double multiX = scaleX/width;
+	        	double multiY = scaleY/height;
+	        	clickX = (int)(clickX*multiX);
+	        	clickY = (int)(clickY*multiY);*/ //A travailler pour le rescale
+	        			
+	        	couleur = new Color(image.getRGB(clickX, image.getHeight()-clickY));	//Couleur aux coordonnées du clic
+	        			
+	        	//System.out.println("R = " + couleur.getRed());
+	        	//System.out.println("G = " + couleur.getGreen());
+	        	//System.out.println("B = " + couleur.getBlue());
+	        	try {
+	        		Thread.sleep(150);
+	        	} catch(InterruptedException e) {
+	        		System.out.println("Sommeil interrompu");
+	        	}
+	        	return correspondClic(cartePng, couleur);		//Return id territoire
+	        
+	        }
 	    }
-	            
 	    return -1;
 	}
 	
