@@ -15,7 +15,7 @@ public class RiskIsep {
 		String cartePng = Initialisation.initialisationJeu(nbrJr);	//cartePng est soit la carte "plateauElder.png"(tamriel) soit "plateauTerre.png"(Terre)
 		
 		//- - - - - - - - - Jeu - - - - - - - - -//
-		Jeu.partieDeRisk(nbrJr);			//Début du vrai jeu
+		Jeu.partieDeRisk(nbrJr, cartePng);			//Début du vrai jeu
 	}
 	
 		
