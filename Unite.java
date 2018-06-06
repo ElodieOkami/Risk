@@ -4,17 +4,19 @@ public class Unite {
 	int prioriteATT;
 	int prioriteDEF;
 	int mvtTour;
+	int mvtLeft;
 	int idPosition;
 	String type;
 	
 	//Constructeurs
-	public Unite(int cout, int[] puissance, int prioriteATT, int prioriteDEF, int mvtTour, int idPosition, String type) {
+	public Unite(int cout, int[] puissance, int prioriteATT, int prioriteDEF, int mvtTour, int mvtLeft, int idPosition, String type) {
 		super();
 		this.cout = cout;
 		this.puissance = puissance;
 		this.prioriteATT = prioriteATT;
 		this.prioriteDEF = prioriteDEF;
 		this.mvtTour = mvtTour;
+		this.mvtLeft = mvtLeft;
 		this.idPosition = idPosition;
 		this.type = type;
 	}
@@ -50,6 +52,12 @@ public class Unite {
 	public void setMvtTour(int mvtTour) {
 		this.mvtTour = mvtTour;
 	}
+	public int getMvtLeft() {
+		return mvtLeft;
+	}
+	public void setMvtLeft(int mvtLeft) {
+		this.mvtLeft = mvtLeft;
+	}
 	public int getIdPosition() {
 		return idPosition;
 	}
@@ -63,7 +71,25 @@ public class Unite {
 		this.type = type;
 	}
 	
-	
+		
+	public static int nbrSoldatsDeplacer(String cartePng)
+	{
+		int nbrSoldats=0;
+							//Fonction de Maya
+		return nbrSoldats;
+	}
+	public static int nbrCavaliersDeplacer(String cartePng)
+	{
+		int nbrCavals=0;
+		//Fonction de Maya
+		return nbrCavals;
+	}
+	public static int nbrCanonsDeplacer(String cartePng)
+	{
+		int nbrCanons=0;
+		//Fonction de Maya
+		return nbrCanons;
+	}
 	
 	
 }
