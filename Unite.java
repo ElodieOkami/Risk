@@ -5,10 +5,10 @@ public class Unite {
 	int prioriteDEF;
 	int mvtTour;
 	int idPosition;
-	String token;
+	String type;
 	
 	//Constructeurs
-	public Unite(int cout, int[] puissance, int prioriteATT, int prioriteDEF, int mvtTour, int idPosition, String token) {
+	public Unite(int cout, int[] puissance, int prioriteATT, int prioriteDEF, int mvtTour, int idPosition, String type) {
 		super();
 		this.cout = cout;
 		this.puissance = puissance;
@@ -16,7 +16,7 @@ public class Unite {
 		this.prioriteDEF = prioriteDEF;
 		this.mvtTour = mvtTour;
 		this.idPosition = idPosition;
-		this.token = token;
+		this.type = type;
 	}
 
 	//Getters et Setters
@@ -56,11 +56,11 @@ public class Unite {
 	public void setIdPosition(int idPosition) {
 		this.idPosition = idPosition;
 	}
-	public String getToken() {
-		return token;
+	public String getType() {
+		return type;
 	}
-	public void setToken(String token) {
-		this.token = token;
+	public void setType(String type) {
+		this.type = type;
 	}
 	
 	
