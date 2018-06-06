@@ -56,6 +56,54 @@ public class Territoire {
 		this.nbrSoldat = nbrSoldat;
 	}
 	
+	public static void deplacement(int idJoueur, String cartePng)
+	{
+		int idTerrIni=-1;
+		int idTerrCible = -1;
+		int nbrSoldatsDepl=0;
+		int nbrCavalsDepl=0;
+		int nbrCanonsDepl=0;
+		System.out.println("Veuillez sélectionner le territoire d'où vous voulez déplacer des unités");
+		while(idTerrIni == -1)
+		{
+			idTerrIni = Interface.lectureClic(cartePng);
+		}
+		
+		System.out.println("Veuillez sélectionner le nombre d'unités à déplacer puis sélectionnez le territoire où vous souhaitez les envoyer");
+		while(idTerrCible == -1)
+		{
+			nbrSoldatsDepl = Unite.nbrSoldatsDeplacer(cartePng);
+			nbrCavalsDepl = Unite.nbrCavaliersDeplacer(cartePng);
+			nbrCanonsDepl = Unite.nbrCanonsDeplacer(cartePng);
+			
+			idTerrCible = Interface.lectureClic(cartePng);
+		}
+		if(nbrSoldatsDepl==0 && nbrCavalsDepl==0 && nbrCanonsDepl==0)
+		{
+			System.out.println("Vous n'avez sélectionné aucune unité à déplacer");
+		}
+		else if (matriceVoisins[idTerrIni][idTerrCible] != 1)
+		{
+			System.out.println("Veuillez déplacer vos unités case par case");
+		}
+		else
+		{
+			if(nbrSoldatsDepl !=0)
+			{
+				RiskIsep.deplacerSoldat(nbrSoldatsDepl, idTerrIni, idTerrCible, idJoueur);
+			}
+			if(nbrCavalsDepl !=0)
+			{
+				RiskIsep.deplacerCavalier(nbrCavalsDepl, idTerrIni, idTerrCible, idJoueur);
+			}
+			if(nbrCanonsDepl !=0)
+			{
+				RiskIsep.deplacerCanon(nbrCanonsDepl, idTerrIni, idTerrCible, idJoueur);
+			}
+		}
+		
+	}
+	
 	
 
 	public static int territoireDsRegion(int idTerri)
@@ -84,21 +132,6 @@ public class Territoire {
 		{
 			return idTerri-32;
 		} 
-	}
-	
-	public static boolean defVoisins(int ter, int clickTer)	// Fonction qui retourne true si le joueur a cliqué sur un pays voisin du sien
-	//ter = id du territoire où se trouve le joueur
-	//clickTer = id du territoire ou le joueur a cliqué
-	{
-		if (matriceVoisins[ter - 1][clickTer - 1]==1) // on vérifi si les pays destination et départ sont voisins
-		{
-			return true;
-		}
-		else
-		{
-			return false;
-		}
-			
 	}
 	
 	
