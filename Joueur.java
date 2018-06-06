@@ -73,42 +73,42 @@
 			case 1 :
 				for(int i = 0; i < 40; i++)
 				{
-					this.listeUnite.add(new Soldat(1, listePuissanceSoldat, 2, 1, 2, -1, "Soldat"));
+					this.listeUnite.add(new Soldat(1, listePuissanceSoldat, 2, 1, 2, 2, -1, "Soldat"));
 				}
 				//System.out.println("Le joueur et l'IA ont reçu 40 soldats");
 				break;
 			case 2 :
 				for(int i = 0; i < 40; i++)
 				{
-					this.listeUnite.add(new Soldat(1, listePuissanceSoldat, 2, 1, 2, -1, "Soldat"));
+					this.listeUnite.add(new Soldat(1, listePuissanceSoldat, 2, 1, 2, 2, -1, "Soldat"));
 				}
 				//System.out.println("Les deux joueurs ont reçu 40 soldats");
 				break;
 			case 3 :
 				for(int i = 0; i < 35; i++)
 				{
-					this.listeUnite.add(new Soldat(1, listePuissanceSoldat, 2, 1, 2, -1, "Soldat"));
+					this.listeUnite.add(new Soldat(1, listePuissanceSoldat, 2, 1, 2, 2, -1, "Soldat"));
 				}
 				//System.out.println("Les trois joueurs ont reçu 35 soldats");
 				break;
 			case 4 :
 				for(int i = 0; i < 30; i++)
 				{
-					this.listeUnite.add(new Soldat(1, listePuissanceSoldat, 2, 1, 2, -1, "Soldat"));
+					this.listeUnite.add(new Soldat(1, listePuissanceSoldat, 2, 1, 2, 2, -1, "Soldat"));
 				}
 				//System.out.println("Les quatre joueurs ont reçu 30 soldats");
 				break;
 			case 5 :
 				for(int i = 0; i < 25; i++)
 				{
-					this.listeUnite.add(new Soldat(1, listePuissanceSoldat, 2, 1, 2, -1, "Soldat"));
+					this.listeUnite.add(new Soldat(1, listePuissanceSoldat, 2, 1, 2, 2, -1, "Soldat"));
 				}
 				//System.out.println("Les cinq joueurs ont reçu 25 soldats");
 				break;
 			case 6 :
 				for(int i = 0; i < 20; i++)
 				{
-					this.listeUnite.add(new Soldat(1, listePuissanceSoldat, 2, 1, 2, -1, "Soldat"));
+					this.listeUnite.add(new Soldat(1, listePuissanceSoldat, 2, 1, 2, 2, -1, "Soldat"));
 				}
 				//System.out.println("Les six joueurs ont reçu 20 soldats");
 				break;
@@ -186,7 +186,6 @@
 				for (int i=0; i<terrCaptured; i++)
 				{
 					int r = (int)Math.round(Math.random());
-					System.out.println(r);
 					renfCapture += r;
 				}
 			}
@@ -197,15 +196,15 @@
 		{
 			if (typeUnite == "soldat")
 			{
-				this.listeUnite.add(new Soldat(1, listePuissanceSoldat, 2, 1, 2, idTerr, "soldat"));
+				this.listeUnite.add(new Soldat(1, listePuissanceSoldat, 2, 1, 2, 2, idTerr, "soldat"));
 			}
 			else if(typeUnite == "cavalier")
 			{
-				this.listeUnite.add(new Cavalier(3, listePuissanceCavalier, 1, 3, 3, idTerr, "cavalier"));
+				this.listeUnite.add(new Cavalier(3, listePuissanceCavalier, 1, 3, 3, 3, idTerr, "cavalier"));
 			}
 			else
 			{
-				this.listeUnite.add(new Canon(7, listePuissanceCanon, 3, 2, 1, idTerr, "canon"));
+				this.listeUnite.add(new Canon(7, listePuissanceCanon, 3, 2, 1, 1, idTerr, "canon"));
 			}
 		}
 		
