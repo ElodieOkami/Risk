@@ -200,6 +200,7 @@ public class RiskIsep {
 						System.out.println("Veuillez cliquer sur un de vos territoires");
 						idTerri = -1;
 					}
+					Plateau.afficheInfosJoueurIni(cartePng, numeroJoueur, soldatsRestants);
 				}
 				regionClicked(idTerri).listeTerritoires.get(Territoire.territoireDsRegion(idTerri)).setNbrSoldat(regionClicked(idTerri).listeTerritoires.get(Territoire.territoireDsRegion(idTerri)).getNbrSoldat()+1);	//Le territoire qui a été cliqué gagne un soldat supplémentaire
 				listeJoueurs.get(i).getListeUnite().get(idSoldat).setIdPosition(idTerri); 	//On dit sur quel territoire le soldat a été placé
