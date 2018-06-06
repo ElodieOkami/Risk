@@ -9,6 +9,9 @@
 		String pseudo;
 		Color couleur;
 		
+		public static final int[] listePuissanceSoldat = {1,2,3,4,5,6};
+		public static final int[] listePuissanceCavalier = {2,3,4,5,6,7};
+		public static final int[] listePuissanceCanon = {4,5,6,7,8,9};
 		
 		//----------------------    Constructeur     ---------------------------//
 		
@@ -65,7 +68,6 @@
 
 		public void repartitionUnite(int nbrJr)
 		{
-			int[] listePuissanceSoldat = {1,2,3,4,5,6};
 			switch(nbrJr) //On gère les différents cas
 			{
 			case 1 :
@@ -191,9 +193,20 @@
 			return renfCapture;
 		}
 		
-		public static void placerRenforts(int nbr)
+		public void ajouterRenfortJoueur(String typeUnite, int idTerr)
 		{
-			
+			if (typeUnite == "soldat")
+			{
+				this.listeUnite.add(new Soldat(1, listePuissanceSoldat, 2, 1, 2, idTerr, "soldat"));
+			}
+			else if(typeUnite == "cavalier")
+			{
+				this.listeUnite.add(new Cavalier(3, listePuissanceCavalier, 1, 3, 3, idTerr, "cavalier"));
+			}
+			else
+			{
+				this.listeUnite.add(new Canon(7, listePuissanceCanon, 3, 2, 1, idTerr, "canon"));
+			}
 		}
 		
 	}
