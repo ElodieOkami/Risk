@@ -200,7 +200,6 @@ public class RiskIsep {
 						System.out.println("Veuillez cliquer sur un de vos territoires");
 						idTerri = -1;
 					}
-					Plateau.afficheInfosJoueurIni(cartePng, numeroJoueur, soldatsRestants);
 				}
 				regionClicked(idTerri).listeTerritoires.get(Territoire.territoireDsRegion(idTerri)).setNbrSoldat(regionClicked(idTerri).listeTerritoires.get(Territoire.territoireDsRegion(idTerri)).getNbrSoldat()+1);	//Le territoire qui a été cliqué gagne un soldat supplémentaire
 				listeJoueurs.get(i).getListeUnite().get(idSoldat).setIdPosition(idTerri); 	//On dit sur quel territoire le soldat a été placé
@@ -257,6 +256,49 @@ public class RiskIsep {
 	{
 		int renforts = listeJoueurs.get(idJoueur).receptionRenforts();
 		return renforts;
+	}
+	
+	public static void choixUniteEtPlacerRenforts(int renforts, int idJoueur, String cartePng)
+	{
+		String typeUnite;
+		int renfEntreIf;
+		int idTerri;
+		while (renforts >0)
+		{
+			typeUnite="Soldat";		//Appeler fonction clique bouton maya qui ressort soit "soldat", "cavalier", "canon" ou "sélectionnez une unité à placer avant de séléctionner un territoire"
+			renfEntreIf =renforts;
+			if (typeUnite == "soldat")
+			{
+				while (renfEntreIf == renforts)
+				{
+					idTerri = Interface.lectureClic(cartePng);
+					listeJoueurs.get(idJoueur).ajouterRenfortJoueur(typeUnite, idTerri);
+					regionClicked(idTerri).ajouterRenfortRegion(typeUnite,idTerri);
+					renforts--;
+				}
+			}
+			else if (typeUnite == "cavalier" && renforts>=3)
+			{
+				while (renfEntreIf == renforts)
+				{
+					idTerri = Interface.lectureClic(cartePng);
+					listeJoueurs.get(idJoueur).ajouterRenfortJoueur(typeUnite, idTerri);
+					regionClicked(idTerri).ajouterRenfortRegion(typeUnite,idTerri);
+					renforts -= 3;
+				}
+			}
+			else if (typeUnite =="canon" && renforts>=7)
+			{
+				while (renfEntreIf == renforts)
+				{
+					idTerri = Interface.lectureClic(cartePng);
+					listeJoueurs.get(idJoueur).ajouterRenfortJoueur(typeUnite, idTerri);
+					regionClicked(idTerri).ajouterRenfortRegion(typeUnite,idTerri);
+					renforts -= 7;
+				}
+			}
+			
+		}
 	}
 	
 
