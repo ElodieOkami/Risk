@@ -1,6 +1,5 @@
 import java.awt.Color;
 import java.util.ArrayList;
-
 import edu.princeton.cs.introcs.StdDraw;
 
 public class RiskIsep {
@@ -15,7 +14,7 @@ public class RiskIsep {
 		String cartePng = Initialisation.initialisationJeu(nbrJr);	//cartePng est soit la carte "plateauElder.png"(tamriel) soit "plateauTerre.png"(Terre)
 		
 		//- - - - - - - - - Jeu - - - - - - - - -//
-		Jeu.partieDeRisk(nbrJr, cartePng);			//Début du vrai jeu
+		Jeu.partieDeRisk(nbrJr,cartePng);			//Début du vrai jeu
 	}
 	
 		
@@ -157,7 +156,7 @@ public class RiskIsep {
 		{
 			for (int i=0; i<6; i++)		//Pour chaque région
 			{	
-				idTerr = listeRegions.get(i).getPossesseurDsRegion(idTerr);		//On appelle la f° dans Region
+				idTerr = listeRegions.get(i).getPossesseurDsRegion(idTerr, cartePng);		//On appelle la f° dans Region
 				StdDraw.show();
 			}
 		}
@@ -193,6 +192,7 @@ public class RiskIsep {
 			
 			while (listeJoueurs.get(i).getListeUnite().get(nbrSoldats-1).getIdPosition() == -1)		//Tant que le dernier soldat du soldat n'a pas été placé
 			{
+				Plateau.affichePlateau(cartePng);
 				while(idTerri == -1)		//Tant que aucun territoire n'a été cliqué
 				{
 					idTerri=Interface.lectureClic(cartePng);		//On regarde ou clic le joueur
@@ -201,6 +201,9 @@ public class RiskIsep {
 						System.out.println("Veuillez cliquer sur un de vos territoires");
 						idTerri = -1;
 					}
+					Plateau.afficheInfosJoueurIni(cartePng, numeroJoueur,soldatsRestants);
+					PossesseurTerris(cartePng);
+					RiskIsep.infosArmees(cartePng);
 				}
 				regionClicked(idTerri).getTerritoires().get(Territoire.territoireDsRegion(idTerri)).setNbrSoldat(regionClicked(idTerri).getTerritoires().get(Territoire.territoireDsRegion(idTerri)).getNbrSoldat()+1);	//Le territoire qui a été cliqué gagne un soldat supplémentaire
 				listeJoueurs.get(i).getListeUnite().get(idSoldat).setIdPosition(idTerri); 	//On dit sur quel territoire le soldat a été placé
@@ -210,6 +213,79 @@ public class RiskIsep {
 				idSoldat++; //On passe au soldat suivant
 			}
 		}
+	}
+	
+	public static int[] nbrArmeesTot()
+	{
+		
+		int[] tabNbrArmees = new int[42];
+		int idTerr=0;
+		for (int i=0 ; i<6 ; i++)
+		{
+			for (int j=0 ; j< listeRegions.get(i).getTerritoires().size(); j++)
+			{
+				tabNbrArmees[idTerr]= listeRegions.get(i).getTerritoires().get(j).getNbrSoldat()+listeRegions.get(i).getTerritoires().get(j).getNbrCaval()*3+listeRegions.get(i).getTerritoires().get(j).getNbrCanon()*7;
+				idTerr++;
+				
+			}
+		}
+			
+		return tabNbrArmees;
+	}
+	
+	public static int[] nbrSoldat()
+	{
+		int[] tabNbrSoldat = new int[42];
+		int idTerr=0;
+		for (int i=0 ; i<6 ; i++)
+		{
+			for (int j=0 ; j< listeRegions.get(i).getTerritoires().size(); j++)
+			{
+				tabNbrSoldat[idTerr]= listeRegions.get(i).getTerritoires().get(j).getNbrSoldat();
+				idTerr++;
+			}
+		}
+		return tabNbrSoldat;
+	}
+	
+	public static int[] nbrCavalier()
+	{
+		int[] tabNbrCavalier = new int[42];
+		int idTerr=0;
+		for (int i=0 ; i<6 ; i++)
+		{
+			for (int j=0 ; j< listeRegions.get(i).getTerritoires().size(); j++)
+			{
+				tabNbrCavalier[idTerr]= listeRegions.get(i).getTerritoires().get(j).getNbrCaval();
+				idTerr++;
+			}
+		}
+		return tabNbrCavalier;
+	}
+	
+	public static int[] nbrCanon()
+	{
+		int[] tabNbrCanon = new int[42];
+		int idTerr=0;
+		for (int i=0 ; i<6 ; i++)
+		{
+			for (int j=0 ; j< listeRegions.get(i).getTerritoires().size(); j++)
+			{
+				tabNbrCanon[idTerr]= listeRegions.get(i).getTerritoires().get(j).getNbrCanon();
+				idTerr++;
+			}
+		}
+		return tabNbrCanon;
+	}
+	
+	public static void infosArmees(String cartePng)
+	{
+		int id = Interface.lectureClic(cartePng);
+		if (id != -1)
+		{
+			Plateau.afficheInfosArmees(cartePng, id);
+		}
+		
 	}
 	
 	public static Region regionClicked(int idTerri)
