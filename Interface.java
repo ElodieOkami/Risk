@@ -157,12 +157,12 @@ public class Interface {
 	    	int clickX=(int) StdDraw.mouseX();
 	        int clickY=(int) StdDraw.mouseY()-clicTropBas;
 	        
-	        if (clickX<200)
+	        if (clickX<125)
 	        {
 	        	//System.out.println("Veuillez cliquez sur un des territoires en couleurs");
 	        	return -1;
 	        }
-	        else if (clickX >1600)
+	        else if (clickX >1155)
 	        {
 	        	if (clickY>630)
 	        	{
@@ -175,6 +175,7 @@ public class Interface {
 	        	else
 	        	{
 	        		System.out.println("Veuillez recliquer sur un bouton");
+	        		Plateau.afficheMessages("bouton", 0);
 	        	}
 	        	return -1;
 	        }
@@ -212,7 +213,7 @@ public class Interface {
 	    Color couleur;
 	    int clickX=(int) StdDraw.mouseX();
         int clickY=(int) StdDraw.mouseY()-clicTropBas;
-        if (clickX>200 && clickX<1600)
+        if (clickX>125 && clickX<1155)
         {
         	clickX = clickX-((width-image.getWidth())/2);
         	clickY = clickY-((height-image.getHeight())/2);
@@ -235,12 +236,14 @@ public class Interface {
 			if (R == 255 && G == 255 && B == 255)		//Si on clique sur du blanc
 			{
 				System.out.println("Veuillez cliquez sur un des territoires en couleurs");
+				Plateau.afficheMessages("couleur",0);
 				return -1;
 			}
 			
 			else if (R == 168 && G == 168 && B == 168)		//Si on clique sur du gris
 			{
 				System.out.println("Cette zone est non habitable");
+				Plateau.afficheMessages("inhabitable",0);
 				return -1;
 			}
 			
@@ -255,6 +258,7 @@ public class Interface {
 					}
 				}
 				System.out.println("Erreur, veuillez ré-essayer de cliquer sur un territoire");
+				Plateau.afficheMessages("erreur",0);
 			}
 		}
 		
