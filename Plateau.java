@@ -204,35 +204,113 @@ public class Plateau
 	{
 		
 	}
+
 	
-	public static void afficheInfosIni(String cartePng, int nbrJoueur)
+
+	
+	public static void afficheInfosTerritoires(String cartePng)
+	{		
+		StdDraw.picture(width/9.5, height/1.17, "infosTer.png");
+		Font font = new Font("Papyrus",Font.PLAIN, 14);
+		StdDraw.setFont(font);
+		StdDraw.text(width/9.5, height/1.15, "Sélectionner un territoire");
+		StdDraw.setFont(font);
+		StdDraw.text(width/9.5, height/1.20, "pour afficher son nombre d'armées");	
+		StdDraw.show();
+
+		
+		//Plateau.afficheInfos();
+		//Plateau.afficheInfoJoueur();
+		//Plateau.afficheInfosTerritoire();
+	}
+	
+	public static String playerToken(int numeroJoueur)
+	{
+		String token = "notoken";
+		if(numeroJoueur == 1)
+		{
+			token = "playerBlue.png";
+		}
+		else if(numeroJoueur == 2)
+		{
+			token = "playerRed.png";
+		}
+		else if(numeroJoueur == 3)
+		{
+			token = "playerGreen.png";
+		}
+		else if(numeroJoueur == 4)
+		{
+			token = "playerYellow.png";
+		}
+		else if(numeroJoueur == 5)
+		{
+			token = "playerCyan.png";
+		}
+		
+		else if(numeroJoueur == 6)
+		{
+			token = "playerMagenta.png";
+		}
+		return token;
+	}
+	
+	public static void afficheInfosJoueurIni(String cartePng, int numeroJoueur, int soldatsRestants)
 	{		
 		if(cartePng == "plateauElder.png")
 		{
-			StdDraw.picture(width/9.5, height/1.17, "infosTer.png");
-			Font font = new Font("Papyrus",Font.ITALIC, 15);
-			StdDraw.setFont(font);
-			StdDraw.text(width/9.5, height/1.15, "Cliquez sur vos territoires pour");
-			StdDraw.text(width/9.5, height/1.20, "placer vos armées non placées");
 			
 			StdDraw.picture(width/1.1, height/2, "infosJoueur.png");
-			font = new Font("Papyrus", Font.BOLD, 20);		//En plus petit et pas en gras
+			
+			Font font = new Font("Papyrus", Font.BOLD, 20);
 			StdDraw.setFont(font);
 			StdDraw.text(width/1.1, height/1.35 , " Au tour du");
-			StdDraw.picture(width/1.1, height/1.49, "playerBlue.png");
-			StdDraw.text(width/1.1, height/1.6 , "Joueur 1");
+			StdDraw.picture(width/1.1, height/1.49, playerToken(numeroJoueur));
+			StdDraw.text(width/1.1, height/1.6 , "Joueur " + numeroJoueur);
+			
+			font = new Font("Papyrus",Font.ITALIC, 13);
+			StdDraw.setFont(font);
+			StdDraw.text(width/1.1, height/1.70 , "Sur chacun de vos territoires");
+			StdDraw.text(width/1.1, height/1.80, "on place 1 de vos soldats");
+			StdDraw.text(width/1.1, height/1.95 , "Cliquez sur vos territoires pour");
+			StdDraw.text(width/1.1, height/2.05 , "placer vos armées non placées");
+			StdDraw.text(width/1.1, height/2.30, "Encore " + soldatsRestants + " soldats à placer");
 			StdDraw.show();
 		}
+}
+	
+	
+	public static void afficheInfosArmees(String cartePng, int idTerri)
+	{
+		//StdDraw.clear();
+		int[] tabNbrSoldat = RiskIsep.nbrSoldat();
+		int[] tabNbrCavalier = RiskIsep.nbrCavalier();
+		int[] tabNbrCanon = RiskIsep.nbrCanon();
+		int nbrSoldat = tabNbrSoldat[idTerri];
+		int nbrCavalier = tabNbrCavalier[idTerri];
+		int nbrCanon = tabNbrCanon[idTerri];
+		Font font = new Font("Papyrus",Font.PLAIN, 14);
+		StdDraw.picture(width/9.5, height/1.17, "infosTer.png");
+		StdDraw.setFont(font);
+		StdDraw.text(width/11, height/1.10, "soldat: " + nbrSoldat );
+		StdDraw.text(width/11, height/1.15, "cavalier: " + nbrCavalier);
+		StdDraw.text(width/11, height/1.20, "canon: " + nbrCanon);
+		StdDraw.show(100);
 	}
 	
-	public static void affichePointProprio(int idTerr, Color couleur)
+	//int nbrSoldat = regionClicked(idTerri).listeTerritoires.get(i).getNbrSoldat();
+	public static void affichePointProprio(int idTerr, Color couleur, String cartePng)
 	{
+		int[] nbrArmees = RiskIsep.nbrArmeesTot();
+		Font font = new Font("Arial",Font.PLAIN, 16);
 		if (idTerr==0)
 		{
 			StdDraw.setPenColor(couleur);
 			StdDraw.filledCircle(width/3.3, height/1.18, 6);
 			StdDraw.setPenColor();
 			StdDraw.circle(width/3.3, height/1.18, 6);
+			StdDraw.setFont(font);
+			StdDraw.text(width/3.9, height/1.3, "" +  nbrArmees[0]);
 		}
 		if (idTerr==1)
 		{
@@ -240,6 +318,8 @@ public class Plateau
 			StdDraw.filledCircle(width/2.45, height/1.18, 6);
 			StdDraw.setPenColor();
 			StdDraw.circle(width/2.45, height/1.18, 6);
+			StdDraw.setFont(font);
+			StdDraw.text(width/2.9, height/1.3, "" +  nbrArmees[1]);
 		}
 		if (idTerr==2)
 		{
@@ -247,6 +327,9 @@ public class Plateau
 			StdDraw.filledCircle(width/2.21, height/1.27, 6);
 			StdDraw.setPenColor();
 			StdDraw.circle(width/2.21, height/1.27, 6);
+			StdDraw.setFont(font);
+			StdDraw.text(width/2.32, height/1.3, "" +  nbrArmees[2]);
+			
 		}
 		if (idTerr==3)
 		{
@@ -254,6 +337,8 @@ public class Plateau
 			StdDraw.filledCircle(width/2.17, height/1.13, 6);
 			StdDraw.setPenColor();
 			StdDraw.circle(width/2.17, height/1.13, 6);
+			StdDraw.setFont(font);
+			StdDraw.text(width/2.19, height/1.22, "" +  nbrArmees[3]);
 		}
 		if (idTerr==4)
 		{
@@ -261,6 +346,8 @@ public class Plateau
 			StdDraw.filledCircle(width/2.03, height/1.385, 6);
 			StdDraw.setPenColor();
 			StdDraw.circle(width/2.03, height/1.385, 6);
+			StdDraw.setFont(font);
+			StdDraw.text(width/2.1, height/1.43, "" +  nbrArmees[4]);
 		}
 		if (idTerr==5)
 		{
@@ -268,6 +355,8 @@ public class Plateau
 			StdDraw.filledCircle(width/1.83, height/1.288, 6);
 			StdDraw.setPenColor();
 			StdDraw.circle(width/1.83, height/1.288, 6);
+			StdDraw.setFont(font);
+			StdDraw.text(width/1.95, height/1.320, "" +  nbrArmees[5]);
 		}
 		if (idTerr==6)
 		{
@@ -275,6 +364,8 @@ public class Plateau
 			StdDraw.filledCircle(width/1.83, height/1.38, 6);
 			StdDraw.setPenColor();
 			StdDraw.circle(width/1.83, height/1.38, 6);
+			StdDraw.setFont(font);
+			StdDraw.text(width/1.9, height/1.43, "" +  nbrArmees[6]);
 		}
 		if (idTerr==7)
 		{
@@ -282,6 +373,8 @@ public class Plateau
 			StdDraw.filledCircle(width/1.68, height/1.39, 6);
 			StdDraw.setPenColor();
 			StdDraw.circle(width/1.68, height/1.39, 6);
+			StdDraw.setFont(font);
+			StdDraw.text(width/1.73, height/1.45, "" +  nbrArmees[7]);
 		}
 		if (idTerr==8)
 		{
@@ -289,6 +382,8 @@ public class Plateau
 			StdDraw.filledCircle(width/1.71, height/1.277, 6);
 			StdDraw.setPenColor();
 			StdDraw.circle(width/1.71, height/1.277, 6);
+			StdDraw.setFont(font);
+			StdDraw.text(width/1.74, height/1.32, "" +  nbrArmees[8]);
 		}
 		if (idTerr==9)
 		{
@@ -296,6 +391,8 @@ public class Plateau
 			StdDraw.filledCircle(width/1.72, height/1.19, 6);
 			StdDraw.setPenColor();
 			StdDraw.circle(width/1.72, height/1.19, 6);
+			StdDraw.setFont(font);
+			StdDraw.text(width/1.78, height/1.22, "" +  nbrArmees[9]);
 		}
 		if (idTerr==10)
 		{
@@ -303,6 +400,8 @@ public class Plateau
 			StdDraw.filledCircle(width/1.875, height/1.168, 6);
 			StdDraw.setPenColor();
 			StdDraw.circle(width/1.875, height/1.168, 6);
+			StdDraw.setFont(font);
+			StdDraw.text(width/1.92, height/1.22, "" +  nbrArmees[10]);
 		}
 		if (idTerr==11)
 		{
@@ -310,6 +409,8 @@ public class Plateau
 			StdDraw.filledCircle(width/3.845, height/1.58, 6);
 			StdDraw.setPenColor();
 			StdDraw.circle(width/3.845, height/1.58, 6);
+			StdDraw.setFont(font);
+			StdDraw.text(width/4.2, height/1.77, "" +  nbrArmees[11]);
 		}
 		if (idTerr==12)
 		{
@@ -317,6 +418,8 @@ public class Plateau
 			StdDraw.filledCircle(width/3.12, height/1.42, 6);
 			StdDraw.setPenColor();
 			StdDraw.circle(width/3.12, height/1.42, 6);
+			StdDraw.setFont(font);
+			StdDraw.text(width/3.3, height/1.65, "" +  nbrArmees[12]);
 		}
 		if (idTerr==13)
 		{
@@ -324,6 +427,8 @@ public class Plateau
 			StdDraw.filledCircle(width/2.57, height/1.31, 6);
 			StdDraw.setPenColor();
 			StdDraw.circle(width/2.57, height/1.31, 6);
+			StdDraw.setFont(font);
+			StdDraw.text(width/2.57, height/1.45, "" +  nbrArmees[13]);
 		}
 		if (idTerr==14)
 		{
@@ -331,6 +436,8 @@ public class Plateau
 			StdDraw.filledCircle(width/2.175, height/1.59, 6);
 			StdDraw.setPenColor();
 			StdDraw.circle(width/2.175, height/1.59, 6);
+			StdDraw.setFont(font);
+			StdDraw.text(width/2.37, height/1.67, "" +  nbrArmees[14]);
 		}
 		if (idTerr==15)
 		{
@@ -338,6 +445,8 @@ public class Plateau
 			StdDraw.filledCircle(width/2.31, height/1.77, 6);
 			StdDraw.setPenColor();
 			StdDraw.circle(width/2.31, height/1.77, 6);
+			StdDraw.setFont(font);
+			StdDraw.text(width/2.55, height/1.92, "" +  nbrArmees[15]);
 		}
 		if (idTerr==16)
 		{
@@ -345,6 +454,8 @@ public class Plateau
 			StdDraw.filledCircle(width/2.37, height/1.99, 6);
 			StdDraw.setPenColor();
 			StdDraw.circle(width/2.37, height/1.99, 6);
+			StdDraw.setFont(font);
+			StdDraw.text(width/2.45, height/2.23, "" +  nbrArmees[16]);
 		}
 		if (idTerr==17)
 		{
@@ -352,6 +463,8 @@ public class Plateau
 			StdDraw.filledCircle(width/2, height/1.95, 6);
 			StdDraw.setPenColor();
 			StdDraw.circle(width/2, height/1.95, 6);
+			StdDraw.setFont(font);
+			StdDraw.text(width/2.1, height/2.16, "" +  nbrArmees[17]);
 		}
 		if (idTerr==18)
 		{
@@ -359,6 +472,8 @@ public class Plateau
 			StdDraw.filledCircle(width/1.92, height/1.52, 6);
 			StdDraw.setPenColor();
 			StdDraw.circle(width/1.92, height/1.52, 6);
+			StdDraw.setFont(font);
+			StdDraw.text(width/2.02, height/1.68, "" +  nbrArmees[18]);
 		}
 		if (idTerr==19)
 		{
@@ -366,6 +481,8 @@ public class Plateau
 			StdDraw.filledCircle(width/1.665, height/1.575, 6);
 			StdDraw.setPenColor();
 			StdDraw.circle(width/1.665, height/1.575, 6);
+			StdDraw.setFont(font);
+			StdDraw.text(width/1.73, height/1.7, "" +  nbrArmees[19]);
 		}
 		if (idTerr==20)
 		{
@@ -373,6 +490,8 @@ public class Plateau
 			StdDraw.filledCircle(width/1.6, height/1.85, 6);
 			StdDraw.setPenColor();
 			StdDraw.circle(width/1.6, height/1.85, 6);
+			StdDraw.setFont(font);
+			StdDraw.text(width/1.63, height/2.1, "" +  nbrArmees[20]);
 		}
 		if (idTerr==21)
 		{
@@ -380,6 +499,8 @@ public class Plateau
 			StdDraw.filledCircle(width/1.53, height/2.55, 6);
 			StdDraw.setPenColor();
 			StdDraw.circle(width/1.53, height/2.55, 6);
+			StdDraw.setFont(font);
+			StdDraw.text(width/1.61, height/3, "" +  nbrArmees[21]);
 		}
 		if (idTerr==22)
 		{
@@ -387,13 +508,16 @@ public class Plateau
 			StdDraw.filledCircle(width/1.823, height/2.2, 6);
 			StdDraw.setPenColor();
 			StdDraw.circle(width/1.823, height/2.2, 6);
+			StdDraw.setFont(font);
+			StdDraw.text(width/1.84, height/2.4, "" +  nbrArmees[22]);
 		}
 		if (idTerr==23)
 		{
 			StdDraw.setPenColor(couleur);
 			StdDraw.filledCircle(width/1.825, height/1.9, 6);
 			StdDraw.setPenColor();
-			StdDraw.circle(width/1.825, height/1.9, 6);
+			StdDraw.circle(width/1.825, height/1.9, 6);StdDraw.setFont(font);
+			StdDraw.text(width/1.86, height/1.93, "" +  nbrArmees[23]);
 		}
 		if (idTerr==24)
 		{
@@ -401,6 +525,8 @@ public class Plateau
 			StdDraw.filledCircle(width/3.75, height/4.8, 6);
 			StdDraw.setPenColor();
 			StdDraw.circle(width/3.75, height/4.8, 6);
+			StdDraw.setFont(font);
+			StdDraw.text(width/4.1, height/6.5, "" +  nbrArmees[24]);
 		}
 		if (idTerr==25)
 		{
@@ -408,6 +534,8 @@ public class Plateau
 			StdDraw.filledCircle(width/4.15, height/3.2, 6);
 			StdDraw.setPenColor();
 			StdDraw.circle(width/4.15, height/3.2, 6);
+			StdDraw.setFont(font);
+			StdDraw.text(width/4.1, height/3.9, "" +  nbrArmees[25]);
 		}
 		if (idTerr==26)
 		{
@@ -415,6 +543,8 @@ public class Plateau
 			StdDraw.filledCircle(width/3.65, height/3.02, 6);
 			StdDraw.setPenColor();
 			StdDraw.circle(width/3.65, height/3.02, 6);
+			StdDraw.setFont(font);
+			StdDraw.text(width/3.25, height/4.6, "" +  nbrArmees[26]);
 		}
 		if (idTerr==27)
 		{
@@ -422,6 +552,8 @@ public class Plateau
 			StdDraw.filledCircle(width/2.1, height/2.55, 6);
 			StdDraw.setPenColor();
 			StdDraw.circle(width/2.1, height/2.55, 6);
+			StdDraw.setFont(font);
+			StdDraw.text(width/2.4, height/3.3, "" +  nbrArmees[27]);
 		}
 		if (idTerr==28)
 		{
@@ -429,6 +561,8 @@ public class Plateau
 			StdDraw.filledCircle(width/2.16, height/3.3, 6);
 			StdDraw.setPenColor();
 			StdDraw.circle(width/2.16, height/3.3, 6);
+			StdDraw.setFont(font);
+			StdDraw.text(width/2.25, height/4.3, "" +  nbrArmees[28]);
 		}
 		if (idTerr==29)
 		{
@@ -436,6 +570,8 @@ public class Plateau
 			StdDraw.filledCircle(width/1.98, height/2.6, 6);
 			StdDraw.setPenColor();
 			StdDraw.circle(width/1.98, height/2.6, 6);
+			StdDraw.setFont(font);
+			StdDraw.text(width/2.05, height/3.2, "" +  nbrArmees[29]);
 		}
 		if (idTerr==30)
 		{
@@ -443,6 +579,8 @@ public class Plateau
 			StdDraw.filledCircle(width/1.78, height/3.9, 6);
 			StdDraw.setPenColor();
 			StdDraw.circle(width/1.78, height/3.9, 6);
+			StdDraw.setFont(font);
+			StdDraw.text(width/1.9, height/5.1, "" +  nbrArmees[30]);
 		}
 		if (idTerr==31)
 		{
@@ -450,6 +588,8 @@ public class Plateau
 			StdDraw.filledCircle(width/1.77, height/2.87, 6);
 			StdDraw.setPenColor();
 			StdDraw.circle(width/1.77, height/2.87, 6);
+			StdDraw.setFont(font);
+			StdDraw.text(width/1.85, height/3.2, "" +  nbrArmees[31]);
 		}
 		if (idTerr==32)
 		{
@@ -457,6 +597,8 @@ public class Plateau
 			StdDraw.filledCircle(width/1.63, height/1.21, 6);
 			StdDraw.setPenColor();
 			StdDraw.circle(width/1.63, height/1.21, 6);
+			StdDraw.setFont(font);
+			StdDraw.text(width/1.6, height/1.45, "" +  nbrArmees[32]);
 		}
 		if (idTerr==33)
 		{
@@ -464,6 +606,8 @@ public class Plateau
 			StdDraw.filledCircle(width/1.463, height/1.78, 6);
 			StdDraw.setPenColor();
 			StdDraw.circle(width/1.463, height/1.78, 6);
+			StdDraw.setFont(font);
+			StdDraw.text(width/1.43, height/2.2, "" +  nbrArmees[33]);
 		}
 		if (idTerr==34)
 		{
@@ -471,6 +615,8 @@ public class Plateau
 			StdDraw.filledCircle(width/1.285, height/1.275, 6);
 			StdDraw.setPenColor();
 			StdDraw.circle(width/1.285, height/1.275, 6);
+			StdDraw.setFont(font);
+			StdDraw.text(width/1.305, height/1.7, "" +  nbrArmees[34]);
 		}
 		if (idTerr==35)
 		{
@@ -478,6 +624,8 @@ public class Plateau
 			StdDraw.filledCircle(width/1.335, height/2.57, 6);
 			StdDraw.setPenColor();
 			StdDraw.circle(width/1.335, height/2.57, 6);
+			StdDraw.setFont(font);
+			StdDraw.text(width/1.38, height/3.2, "" +  nbrArmees[35]);
 		}
 		if (idTerr==36)
 		{
@@ -485,6 +633,8 @@ public class Plateau
 			StdDraw.filledCircle(width/1.425, height/2.57, 6);
 			StdDraw.setPenColor();
 			StdDraw.circle(width/1.425, height/2.57, 6);
+			StdDraw.setFont(font);
+			StdDraw.text(width/1.49, height/3.2, "" +  nbrArmees[36]);
 		}
 		if (idTerr==37)
 		{
@@ -492,6 +642,8 @@ public class Plateau
 			StdDraw.filledCircle(width/1.47, height/4.6, 6);
 			StdDraw.setPenColor();
 			StdDraw.circle(width/1.47, height/4.6, 6);
+			StdDraw.setFont(font);
+			StdDraw.text(width/1.49, height/5, "" +  nbrArmees[37]);
 		}
 		if (idTerr==38)
 		{
@@ -499,6 +651,8 @@ public class Plateau
 			StdDraw.filledCircle(width/1.35, height/6, 6);
 			StdDraw.setPenColor();
 			StdDraw.circle(width/1.35, height/6, 6);
+			StdDraw.setFont(font);
+			StdDraw.text(width/1.4, height/6.3, "" +  nbrArmees[38]);
 		}
 		if (idTerr==39)
 		{
@@ -506,6 +660,8 @@ public class Plateau
 			StdDraw.filledCircle(width/1.47, height/7, 6);
 			StdDraw.setPenColor();
 			StdDraw.circle(width/1.47, height/7, 6);
+			StdDraw.setFont(font);
+			StdDraw.text(width/1.53, height/7.6, "" +  nbrArmees[39]);
 		}
 		if (idTerr==40)
 		{
@@ -513,6 +669,8 @@ public class Plateau
 			StdDraw.filledCircle(width/1.215, height/1.183, 6);
 			StdDraw.setPenColor();
 			StdDraw.circle(width/1.215, height/1.183, 6);
+			StdDraw.setFont(font);
+			StdDraw.text(width/1.25, height/1.2, "" +  nbrArmees[40]);
 		}
 		if (idTerr==41)
 		{
@@ -520,6 +678,8 @@ public class Plateau
 			StdDraw.filledCircle(width/1.355, height/1.135, 6);
 			StdDraw.setPenColor();
 			StdDraw.circle(width/1.355, height/1.135, 6);
+			StdDraw.setFont(font);
+			StdDraw.text(width/1.4, height/1.15, "" +  nbrArmees[41]);
 		}
 	}
 
