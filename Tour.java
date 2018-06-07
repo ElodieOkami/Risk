@@ -9,6 +9,8 @@
 			int renforts;
 			renforts = RiskIsep.appelFonctionRenforts(idJoueur);
 			RiskIsep.choixUniteEtPlacerRenforts(renforts, idJoueur, cartePng);
+			Plateau.actualiserTout(cartePng);
+			Plateau.actualiserInfoRenforts(cartePng, idJoueur, 0);
 			String deplAttqTerm="undefined";
 			
 			while(tourPasFini)
@@ -24,6 +26,8 @@
 				case "deplacement" :
 					Plateau.afficheInfosSeDeplacer(cartePng);
 					//Territoire.deplacement(idJoueur, cartePng); //Fonction déplacement
+					Plateau.actualiserTout(cartePng);
+					Plateau.actualiserInfoRenforts(cartePng, idJoueur, renforts);
 					deplAttqTerm = "undefined";
 					break;
 				
