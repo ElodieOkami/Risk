@@ -1,3 +1,5 @@
+import java.util.ArrayList;
+
 public class Unite {
 	int cout;
 	int[] puissance;
@@ -90,6 +92,8 @@ public class Unite {
 		//Fonction de Maya
 		return nbrCanons;
 	}
+	
+	
 	
 	
 }
