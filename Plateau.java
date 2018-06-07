@@ -197,27 +197,7 @@ public class Plateau
 		    }
 	}
 	
-	
-	public static void afficheInfosIni(String cartePng, int nbrJoueur)
-	{		
-		if(cartePng == "plateauElder.png")
-		{
-			StdDraw.picture(width/9.5, height/1.17, "infosTer.png");
-			Font font = new Font("Papyrus",Font.ITALIC, 15);
-			StdDraw.setFont(font);
-			StdDraw.text(width/9.5, height/1.15, "Cliquez sur vos territoires pour");
-			StdDraw.text(width/9.5, height/1.20, "placer vos armées non placées");
-			
-			StdDraw.picture(width/1.1, height/2, "infosJoueur.png");
-			font = new Font("Papyrus", Font.BOLD, 20);		//En plus petit et pas en gras
-			StdDraw.setFont(font);
-			StdDraw.text(width/1.1, height/1.35 , " Au tour du");
-			StdDraw.picture(width/1.1, height/1.49, "playerBlue.png");
-			StdDraw.text(width/1.1, height/1.6 , "Joueur 1");
-			StdDraw.show();
-		}
-	}
-	
+		
 	public static void affichePointProprio(int idTerr, Color couleur, String cartePng)
 	{
 		int[] nbrArmees = RiskIsep.nbrArmeesTot();
