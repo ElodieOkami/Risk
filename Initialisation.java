@@ -1,3 +1,4 @@
+
 //Class permettant les étapes d'initialisation càd la créations des objets dont on a besoin
 
 public class Initialisation {
@@ -40,7 +41,6 @@ public class Initialisation {
 		Region.CreaRegTer(cartePng, nbrJr);
 		RiskIsep.creaJoueur(nbrJr);
 		RiskIsep.PossesseurTerris(cartePng);
-		Plateau.afficheInfosIni(cartePng, nbrJr);
 		RiskIsep.placementUniteIni(nbrJr, cartePng);	
 		return cartePng;
 	}
