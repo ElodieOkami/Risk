@@ -196,34 +196,7 @@ public class Plateau
 		        e.printStackTrace();
 		    }
 	}
-	
-	
-	
-	
-	public static void afficheUnite()
-	{
-		
-	}
-	
-	public static void afficheInfosIni(String cartePng, int nbrJoueur)
-	{		
-		if(cartePng == "plateauElder.png")
-		{
-			StdDraw.picture(width/9.5, height/1.17, "infosTer.png");
-			Font font = new Font("Papyrus",Font.ITALIC, 15);
-			StdDraw.setFont(font);
-			StdDraw.text(width/9.5, height/1.15, "Cliquez sur vos territoires pour");
-			StdDraw.text(width/9.5, height/1.20, "placer vos armées non placées");
-			
-			StdDraw.picture(width/1.1, height/2, "infosJoueur.png");
-			font = new Font("Papyrus", Font.BOLD, 20);		//En plus petit et pas en gras
-			StdDraw.setFont(font);
-			StdDraw.text(width/1.1, height/1.35 , " Au tour du");
-			StdDraw.picture(width/1.1, height/1.49, "playerBlue.png");
-			StdDraw.text(width/1.1, height/1.6 , "Joueur 1");
-			StdDraw.show();
-		}
-	}
+
 	
 	public static void affichePointProprio(int idTerr, Color couleur, String cartePng)
 	{
@@ -609,6 +582,21 @@ public class Plateau
 		}
 	}
 	
+	public static void actualiserInfoRenforts(String cartePng, int idJoueur, int renforts)
+	{
+
+		afficheInfosJoueur(cartePng, idJoueur+1, renforts);
+		afficheInfosRenforts(cartePng, idJoueur, renforts);
+	}
+	
+	public static void actualiserTout(String cartePng)
+	{
+		StdDraw.picture(width/2, height/2, cartePng);
+		RiskIsep.PossesseurTerris(cartePng);
+		
+	}
+	
+	
 	public static void afficheInfosTerritoires(String cartePng)
 	{		
 		StdDraw.picture(width/9.5, height/1.17, "infosTer.png");
@@ -698,7 +686,7 @@ public class Plateau
 		}
 	}
 	
-	public static void afficheInfosJoueur(String cartePng, int numeroJoueur)
+	public static void afficheInfosJoueur(String cartePng, int numeroJoueur, int renforts)
 	{
 		if(cartePng == "plateauElder.png")
 		{
@@ -716,45 +704,43 @@ public class Plateau
 			StdDraw.text(width/1.1, height/1.75 , "Soldats : " + Tour.nombreSoldatJoueur(joueur));
 			StdDraw.text(width/1.1, height/1.85, "Cavaliers : " + Tour.nombreCavalierJoueur(joueur));
 			StdDraw.text(width/1.1, height/1.95 , "Canons : " + Tour.nombreCanonJoueur(joueur));
-			StdDraw.text(width/1.1, height/2.05 , "Renforts : " + joueur.receptionRenforts());
+			StdDraw.text(width/1.1, height/2.05 , "Renforts : " + renforts);
 		
 			//Boutons
 			StdDraw.text(width/1.1, height/2.4 , "Se déplacer");
 			StdDraw.rectangle(width/1.1, height/2.4 , 50, 11);
 			StdDraw.text(width/1.1, height/2.65 , "Attaquer");
 			StdDraw.rectangle(width/1.1, height/2.67 , 50, 11);
-			StdDraw.text(width/1.1, height/3.0 , "Renfort");
-			StdDraw.rectangle(width/1.1, height/3.02 , 50, 11);
-			StdDraw.text(width/1.1, height/3.35 , "Fin de tour");
-			StdDraw.rectangle(width/1.1, height/3.4 , 50, 11);
 			
-			StdDraw.show();
+			StdDraw.text(width/1.1, height/3.3 , "Fin de tour");
+			StdDraw.rectangle(width/1.1, height/3.35 , 50, 11);
 		}
 	}
 	
-	public static void afficheInfosRenforts(String cartePng, int idJoueur)
+	public static void afficheInfosRenforts(String cartePng, int idJoueur, int renforts)
 	{
 		if(cartePng == "plateauElder.png")
 		{
 			Joueur joueur = RiskIsep.listeJoueurs.get(idJoueur);
 			StdDraw.picture(width/10, height/3.4, "infosBoutons.png");
-			Font font = new Font("Papyrus", Font.ITALIC, 13);	
+			Font font = new Font("Papyrus", Font.BOLD, 20);	
 			StdDraw.setFont(font);
-			StdDraw.text(width/10, height/2.4 , "Renforts : " + joueur.receptionRenforts());
+			StdDraw.text(width/2, height-2*height/60 , "Sélectionnez vos renforts avant de pouvoir attaquer ou vous déplacer");
+			font = new Font("Papyrus", Font.ITALIC, 13);	
+			StdDraw.setFont(font);
+			StdDraw.text(width/10, height/2.4 , "Renforts : " + renforts);
 			StdDraw.text(width/10, height/2.6 , "Cliquez sur un bouton");
 			StdDraw.text(width/10, height/2.75 , "puis sur un territoire");
 			StdDraw.text(width/10, height/2.9,  "pour ajouter et placer");
 			StdDraw.text(width/10, height/3.05,  "votre nouvelle armée");
 			
-			StdDraw.text(width/10, height/3.4,  "Soldat : 1");
-			StdDraw.rectangle(width/10, height/3.4, 50, 11);
-			StdDraw.text(width/10, height/4.0,  "Cavalier : 3");
-			StdDraw.rectangle(width/10, height/4.0, 50, 11);
-			StdDraw.text(width/10, height/4.7,  "Canon : 7");
-			StdDraw.rectangle(width/10, height/4.7, 50, 11);
+			StdDraw.text(width/10, height/3.7,  "Soldat : 1");
+			StdDraw.rectangle(width/10, height/3.7, 50, 11);
+			StdDraw.text(width/10, height/4.45,  "Cavalier : 3");
+			StdDraw.rectangle(width/10, height/4.45, 50, 11);
+			StdDraw.text(width/10, height/5.5,  "Canon : 7");
+			StdDraw.rectangle(width/10, height/5.5, 50, 11);
 			
-			StdDraw.text(width/10, height/5.8,  "Fin Renfort");
-			StdDraw.rectangle(width/10, height/5.8, 50, 11);
 			
 			StdDraw.show();
 		}
@@ -786,11 +772,9 @@ public class Plateau
 			StdDraw.text(width/10, height/3.0,  "Soldat :     +   -");
 			StdDraw.text(width/10, height/3.4,  "Cavalier :     +   -");
 			StdDraw.text(width/10, height/4.0,  "Canon     +   -");
-			
-			StdDraw.text(width/10, height/4.8,  "Fin Se Déplacer");
-			StdDraw.rectangle(width/10, height/4.8, 52, 11);
+	
 			StdDraw.show();
 		}
 	}
 
-}
+}	
