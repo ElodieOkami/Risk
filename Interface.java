@@ -195,7 +195,7 @@ public class Interface {
 	        	//System.out.println("G = " + couleur.getGreen());
 	        	//System.out.println("B = " + couleur.getBlue());
 	        	try {
-	        		Thread.sleep(150);
+	        		Thread.sleep(50);
 	        	} catch(InterruptedException e) {
 	        		System.out.println("Sommeil interrompu");
 	        	}
@@ -204,6 +204,22 @@ public class Interface {
 	        }
 	    }
 	    return -1;
+	}
+	
+	public static int lectureHover(String cartePng)
+	{
+		BufferedImage image =buffImage(cartePng);
+	    Color couleur;
+	    int clickX=(int) StdDraw.mouseX();
+        int clickY=(int) StdDraw.mouseY()-clicTropBas;
+        if (clickX>200 && clickX<1600)
+        {
+        	clickX = clickX-((width-image.getWidth())/2);
+        	clickY = clickY-((height-image.getHeight())/2);
+        	couleur = new Color(image.getRGB(clickX, image.getHeight()-clickY));
+        	return correspondClicNoComments(cartePng, couleur);
+        }
+        return -1;
 	}
 	
 	private static int correspondClic(String cartePng, Color couleur)
@@ -235,7 +251,6 @@ public class Interface {
 					if (tabCoul[i][0] == R && tabCoul[i][1] == G && tabCoul[i][2] == B)
 					{
 						//System.out.println("Vous cliquez sur le territoire " + i);
-						Plateau.afficheInfosArmees(cartePng,i);
 						return i;
 					}
 				}
@@ -245,6 +260,40 @@ public class Interface {
 		
 		return -1;
 		
+	}
+	private static int correspondClicNoComments(String cartePng, Color couleur)
+	{
+		if (cartePng == "plateauElder.png")
+		{
+			int tabCoul[][] = creaTableauCouleurs(cartePng);
+			
+			int R = couleur.getRed();
+			int G = couleur.getGreen();
+			int B = couleur.getBlue();
+			
+			if (R == 255 && G == 255 && B == 255)		//Si on clique sur du blanc
+			{
+				return -1;
+			}
+			
+			else if (R == 168 && G == 168 && B == 168)		//Si on clique sur du gris
+			{
+				return -1;
+			}
+			
+			else
+			{
+				for (int i = 0; i<tabCoul.length; i++)
+				{
+					if (tabCoul[i][0] == R && tabCoul[i][1] == G && tabCoul[i][2] == B)
+					{
+						//System.out.println("Vous cliquez sur le territoire " + i);
+						return i;
+					}
+				}
+			}
+		}
+		return -1;
 	}
 	
 	public static int[][] creaTableauCouleurs(String cartePng)		//Table qui dit quelle couleur correspond à quel idTerritoire
@@ -400,13 +449,15 @@ public class Interface {
 	
 	public static String boutonsUnitesRenfort()
 	{
-		while(true)
-		{
-			if(StdDraw.isMousePressed())
-			{
-				clickXBoutonRenf=StdDraw.mouseX();
-				clickYBoutonRenf=StdDraw.mouseY();
-			}
+		double clickX = StdDraw.mouseX();
+		 if (clickX<200)
+	        {
+				if(StdDraw.isMousePressed())
+				{
+					clickXBoutonRenf=StdDraw.mouseX();
+					clickYBoutonRenf=StdDraw.mouseY();
+				}
+	        }
 			if(width/10-width/25 < clickXBoutonRenf && clickXBoutonRenf < width/10+width/25)  
 			{
 				if (height/3.4-height/40 < clickYBoutonRenf && clickYBoutonRenf < height/3.4+height/40) 
@@ -422,9 +473,7 @@ public class Interface {
 					return "canon";
 				}
 			}
-			return "undefined";
-		}
-		
+			return "undefined"; 
 	}
 	
 	public static boolean isBoutonsUnitesRenfortPressed()
