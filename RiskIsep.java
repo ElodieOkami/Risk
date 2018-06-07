@@ -387,6 +387,7 @@ public class RiskIsep {
 				else
 				{
 					System.out.println("Vous n'avez pas assez de renforts");
+					Plateau.afficheMessages("renfort",0);
 				}
 				
 			}
@@ -416,6 +417,7 @@ public class RiskIsep {
 				else
 				{
 					System.out.println("Vous n'avez pas assez de renforts");
+					Plateau.afficheMessages("renfort",0);
 				}
 			}
 		}
@@ -466,10 +468,12 @@ public class RiskIsep {
 		if (nbrSoldatTired == 1)
 		{
 			System.out.println("Ce déplacement a fatigué 1 soldat, il ne peut plus bouger ni attaquer pendant ce tour");
+			Plateau.afficheMessages("soldat", nbrSoldatTired);
 		}
 		if (nbrSoldatTired >1)
 		{
 			System.out.println("Ce déplacement a fatigué " + nbrSoldatTired + " soldats, ils ne peuvent plus bouger ni attaquer pendant ce tour");
+			Plateau.afficheMessages("soldats", nbrSoldatTired);
 		}
 	}
 	
@@ -516,10 +520,12 @@ public class RiskIsep {
 		if (nbrCavalTired == 1)
 		{
 			System.out.println("Ce déplacement a fatigué 1 magicien, il ne peut plus bouger ni attaquer pendant ce tour");
+			Plateau.afficheMessages("magicien", nbrCavalTired);
 		}
 		if (nbrCavalTired >1)
 		{
 			System.out.println("Ce déplacement a fatigué " + nbrCavalTired + " magiciens, ils ne peuvent plus bouger ni attaquer pendant ce tour");
+			Plateau.afficheMessages("magiciens", nbrCavalTired);
 		}
 	}
 	
@@ -554,10 +560,12 @@ public class RiskIsep {
 		if (nbrCanonTired == 1)
 		{
 			System.out.println("Ce déplacement a fatigué le dragon, il ne peut plus bouger ni attaquer pendant ce tour");
+			Plateau.afficheMessages("dragon", nbrCanonTired);
 		}
 		if (nbrCanonTired >1)
 		{
 			System.out.println("Ce déplacement a fatigué " + nbrCanonTired + " dragons, ils ne peuvent plus bouger ni attaquer pendant ce tour");
+			Plateau.afficheMessages("dragons", nbrCanonTired);
 		}
 	}
 	
