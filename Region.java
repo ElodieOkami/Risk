@@ -86,7 +86,7 @@ public class Region {
 		{
 			idPropri = this.getTerritoires().get(i).getProprietaire();		//Ressort le proprietaire de chaque territoire de la Région
 			Color couleur = RiskIsep.getCouleurPropri(idPropri);		//Ressort la couleur de ce propriétaire
-			Plateau.affichePointProprio(idTerr, couleur, cartePng);					//Affiche un point de la couleur du joueur sur le territoire qu'il occupe 
+			Plateau.affichePointProprio(idTerr, couleur, cartePng);				//Affiche un point de la couleur du joueur sur le territoire qu'il occupe 
 			idTerr++;
 		}
 		return idTerr;
@@ -102,7 +102,7 @@ public class Region {
 	{
 		if (typeUnite == "soldat")
 		{
-			this.getTerritoires().get(Territoire.territoireDsRegion(idTerr)).setNbrSoldat(this.listeTerritoires.get(Territoire.territoireDsRegion(idTerr)).getNbrSoldat());
+			this.getTerritoires().get(Territoire.territoireDsRegion(idTerr)).setNbrSoldat(this.listeTerritoires.get(Territoire.territoireDsRegion(idTerr)).getNbrSoldat()+1);
 		}
 		else if (typeUnite == "cavalier")
 		{
