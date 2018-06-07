@@ -66,7 +66,7 @@ public class Plateau
 		Font font = new Font("Papyrus", Font.BOLD, 60);	//En gros en gras
 		StdDraw.setFont(font);
 		
-		StdDraw.text(width/2,height/1.1,"Bienvenue dans RiskIsep");
+		StdDraw.text(width/2,height/1.1,"Bienvenue dans The Elder Risk");
 		
 		StdDraw.setPenColor();							//Couleur en noir
 		font = new Font("Papyrus", Font.PLAIN, 40);		//En plus petit et pas en gras
@@ -137,7 +137,7 @@ public class Plateau
 		Font font = new Font("Papyrus", Font.BOLD, 60);	//En gros en gras
 		StdDraw.setFont(font);
 		
-		StdDraw.text(width/2,height/1.1,"Bienvenue dans RiskIsep");
+		StdDraw.text(width/2,height/1.1,"Bienvenue dans The Elder Risk");
 		
 		StdDraw.setPenColor();							//Couleur en noir
 		font = new Font("Papyrus", Font.PLAIN, 40);		//En plus petit et pas en gras
@@ -633,22 +633,25 @@ public class Plateau
 		//Plateau.afficheInfosTerritoire();
 	}
 	
-	public static void afficheInfosArmees(String cartePng, int idTerri)
+	public static void afficheInfosArmees(String cartePng)
 	{
-		//StdDraw.clear();
-		int[] tabNbrSoldat = RiskIsep.nbrSoldat();
-		int[] tabNbrCavalier = RiskIsep.nbrCavalier();
-		int[] tabNbrCanon = RiskIsep.nbrCanon();
-		int nbrSoldat = tabNbrSoldat[idTerri];
-		int nbrCavalier = tabNbrCavalier[idTerri];
-		int nbrCanon = tabNbrCanon[idTerri];
-		Font font = new Font("Papyrus",Font.PLAIN, 14);
-		StdDraw.picture(width/9.5, height/1.17, "infosTer.png");
-		StdDraw.setFont(font);
-		StdDraw.text(width/11, height/1.10, "soldat: " + nbrSoldat );
-		StdDraw.text(width/11, height/1.15, "cavalier: " + nbrCavalier);
-		StdDraw.text(width/11, height/1.20, "canon: " + nbrCanon);
-		StdDraw.show(100);
+		int idTerri = Interface.lectureHover(cartePng);
+		if (idTerri!=-1)
+		{
+			//StdDraw.clear();
+			int[] tabNbrSoldat = RiskIsep.nbrSoldat();
+			int[] tabNbrCavalier = RiskIsep.nbrCavalier();
+			int[] tabNbrCanon = RiskIsep.nbrCanon();
+			int nbrSoldat = tabNbrSoldat[idTerri];
+			int nbrCavalier = tabNbrCavalier[idTerri];
+			int nbrCanon = tabNbrCanon[idTerri];
+			Font font = new Font("Papyrus",Font.PLAIN, 14);
+			StdDraw.setFont(font);
+			StdDraw.text(width/11, height/1.10, "soldat: " + nbrSoldat );
+			StdDraw.text(width/11, height/1.15, "cavalier: " + nbrCavalier);
+			StdDraw.text(width/11, height/1.20, "canon: " + nbrCanon);
+			StdDraw.show();
+		}
 	}
 	
 	public static String playerToken(int numeroJoueur)
@@ -711,6 +714,7 @@ public class Plateau
 		if(cartePng == "plateauElder.png")
 		{
 			StdDraw.picture(width/1.1, height/2, "infosJoueur.png");
+			StdDraw.picture(width/9.5, height/1.17, "infosTer.png");
 			
 			Font font = new Font("Papyrus", Font.BOLD, 20);	
 			StdDraw.setFont(font);
