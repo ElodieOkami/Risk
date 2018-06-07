@@ -194,6 +194,7 @@ public class RiskIsep {
 			{
 				while(idTerri == -1)		//Tant que aucun territoire n'a été cliqué
 				{
+					Plateau.afficheInfosArmees(cartePng);
 					idTerri=Interface.lectureClic(cartePng);		//On regarde ou clic le joueur
 					if (idTerri != -1 && regionClicked(idTerri).getTerritoires().get(Territoire.territoireDsRegion(idTerri)).getProprietaire() != listeJoueurs.get(i).getIdJoueur()) //Si on a cliqué sur un territoire mais que ce territoire n'appartient pas au joueur
 					{
@@ -341,6 +342,7 @@ public class RiskIsep {
 			{
 				while (renfEntreIf == renforts)
 				{
+					Plateau.afficheInfosArmees(cartePng);
 					idTerri = Interface.lectureClic(cartePng);
 					if (idTerri>=0)
 					{
@@ -365,6 +367,7 @@ public class RiskIsep {
 				{
 					while (renfEntreIf == renforts)
 					{
+						Plateau.afficheInfosArmees(cartePng);
 						idTerri = Interface.lectureClic(cartePng);
 						if (idTerri>=0)
 						{
@@ -393,6 +396,7 @@ public class RiskIsep {
 				{
 					while (renfEntreIf == renforts)
 					{
+						Plateau.afficheInfosArmees(cartePng);
 						idTerri = Interface.lectureClic(cartePng);
 						if (idTerri>=0)
 						{
