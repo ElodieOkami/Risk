@@ -40,7 +40,7 @@ public class Region {
 	private void ajouterTerritoires(int numero, int id)			//Ajoute un territoire dans l'arryalist territoires
 	{
 		Territoire territoire = new Territoire(numero, id);
-		this.listeTerritoires.add(territoire);
+		this.getTerritoires().add(territoire);
 	}
 		
 	public void creaEtAttribTerritoires(int idTerritoire, int nbrJr, ArrayList <Integer> listIdJoueur, ArrayList <Integer> JrFull)		//Création des territoires de chaque région et répartion aléatoire parmi les joueurs
@@ -55,7 +55,7 @@ public class Region {
 			idTerritoire++;							//Le prochain territoire possède l'id suivant
 				
 			int j = (int)(Math.random()*(nbrJr-(nbrJr-listIdJoueur.size()))+1);	//Nombre aléatoire entre 1 et le nbr de joueur pas encore full	
-			this.listeTerritoires.get(i-1).setProprietaire(listIdJoueur.get(j-1));		//On attribue le territoire à un joueur
+			this.getTerritoires().get(i-1).setProprietaire(listIdJoueur.get(j-1));		//On attribue le territoire à un joueur
 				
 			//System.out.println(this.getNom()+Territoire.getNumero() + " Id : " +this.listeTerritoires.get(i-1).getId() + " et Propri : " +this.listeTerritoires.get(i-1).getProprietaire());
 				
@@ -69,7 +69,7 @@ public class Region {
 						
 					for (int z=0; z<nbrJr; z++)		//Jusqu'à ce qu'on atteigne le nombre total de joueurs
 					{
-						listIdJoueur.add(z, z+1);			//On recréé chaque candidat
+						listIdJoueur.add(z, z);			//On recréé chaque candidat
 						JrFull.add(z, terParJr-1); 	//On recréé un d'espace pour chaque candidat
 					}
 				}
@@ -80,12 +80,12 @@ public class Region {
 		
 	public int getPossesseurDsRegion(int idTerr)
 	{
-		int numPropri;
+		int idPropri;
 			
-		for (int i=0; i<this.getTaille(); i++)	//Pour chaque territoire de la Région
+		for (int i=0; i<this.getTerritoires().size(); i++)	//Pour chaque territoire de la Région
 		{
-			numPropri = this.listeTerritoires.get(i).getProprietaire();		//Ressort le proprietaire de chaque territoire de la Région
-			Color couleur = RiskIsep.getCouleurPropri(numPropri);		//Ressort la couleur de ce propriétaire
+			idPropri = this.getTerritoires().get(i).getProprietaire();		//Ressort le proprietaire de chaque territoire de la Région
+			Color couleur = RiskIsep.getCouleurPropri(idPropri);		//Ressort la couleur de ce propriétaire
 			Plateau.affichePointProprio(idTerr, couleur);					//Affiche un point de la couleur du joueur sur le territoire qu'il occupe 
 			idTerr++;
 		}
