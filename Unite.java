@@ -4,17 +4,21 @@ public class Unite {
 	int prioriteATT;
 	int prioriteDEF;
 	int mvtTour;
-	String token;
+	int mvtLeft;
+	int idPosition;
+	String type;
 	
 	//Constructeurs
-	public Unite(int cout, int[] puissance, int prioriteATT, int prioriteDEF, int mvtTour, String token) {
+	public Unite(int cout, int[] puissance, int prioriteATT, int prioriteDEF, int mvtTour, int mvtLeft, int idPosition, String type) {
 		super();
 		this.cout = cout;
 		this.puissance = puissance;
 		this.prioriteATT = prioriteATT;
 		this.prioriteDEF = prioriteDEF;
 		this.mvtTour = mvtTour;
-		this.token = token;
+		this.mvtLeft = mvtLeft;
+		this.idPosition = idPosition;
+		this.type = type;
 	}
 
 	//Getters et Setters
@@ -48,11 +52,44 @@ public class Unite {
 	public void setMvtTour(int mvtTour) {
 		this.mvtTour = mvtTour;
 	}
-	public String getToken() {
-		return token;
+	public int getMvtLeft() {
+		return mvtLeft;
 	}
-	public void setToken(String token) {
-		this.token = token;
+	public void setMvtLeft(int mvtLeft) {
+		this.mvtLeft = mvtLeft;
 	}
+	public int getIdPosition() {
+		return idPosition;
+	}
+	public void setIdPosition(int idPosition) {
+		this.idPosition = idPosition;
+	}
+	public String getType() {
+		return type;
+	}
+	public void setType(String type) {
+		this.type = type;
+	}
+	
+		
+	public static int nbrSoldatsDeplacer(String cartePng)
+	{
+		int nbrSoldats=0;
+							//Fonction de Maya
+		return nbrSoldats;
+	}
+	public static int nbrCavaliersDeplacer(String cartePng)
+	{
+		int nbrCavals=0;
+		//Fonction de Maya
+		return nbrCavals;
+	}
+	public static int nbrCanonsDeplacer(String cartePng)
+	{
+		int nbrCanons=0;
+		//Fonction de Maya
+		return nbrCanons;
+	}
+	
 	
 }
