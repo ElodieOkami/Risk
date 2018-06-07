@@ -7,13 +7,15 @@ import java.io.IOException;
 import javax.imageio.ImageIO;
 import edu.princeton.cs.introcs.StdDraw;
 
-//Class permettant de récupérer et analyser des informations selon la position des clics
+//Class permettant de récupérer et analyser des informations selaon la position des clics
 
 public class Interface {
 	
 	static Dimension dimension = java.awt.Toolkit.getDefaultToolkit().getScreenSize();		//Permet d'avoir la largeur et la hauteur d'un écran
 	final static int height = (int)dimension.getHeight();								//hauteur
     final static int width  = (int)dimension.getWidth();								//largeur
+    public static double clickXBoutonRenf = width/10;			//valeur initiale pour renfort soldat
+	public static double clickYBoutonRenf = height/3.4;			//pareil
 
 	static final int clicTropBas = 20; //A cause de la barre en haut de la fenêtre, tous les clics sont trop bas
 	
@@ -157,7 +159,7 @@ public class Interface {
 	        
 	        if (clickX<200)
 	        {
-	        	System.out.println("Veuillez cliquez sur un des territoires en couleurs");
+	        	//System.out.println("Veuillez cliquez sur un des territoires en couleurs");
 	        	return -1;
 	        }
 	        else if (clickX >1600)
@@ -233,6 +235,7 @@ public class Interface {
 					if (tabCoul[i][0] == R && tabCoul[i][1] == G && tabCoul[i][2] == B)
 					{
 						//System.out.println("Vous cliquez sur le territoire " + i);
+						Plateau.afficheInfosArmees(cartePng,i);
 						return i;
 					}
 				}
@@ -282,6 +285,195 @@ public class Interface {
 		return tabVide;
 	}
 	
+	public static String whichButtonIsPressed()
+	{
+		while(isFinDeTourPressed())
+		{
+			return "terminer";
+		}
+		while(isAttaquerPressed())
+		{
+			return "attaque";
+		}
+		while(isRenfortPressed())
+		{
+			return "renfort";
+		}
+		while(isSeDeplacerPressed())
+		{
+			return "deplacement";
+		}
+		return "undefined";
+	}
 	
+	public static boolean isFinDeTourPressed()
+	{
+		//si le joueur clique sur fin de Tour alors on return True
+		if(StdDraw.isMousePressed())
+		{
+			double clickX=StdDraw.mouseX();
+			double clickY=StdDraw.mouseY();		
+			if(height/3.3-height/60 < clickY && clickY < height/3.3+height/60) 
+			{
+				if (width/1.1-width/25 < clickX && clickX < width/1.1+width/25) 
+				{
+					return true;
+				}
+			}
+		}
+		return false;
+	}
+	
+	public static boolean isSeDeplacerPressed()
+	{
+		//si le joueur clique sur fin de Tour alors on return True
+		if(StdDraw.isMousePressed())
+		{
+			double clickX=StdDraw.mouseX();
+			double clickY=StdDraw.mouseY();		
+			if(height/2.3-height/60 < clickY && clickY < height/2.3+height/60) 
+			{
+				if (width/1.1-width/25 < clickX && clickX < width/1.1+width/25) 
+				{
+					return true;
+				}
+			}
+		}
+		return false;
+	}
+	
+	public static boolean isAttaquerPressed()
+	{
+		//si le joueur clique sur fin de Tour alors on return True
+		if(StdDraw.isMousePressed())
+		{
+			double clickX=StdDraw.mouseX();
+			double clickY=StdDraw.mouseY();		
+			if(height/2.55-height/60 < clickY && clickY < height/2.55+height/60) 
+			{
+				if (width/1.1-width/25 < clickX && clickX < width/1.1+width/25) 
+				{
+					return true;
+				}
+			}
+		}
+		return false;
+	}
+	
+	public static boolean isRenfortPressed()
+	{
+		if(StdDraw.isMousePressed())
+		{
+			double clickX=StdDraw.mouseX();
+			double clickY=StdDraw.mouseY();		
+			if(height/2.9-height/60 < clickY && clickY < height/2.9+height/60) 
+			{
+				if (width/1.1-width/25 < clickX && clickX < width/1.1+width/25) 
+				{
+					while(isFinRenfortPressed() == false)
+					{
+					return true;
+					}
+				}
+			}
+		}
+		return false;
+	}
+	
+	public static boolean isFinRenfortPressed()
+	{
+		//si le joueur clique sur fin Renfort alors on return True
+		if(StdDraw.isMousePressed())
+		{
+			double clickX=StdDraw.mouseX();
+			double clickY=StdDraw.mouseY();		
+			if(height/5.8-height/60 < clickY && clickY < height/5.8+height/60) 
+			{
+				if (width/10-width/25 < clickX && clickX < width/10+width/25) 
+				{
+					return true;
+				}
+			}
+		}
+		return false;
+	}
+	
+	public static String boutonsUnitesRenfort()
+	{
+		while(true)
+		{
+			if(StdDraw.isMousePressed())
+			{
+				clickXBoutonRenf=StdDraw.mouseX();
+				clickYBoutonRenf=StdDraw.mouseY();
+			}
+			if(width/10-width/25 < clickXBoutonRenf && clickXBoutonRenf < width/10+width/25)  
+			{
+				if (height/3.4-height/40 < clickYBoutonRenf && clickYBoutonRenf < height/3.4+height/40) 
+				{
+					return "soldat";
+				}
+				if (height/4.0-height/40 < clickYBoutonRenf && clickYBoutonRenf < height/4.0+height/40) 
+				{
+					return "cavalier";
+				}
+				if (height/4.7-height/40 < clickYBoutonRenf && clickYBoutonRenf < height/4.7+height/40) 
+				{
+					return "canon";
+				}
+			}
+			return "undefined";
+		}
+		
+	}
+	
+	public static boolean isBoutonsUnitesRenfortPressed()
+	{
+		while(StdDraw.isMousePressed())
+		{
+			double clickX=StdDraw.mouseX();
+			double clickY=StdDraw.mouseY();		
+			if(width/10-width/25 < clickX && clickX < width/10+width/25)  
+			{
+				if (height/3.2 < clickY && clickY < height/5) 
+				{
+					return true;
+				}
+			}
+		}
+		return false;
+	}
+	
+	public static int renfortSoldat()
+	{
+		if(StdDraw.isMousePressed())
+		{
+			double clickX=StdDraw.mouseX();
+			double clickY=StdDraw.mouseY();		
+			int nbrSoldat = 0;
+			while(true)
+			{
+			if(width/10-width/25 < clickX && clickX < width/10+width/25)  
+			{
+				if (height/3.80-height/45 < clickY && clickY < height/3.8+height/30) 
+				{
+					nbrSoldat++;
+				}
+			}
+			return nbrSoldat;
+			}
+		}
+		return -1;
+	}
+	
+	/* public static int renfortCavalier()
+	{
+		
+	}
+	
+	public static int renfortCanon()
+	{
+		
+	} */
 	
 }
