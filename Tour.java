@@ -1,106 +1,125 @@
 
 	public class Tour {
-
-	public static void tour()
+		
+		
+	public static void tour(int idJoueur, String cartePng)
 	{
-
-	}  
-  
-	// Focntion qui retourne true si le joueur a cliqué sur un pays voisin du sien
-	public static boolean defVoisins(int ter, int clickTer) 
-	//ter = id du territoire où se trouve le joueur
-	//clickTer = id du territoire ou le joueur a cliqué
-	{
-		//matrice adjancente déffinissant les pays voisins
-		int[][] matriceVoisins= 
+		boolean tourPasFini = true;
+		while(tourPasFini)
 		{
-			{0,1,0,0,0,0,0,0,0,0,0, 1,0,0,0,0, 0,0,0,0,0,0,0,0, 0,0,0, 0,0,0,0,0, 0,0,0,0,0,0,0,0,0,0},
-			{1,0,1,1,0,0,0,0,0,0,0, 0,1,1,0,0, 0,0,0,0,0,0,0,0, 0,0,0, 0,0,0,0,0, 0,0,0,0,0,0,0,0,0,0},
-			{0,1,0,1,1,1,0,0,0,0,0, 0,0,1,0,0, 0,0,0,0,0,0,0,0, 0,0,0, 0,0,0,0,0, 0,0,0,0,0,0,0,0,0,0},
-			{0,1,1,0,0,1,0,0,0,0,1, 0,0,0,0,0, 0,0,0,0,0,0,0,0, 0,0,0, 0,0,0,0,0, 0,0,0,0,0,0,0,0,0,0},
-			{0,0,1,0,0,1,1,0,0,0,0, 0,0,1,0,0, 0,0,1,0,0,0,0,0, 0,0,0, 0,0,0,0,0, 0,0,0,0,0,0,0,0,0,0},
-			{0,0,1,1,1,0,1,1,1,1,1, 0,0,0,0,0, 0,0,0,0,0,0,0,0, 0,0,0, 0,0,0,0,0, 0,0,0,0,0,0,0,0,0,0},
-			{0,0,0,0,1,1,0,1,1,0,0, 0,0,0,0,0, 0,0,1,1,0,0,0,0, 0,0,0, 0,0,0,0,0, 0,0,0,0,0,0,0,0,0,0},
-			{0,0,0,0,0,0,1,0,1,0,0, 0,0,0,0,0, 0,0,0,1,0,0,0,0, 0,0,0, 0,0,0,0,0, 1,0,0,0,0,0,0,0,0,0},
-			{0,0,0,0,0,1,1,1,0,1,1, 0,0,0,0,0, 0,0,0,0,0,0,0,0, 0,0,0, 0,0,0,0,0, 1,0,0,0,0,0,0,0,0,0},
-			{0,0,0,0,0,1,0,0,1,0,1, 0,0,0,0,0, 0,0,0,0,0,0,0,0, 0,0,0, 0,0,0,0,0, 1,0,0,0,0,0,0,0,0,0},
-			{0,0,0,1,0,1,0,0,1,1,0, 0,0,0,0,0, 0,0,0,0,0,0,0,0, 0,0,0, 0,0,0,0,0, 0,0,0,0,0,0,0,0,0,0},
-				
-			{1,0,0,0,0,0,0,0,0,0,0,	0,1,0,0,0, 0,0,0,0,0,0,0,0, 0,1,0, 0,0,0,0,0, 0,0,0,0,0,0,0,0,0,0},
-			{0,1,0,0,0,0,0,0,0,0,0, 1,0,1,1,1, 0,0,0,0,0,0,0,0, 0,0,0, 0,0,0,0,0, 0,0,0,0,0,0,0,0,0,0},
-			{0,1,1,0,1,0,0,0,0,0,0, 0,1,0,1,0, 0,0,1,0,0,0,0,0, 0,0,0, 0,0,0,0,0, 0,0,0,0,0,0,0,0,0,0},
-			{0,0,0,0,0,0,0,0,0,0,0, 0,1,1,0,1, 0,0,1,0,0,0,0,0, 0,0,0, 0,0,0,0,0, 0,0,0,0,0,0,0,0,0,0},
-			{0,0,0,0,0,0,0,0,0,0,0, 0,1,0,1,0, 1,1,1,0,0,0,0,0, 0,0,0, 0,0,0,0,0, 0,0,0,0,0,0,0,0,0,0},
-																																																			
-			{0,0,0,0,0,0,0,0,0,0,0, 0,0,0,0,1, 0,1,0,0,0,0,0,0, 0,0,0, 1,0,0,0,0, 0,0,0,0,0,0,0,0,0,0},
-			{0,0,0,0,0,0,0,0,0,0,0, 0,0,0,0,1, 1,0,1,0,0,0,1,1, 0,0,0, 1,0,1,0,0, 0,0,0,0,0,0,0,0,0,0},
-			{0,0,0,0,1,0,1,0,0,0,0, 0,0,1,1,1, 0,1,0,1,0,0,0,0, 0,0,0, 0,0,0,0,0, 0,0,0,0,0,0,0,0,0,0},
-			{0,0,0,0,0,0,1,1,0,0,0, 0,0,0,0,0, 0,0,1,0,1,0,0,1, 0,0,0, 0,0,0,0,0, 1,0,0,0,0,0,0,0,0,0},
-			{0,0,0,0,0,0,0,0,0,0,0, 0,0,0,0,0, 0,0,0,1,0,1,0,1, 0,0,0, 0,0,0,0,0, 1,1,0,0,1,0,0,0,0,0},
-			{0,0,0,0,0,0,0,0,0,0,0, 0,0,0,0,0, 0,0,0,0,1,0,0,0, 0,0,0, 0,0,0,0,0, 0,0,0,0,1,0,0,0,0,0},
-			{0,0,0,0,0,0,0,0,0,0,0, 0,0,0,0,0, 0,1,0,0,0,0,0,0, 0,0,0, 0,0,1,1,1, 0,0,0,0,0,0,0,0,0,0},
-			{0,0,0,0,0,0,0,0,0,0,0, 0,0,0,0,0, 0,1,0,1,1,0,0,0, 0,0,0, 0,0,0,0,0, 0,0,0,0,0,0,0,0,0,0},
-																																																		
-			{0,0,0,0,0,0,0,0,0,0,0, 0,0,0,0,0, 0,0,0,0,0,0,0,0, 0,1,1, 0,0,0,0,0, 0,0,0,0,0,0,0,0,0,0},
-			{0,0,0,0,0,0,0,0,0,0,0, 1,0,0,0,0, 0,0,0,0,0,0,0,0, 1,0,1, 0,0,0,0,0, 0,0,0,0,0,0,0,0,0,0},
-			{0,0,0,0,0,0,0,0,0,0,0, 0,0,0,0,0, 0,0,0,0,0,0,0,0, 1,1,0, 1,0,0,0,0, 0,0,0,0,0,0,0,0,0,0},
-																																																				
-			{0,0,0,0,0,0,0,0,0,0,0, 0,0,0,0,0, 1,1,0,0,0,0,0,0, 0,0,1, 0,1,1,0,0, 0,0,0,0,0,0,0,0,0,0},
-			{0,0,0,0,0,0,0,0,0,0,0, 0,0,0,0,0, 0,0,0,0,0,0,0,0, 0,0,0, 1,0,1,0,0, 0,0,0,0,0,0,0,0,0,0},
-			{0,0,0,0,0,0,0,0,0,0,0, 0,0,0,0,0, 0,1,0,0,0,0,1,0, 0,0,0, 1,1,0,1,1, 0,0,0,0,0,0,0,0,0,0},
-			{0,0,0,0,0,0,0,0,0,0,0, 0,0,0,0,0, 0,0,0,0,0,0,0,0, 0,0,0, 0,1,1,0,1, 0,0,0,0,0,0,0,0,0,0},
-			{0,0,0,0,0,0,0,0,0,0,0, 0,0,0,0,0, 0,0,0,0,0,0,1,0, 0,0,0, 0,0,1,1,0, 0,0,0,0,0,0,0,0,0,0},
-																																																				
-			{0,0,0,1,0,0,0,1,1,1,0, 0,0,0,0,0, 0,0,0,1,1,0,0,0, 0,0,0, 0,0,0,0,0, 0,1,0,0,0,0,0,0,0,0},
-			{0,0,0,0,0,0,0,0,0,0,0, 0,0,0,0,0, 0,0,0,0,1,0,0,0, 0,0,0, 0,0,0,0,0, 1,0,1,1,1,0,0,0,0,0},
-			{0,0,0,0,0,0,0,0,0,0,0, 0,0,0,0,0, 0,0,0,0,0,0,0,0, 0,0,0, 0,0,0,0,0, 0,1,0,0,0,0,0,0,0,1},
-			{0,0,0,0,0,0,0,0,0,0,0, 0,0,0,0,0, 0,0,0,0,0,0,0,0, 0,0,0, 0,0,0,0,0, 0,1,0,0,1,1,1,0,0,0},
-			{0,0,0,0,0,0,0,0,0,0,0, 0,0,0,0,0, 0,0,0,0,1,1,0,0, 0,0,0, 0,0,0,0,0, 0,1,0,1,0,1,0,1,0,0},
-			{0,0,0,0,0,0,0,0,0,0,0, 0,0,0,0,0, 0,0,0,0,0,0,0,0, 0,0,0, 0,0,0,0,0, 0,0,0,1,1,0,1,1,0,0},
-			{0,0,0,0,0,0,0,0,0,0,0, 0,0,0,0,0, 0,0,0,0,0,0,0,0, 0,0,0, 0,0,0,0,0, 0,0,0,1,0,1,0,1,0,0},
-			{0,0,0,0,0,0,0,0,0,0,0, 0,0,0,0,0, 0,0,0,0,0,0,0,0, 0,0,0, 0,0,0,0,0, 0,0,0,0,1,1,1,0,0,0},
-			{0,0,0,0,0,0,0,0,0,0,0, 0,0,0,0,0, 0,0,0,0,0,0,0,0, 0,0,0, 0,0,0,0,0, 0,0,1,0,0,0,0,0,0,1},
-			{0,0,0,0,0,0,0,0,0,0,0, 0,0,0,0,0, 0,0,0,0,0,0,0,0, 0,0,0, 0,0,0,0,0, 0,0,1,0,0,0,0,0,1,0},			
-		};
+			Plateau.afficheInfosJoueur(cartePng, idJoueur + 1);
+			int renforts;
+			renforts = RiskIsep.appelFonctionRenforts(idJoueur);
+			RiskIsep.choixUniteEtPlacerRenforts(renforts, idJoueur, cartePng);
 			
-		if (matriceVoisins[ter - 1][clickTer - 1]==1) // on vérifi si les pays destination et départ sont voisins
-		{
-			return true;
-		}
-		else
-		{
-			return false;
-		}
-			
-	}
-	
-	
-  	// Fonction pour vérifier si le joueur à gagné la partie 
-	//A mettre à la fin de chaque tour
-	public static boolean verifGagnant(int numJr) // numJr = joueur qui vient de finir son tour
-	{
-		int nbrTer = 0;
-		for (int i = 1; i <= 42; i++)  // on parcours les 42 territoires 
-		{
-			if (Territoire.getNumero() == i & Territoire.getProprietaire() == numJr ) //et on vérifie s'ils appartiennent tous au même joueur
+			String deplAttqTerm = Interface.whichButtonIsPressed();	//Mettre la	 fonction de Maya sur le choix du menu
+			switch(deplAttqTerm)
 			{
-				nbrTer = nbrTer + 1;
+			case "deplacement" :
+				Plateau.afficheInfosSeDeplacer(cartePng);
+				//Territoire.deplacement(idJoueur, cartePng); //Fonction déplacement
+				
+				break;
+			
+			case "attaque":
+								//Fonction attaque
+				
+				break;
+				
+			case "terminer":
+								//Fonction fin de tour (juste break?)
+				
+				break;
 			}
 		}
 		
-		if (nbrTer == 42) // on vérifie si le joueur à les 42 territoires 
-		{
-			return true;
-		}
-		else 
-		{
-			return false;
-		}
-	}
+		/*boolean tourPasFini = true;
+		while(tourPasFini)
+			{
+				Plateau.afficheInfosJoueur(cartePng, idJoueur + 1);
+			
+				if(Interface.isRenfortPressed())
+				{
+					Plateau.afficheInfosRenforts(cartePng, idJoueur);
+					
+						int renforts;
+						renforts = RiskIsep.appelFonctionRenforts(idJoueur);
+						RiskIsep.choixUniteEtPlacerRenforts(renforts, idJoueur, cartePng); 
+				}
+				
+				else if(Interface.isSeDeplacerPressed())
+				{
+					Plateau.afficheInfosSeDeplacer(cartePng, idJoueur);
+					Territoire.deplacement(idJoueur, cartePng); //Fonction déplacement
+					
+					
+				}
+				
+				else if(Interface.isAttaquerPressed())
+				{
+					Plateau.afficheInfosAttaquer(cartePng, idJoueur);
+				}
+				
+				else if(Interface.isFinDeTourPressed())
+				{
+					tourPasFini = false;
+				}
+			}*/
+				
+				
+	}  
+  
+	
+	
+	
 	
 	// Fonction qui vérifie si la mission de joueur qui vient de finir son tour a été accomplie
 	public static void verifMission()
 	{
 		
 	}
+	
+	
+	public static int nombreSoldatJoueur(Joueur joueur) //renvoie le nombre de soldats d'un joueur
+		{
+			int compteur = 0;
+			int nbrUnites = joueur.getListeUnite().size();
+			for(int i = 0; i < nbrUnites; i++)
+			{
+				if(joueur.getListeUnite().get(i).type == "soldat")
+					{
+						compteur = compteur + 1;
+					}
+			}
+			return compteur;
+		}
+		
+		public static int nombreCavalierJoueur(Joueur joueur) //renvoie le nombre de cavaliers d'un joueur
+		{
+			int compteur = 0;
+			int nbrUnites = joueur.getListeUnite().size();
+			for(int i = 0; i < nbrUnites; i++)
+			{
+				if(joueur.getListeUnite().get(i).type == "cavalier")
+					{
+						compteur = compteur + 1;
+					}
+			}
+			return compteur;
+		}
+		
+		public static int nombreCanonJoueur(Joueur joueur) //renvoie le nombre de canons d'un joueur
+		{
+			int compteur = 0;
+			int nbrUnites = joueur.getListeUnite().size();
+			for(int i = 0; i < nbrUnites; i++)
+			{
+				if(joueur.getListeUnite().get(i).type == "canon")
+					{
+						compteur = compteur + 1;
+					}
+			}
+			return compteur;
+		}
+		
 }
