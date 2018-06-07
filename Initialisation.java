@@ -1,8 +1,3 @@
-import java.awt.Color;
-import java.util.ArrayList;
-
-import edu.princeton.cs.introcs.StdDraw;
-
 //Class permettant les étapes d'initialisation càd la créations des objets dont on a besoin
 
 public class Initialisation {
