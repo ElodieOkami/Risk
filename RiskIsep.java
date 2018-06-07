@@ -32,7 +32,7 @@ public class RiskIsep {
 		ArrayList <Integer> listIdJoueur = new ArrayList<Integer>();				//On créé une liste de "l'id" de chaque joueur
 		for (int i=0; i<nbrJr; i++)
 		{
-			listIdJoueur.add(i+1);													//Cette liste va de 1 au nombre de joueur
+			listIdJoueur.add(i);													//Cette liste va de 1 au nombre de joueur
 		}
 		
 		if (cartePng == "plateauElder.png")		//Si on utilise la carte TES
@@ -40,7 +40,7 @@ public class RiskIsep {
 			
 			Region provincesImperiales = new Region("provincesImperiales", 11);			//On créé la région a l'aide du constructeur
 			provincesImperiales.creaEtAttribTerritoires(idTerritoire, nbrJr, listIdJoueur, JrFull);	//On créé chaque territoire des régions et on les répartis aléatoirement parmi les joueurs.
-			idTerritoire += provincesImperiales.getTaille()-1;								//On incrémente l'id du nombre de Territoires dans la région précédente
+			idTerritoire += provincesImperiales.getTaille();								//On incrémente l'id du nombre de Territoires dans la région précédente
 			listeRegions.add(provincesImperiales);											//On ajoute cette région à la liste des régions
 			
 			Region lenclume = new Region("lenclume", 5);
@@ -105,36 +105,36 @@ public class RiskIsep {
 	
 	public static void creaJoueur(int nbrJr)
 	{
-			Joueur joueur1 = new Joueur (1,"joueur"+1, Color.BLUE);		//On créé un objet joueur
+			Joueur joueur1 = new Joueur (0,"joueur"+1, Color.BLUE);		//On créé un objet joueur
 			joueur1.repartitionUnite(nbrJr);							//On lui donne un certain nombre de soldat
 			joueur1.rempliListTerrJoueur();								//On remplit la liste des territoires que possède le joueur
 			listeJoueurs.add(joueur1);									//On ajoute ce joueur à la liste Joueur
-			Joueur joueur2 = new Joueur (2,"joueur"+2, Color.RED);
+			Joueur joueur2 = new Joueur (1,"joueur"+2, Color.RED);
 			joueur2.repartitionUnite(nbrJr);
 			joueur2.rempliListTerrJoueur();
 			listeJoueurs.add(joueur2);
 			
 			if(nbrJr >=3)
 			{
-				Joueur joueur3 = new Joueur (3,"joueur"+3, Color.GREEN);
+				Joueur joueur3 = new Joueur (2,"joueur"+3, Color.GREEN);
 				joueur3.repartitionUnite(nbrJr);
 				joueur3.rempliListTerrJoueur();
 				listeJoueurs.add(joueur3);
 				if(nbrJr >= 4)
 				{
-					Joueur joueur4 = new Joueur (4,"joueur"+4, Color.YELLOW);
+					Joueur joueur4 = new Joueur (3,"joueur"+4, Color.YELLOW);
 					joueur4.repartitionUnite(nbrJr);
 					joueur4.rempliListTerrJoueur();
 					listeJoueurs.add(joueur4);
 					if(nbrJr >=5)
 					{
-						Joueur joueur5 = new Joueur (5,"joueur"+5, Color.CYAN);
+						Joueur joueur5 = new Joueur (4,"joueur"+5, Color.CYAN);
 						joueur5.repartitionUnite(nbrJr);
 						joueur5.rempliListTerrJoueur();
 						listeJoueurs.add(joueur5);
 						if(nbrJr == 6)
 						{
-							Joueur joueur6 = new Joueur (6,"joueur"+6, Color.MAGENTA);
+							Joueur joueur6 = new Joueur (5,"joueur"+6, Color.MAGENTA);
 							joueur6.repartitionUnite(nbrJr);
 							joueur6.rempliListTerrJoueur();
 							listeJoueurs.add(joueur6);
@@ -142,6 +142,7 @@ public class RiskIsep {
 					}
 				}
 			}
+		//doubleCheckBonneAttriTerr(nbrJr);
 	}
 	
 	public static Region getRegion(int i)		//Permet d'avoir accès aux infos de la listeRegion depuis toutes les classes (ATTENTION mais pas de modifier directement la liste)
@@ -162,9 +163,9 @@ public class RiskIsep {
 		}
 	}
 	
-	public static Color getCouleurPropri(int numPropri)			//Ressort la couleur d'un joueur dans toutes les classes
+	public static Color getCouleurPropri(int idPropri)			//Ressort la couleur d'un joueur dans toutes les classes
 	{
-		return listeJoueurs.get(numPropri-1).getCouleur();
+		return listeJoueurs.get(idPropri).getCouleur();
 	}
 	
 	
@@ -452,5 +453,4 @@ public class RiskIsep {
 			System.out.println("Ce déplacement a fatigué " + nbrCanonTired + " dragons, ils ne peuvent plus bouger ni attaquer pendant ce tour");
 		}
 	}
-
 }
