@@ -40,7 +40,6 @@ public class Initialisation {
 		Region.CreaRegTer(cartePng, nbrJr);
 		RiskIsep.creaJoueur(nbrJr);
 		RiskIsep.PossesseurTerris(cartePng);
-		Plateau.afficheInfosIni(cartePng, nbrJr);
 		Plateau.affichePlateau(cartePng);
 		RiskIsep.placementUniteIni(nbrJr, cartePng);	
 		return cartePng;

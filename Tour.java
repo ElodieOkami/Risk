@@ -41,7 +41,13 @@ public class Tour {
 					break;
 				
 				case "attaque":
-									//Fonction attaque
+					StdDraw.clear();
+					Plateau.actualiserTout(cartePng);
+					Plateau.afficheInfosJoueur(cartePng, idJoueur+1, 0);
+					Plateau.afficheInfosAttaquer2(cartePng);
+					
+					Territoire.attaque(idJoueur, cartePng);
+					
 					deplAttqTerm = "undefined";
 					break;
 					

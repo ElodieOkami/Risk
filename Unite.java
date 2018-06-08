@@ -1,6 +1,6 @@
 import java.util.ArrayList;
 
-public class Unite implements Comparable{
+public class Unite {
 	int cout;
 	int[] puissance;
 	int puissanceCombat;
@@ -80,7 +80,7 @@ public class Unite implements Comparable{
 		this.type = type;
 	}
 	
-	
+	/*
 	@Override
 	public int compareTo(Unite comparestu)
 	{
@@ -93,7 +93,7 @@ public class Unite implements Comparable{
 	{
 		return "[ cout=" + cout + ", puissance=" + puissance + ", prioriteATT=" + prioriteATT + ", prioriteDEF=" + ", mvtTour=" + mvtTour + ", mvtLeft=" + mvtLeft + ", idPosition=" + idPosition + ", type=" + type + "]";
 		}
-
+*/
 	public static int[] TriParSelection(int[] S)
 	{
 		System.out.println("Table avant le tri : ");

@@ -1,5 +1,6 @@
 import java.awt.Color;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.Comparator;
 
 import edu.princeton.cs.introcs.StdDraw;
@@ -705,67 +706,104 @@ public class RiskIsep {
 		return listeUniteAttaque;
 	}
 	
-	public static void bataille(int idJoueurAttq, int idTerrIni, int idTerrCible, ArrayList<Unite> listeUniteDefense, ArrayList<Unite> listeUniteAttaque)
+	public static boolean bataille(int idJoueurAttq, int idTerrIni, int idTerrCible, ArrayList<Unite> listeUniteDefense, ArrayList<Unite> listeUniteAttaque)
 	{
-		int[] puissAttaq = new int[listeUniteAttaque.size()];
-		int[] puissDef = new int[listeUniteDefense.size()];
-		int[] victoire = new int[Math.min(listeUniteAttaque.size(), listeUniteDefense.size())]; //Victoire de Attaq=1, victoire de Def=2
+		ArrayList<Integer> listePuissanceAtt = new ArrayList<Integer>();
+		ArrayList<Integer> listePuissanceDef = new ArrayList<Integer>();
+		int messageAAfficher = 0;
 		for (int i=0; i<listeUniteAttaque.size(); i++)
 		{//On génère un nombre aléatoire parmi la liste de puissance d'une unité et on la met dans puissAttaq
 			listeUniteAttaque.get(i).setPuissanceCombat((int) (Math.random()*(listeUniteAttaque.get(i).getPuissance()[5]-listeUniteAttaque.get(i).getPuissance()[0]+1))+listeUniteAttaque.get(i).getPuissance()[0]);
-			puissAttaq[i] =(int) Math.random()*(listeUniteAttaque.get(i).getPuissance()[5]-listeUniteAttaque.get(i).getPuissance()[0]+1)+listeUniteAttaque.get(i).getPuissance()[0];
+			listePuissanceAtt.add(listeUniteAttaque.get(i).getPuissanceCombat());
+			System.out.println(listePuissanceAtt.get(i));
 		}
 		for (int i=0; i<listeUniteDefense.size(); i++)
 		{
 			listeUniteDefense.get(i).setPuissanceCombat((int) (Math.random()*(listeUniteDefense.get(i).getPuissance()[5]-listeUniteDefense.get(i).getPuissance()[0]+1))+listeUniteDefense.get(i).getPuissance()[0]);
-			puissDef[i] =(int) Math.random()*(listeUniteDefense.get(i).getPuissance()[5]-listeUniteDefense.get(i).getPuissance()[0]+1)+listeUniteDefense.get(i).getPuissance()[0];
+			listePuissanceDef.add(listeUniteDefense.get(i).getPuissanceCombat());
+			System.out.println(listePuissanceDef.get(i));
 		}
-		
-		int[] puissAttaqTried = Unite.TriParSelection(puissAttaq);		//valeurs triées du plus grand au plus petit des puissances de l'attaque
-		int[] puissDefTried = Unite.TriParSelection(puissDef);			//Same pour la défense
-		
-		int highestPatt = Unite.highestPrioATT(listeUniteAttaque);
-		int highestPdef = Unite.highestPrioDEF(listeUniteDefense);
-		
-		ArrayList<Unite> listeAttaqueTried = new ArrayList<Unite>();
-		ArrayList<Unite> listeDefenseTried = new ArrayList<Unite>();
-		
-		for (int i=0; i<puissAttaqTried.length; i++)
+		boolean isVictoire=true;
+		for (int i=0; i<Math.min(listeUniteAttaque.size(), listeUniteDefense.size()); i++)		//1 ou 2 manches se disputent
 		{
-			if (listeUniteAttaque.get(i).getPuissanceCombat()==puissAttaqTried[i])
+			int idAtt = listePuissanceAtt.indexOf(Collections.max(listePuissanceAtt));
+			int idDef = listePuissanceDef.indexOf(Collections.max(listePuissanceDef));
+			boolean uniteTue=false;
+			if (listePuissanceAtt.get(idAtt)>listePuissanceDef.get(idDef)) //Attaque gagne une manche
 			{
-				for (int k=0; k<highestPatt; k++)
+				int idJoueurDef = regionClicked(idTerrCible).getTerritoires().get(Territoire.territoireDsRegion(idTerrCible)).getProprietaire();
+				while(uniteTue==false)
 				{
-					if (listeUniteAttaque.get(k).getPrioriteATT() == highestPatt)
+					for (int j=0; j<listeJoueurs.get(idJoueurDef).getListeUnite().size(); j++)
 					{
-						listeAttaqueTried.add(listeUniteAttaque.get(i));
+						if (listeJoueurs.get(idJoueurDef).getListeUnite().get(j).getIdPosition() == idTerrCible && listeJoueurs.get(idJoueurDef).getListeUnite().get(j).getType() == listeUniteDefense.get(idDef).getType())
+						{
+							if (listeJoueurs.get(idJoueurDef).getListeUnite().get(j).getType() == "soldat" && uniteTue==false)
+							{
+								listeJoueurs.get(idJoueurDef).getListeUnite().remove(j);
+								regionClicked(idTerrCible).getTerritoires().get(Territoire.territoireDsRegion(idTerrCible)).setNbrSoldat(regionClicked(idTerrCible).getTerritoires().get(Territoire.territoireDsRegion(idTerrCible)).getNbrSoldat()-1);
+								uniteTue=true;
+							}
+							if (listeJoueurs.get(idJoueurDef).getListeUnite().get(j).getType() == "cavalier" && uniteTue==false)
+							{
+								listeJoueurs.get(idJoueurDef).getListeUnite().remove(j);
+								regionClicked(idTerrCible).getTerritoires().get(Territoire.territoireDsRegion(idTerrCible)).setNbrCaval(regionClicked(idTerrCible).getTerritoires().get(Territoire.territoireDsRegion(idTerrCible)).getNbrCaval()-1);
+								uniteTue=true;
+							}
+							if (listeJoueurs.get(idJoueurDef).getListeUnite().get(j).getType() == "canon" && uniteTue==false)
+							{
+								listeJoueurs.get(idJoueurDef).getListeUnite().remove(j);
+								regionClicked(idTerrCible).getTerritoires().get(Territoire.territoireDsRegion(idTerrCible)).setNbrCanon(regionClicked(idTerrCible).getTerritoires().get(Territoire.territoireDsRegion(idTerrCible)).getNbrCanon()-1);
+								uniteTue=true;
+							}
+						}
 					}
 				}
-				
 			}
-		}
-		 
-		
-		int[] attaqueATuer = new int[puissAttaq.length];
-		int[] defenseATuer = new int[puissDef.length];
-		int j=0;
-		while(j<Math.min(listeUniteAttaque.size(), listeUniteDefense.size()))		//Tant que j (index) est inférieur au nombre de combats qu'il va y avoir
-		{
-			if (puissAttaqTried[j]>puissDefTried[j])
+			else		//Le Defenseur gagne une manche
 			{
-				victoire[j]=1;		//Victoire de l'attaque
-				attaqueATuer[j] = 0;
-				defenseATuer[j] = 1;
+				while(uniteTue==false)
+				{
+					for (int j=0; j<listeJoueurs.get(idJoueurAttq).getListeUnite().size(); j++)
+					{
+						if (listeJoueurs.get(idJoueurAttq).getListeUnite().get(j).getIdPosition() == idTerrIni && listeJoueurs.get(idJoueurAttq).getListeUnite().get(j).getType() == listeUniteAttaque.get(idDef).getType())
+						{
+							
+							if (listeJoueurs.get(idJoueurAttq).getListeUnite().get(j).getType() == "soldat" && uniteTue==false)
+							{
+								listeJoueurs.get(idJoueurAttq).getListeUnite().remove(j);
+								regionClicked(idTerrIni).getTerritoires().get(Territoire.territoireDsRegion(idTerrIni)).setNbrSoldat(regionClicked(idTerrIni).getTerritoires().get(Territoire.territoireDsRegion(idTerrIni)).getNbrSoldat()-1);
+								uniteTue=true;
+							}
+							if (listeJoueurs.get(idJoueurAttq).getListeUnite().get(j).getType() == "cavalier" && uniteTue==false)
+							{
+								listeJoueurs.get(idJoueurAttq).getListeUnite().remove(j);
+								regionClicked(idTerrIni).getTerritoires().get(Territoire.territoireDsRegion(idTerrIni)).setNbrCaval(regionClicked(idTerrIni).getTerritoires().get(Territoire.territoireDsRegion(idTerrIni)).getNbrCaval()-1);
+								uniteTue=true;
+							}
+							if (listeJoueurs.get(idJoueurAttq).getListeUnite().get(j).getType() == "canon" && uniteTue==false)
+							{
+								listeJoueurs.get(idJoueurAttq).getListeUnite().remove(j);
+								regionClicked(idTerrIni).getTerritoires().get(Territoire.territoireDsRegion(idTerrIni)).setNbrCanon(regionClicked(idTerrIni).getTerritoires().get(Territoire.territoireDsRegion(idTerrIni)).getNbrCanon()-1);
+								uniteTue=true;
+							}
+						}
+					}
+				}
+				isVictoire=false;
 			}
-			else
-			{
-				victoire[j]=2;		//Victoire de la défense
-				attaqueATuer[j] = 1;
-				defenseATuer[j] = 0;
-			}
+			listePuissanceAtt.remove(Collections.max(listePuissanceAtt));
+			listePuissanceDef.remove(Collections.max(listePuissanceDef));
 		}
+		return isVictoire;
 	}
 	
+	public static void changePossesseurTerr(int idTerrCible, int idJoueur, int idJoueurPerdant)
+	{
+		listeJoueurs.get(idJoueurPerdant).getListeTerrPoss().remove(regionClicked(idTerrCible).getTerritoires().get(Territoire.territoireDsRegion(idTerrCible)));
+		listeJoueurs.get(idJoueur).getListeTerrPoss().add(regionClicked(idTerrCible).getTerritoires().get(Territoire.territoireDsRegion(idTerrCible)));
+		regionClicked(idTerrCible).getTerritoires().get(Territoire.territoireDsRegion(idTerrCible)).setProprietaire(idJoueur);
+	}
 	
 	
 }
