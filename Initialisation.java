@@ -1,14 +1,14 @@
-//Class permettant les étapes d'initialisation càd la créations des objets dont on a besoin
+
 
 public class Initialisation {
 
 	
-	public static int initialisationJoueur() //Fonction appellée par le Main
+	public static int initialisationJoueur() //Fonction appellÃ©e par le Main
 	{
 		int nbrJr = 0;		
-		Plateau.CreaCanvas();				//Création d'un canvas adapté à la taille de la fenêtre
+		Plateau.CreaCanvas();				//CrÃ©ation d'un canvas adaptÃ© Ã  la taille de la fenÃªtre
 		
-		while (nbrJr == 0) 					//Séléction du nombre de joueurs
+		while (nbrJr == 0) 					//SÃ©lÃ©ction du nombre de joueurs
 		{
 			nbrJr = Interface.MenuJoueur();
 		}
