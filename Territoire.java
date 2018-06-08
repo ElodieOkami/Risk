@@ -250,7 +250,7 @@ public class Territoire {
 	        	} catch(InterruptedException e) {
 	        		System.out.println("Sommeil interrompu");
 	        	}
-				//l'IA déplace 1 seule armée
+				//l'IA déplace 1 soldat seulement 
 				nbrSoldatsDepl = 1;
 				nbrCavalsDepl = 0;
 				nbrCanonsDepl = 0;
