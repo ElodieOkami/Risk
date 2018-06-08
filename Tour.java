@@ -1,4 +1,5 @@
 import edu.princeton.cs.introcs.StdDraw;
+import java.util.Random;
 
 public class Tour {
 		
