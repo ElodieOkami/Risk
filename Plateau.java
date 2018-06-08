@@ -22,7 +22,7 @@ public class Plateau
 		StdDraw.setYscale(0, height);
 	}
 
-	public static void afficheMenuJoueur()	// Affiche le choix du nombre de joueurs en début de partie
+	public static void afficheMenuJoueur()	// Affiche le choix du nombre de joueurs en dÃ©but de partie
 	{
 		String cartePng = "plateauMenu.png";
 		
@@ -72,7 +72,7 @@ public class Plateau
 		font = new Font("Papyrus", Font.PLAIN, 40);		//En plus petit et pas en gras
 		StdDraw.setFont(font);
 		
-		StdDraw.text(width/2, height/1.3, "Combien de joueurs êtes-vous ?");
+		StdDraw.text(width/2, height/1.3, "Combien de joueurs Ãªtes-vous ?");
 
 		font = new Font("Times new roman", Font.PLAIN, 40);
 		StdDraw.setFont(font);
@@ -179,7 +179,7 @@ public class Plateau
 	        	scaleX = (double)width;
 	        }		 
 		
-	        StdDraw.picture(width/2, height/2, cartePng); //Rajouter ",scaleX ,scaleY" dans la parenthèse pour avoir du rescale mais perturbe les clics
+	        StdDraw.picture(width/2, height/2, cartePng); //Rajouter ",scaleX ,scaleY" dans la parenthÃ¨se pour avoir du rescale mais perturbe les clics
 	        StdDraw.show(1);
 	        
 			}
@@ -206,7 +206,7 @@ public class Plateau
 			Font font = new Font("Papyrus",Font.ITALIC, 15);
 			StdDraw.setFont(font);
 			StdDraw.text(width/9.5, height/1.15, "Cliquez sur vos territoires pour");
-			StdDraw.text(width/9.5, height/1.20, "placer vos armées non placées");
+			StdDraw.text(width/9.5, height/1.20, "placer vos armÃ©es non placÃ©es");
 			
 			StdDraw.picture(width/1.1, height/2, "infosJoueur.png");
 			font = new Font("Papyrus", Font.BOLD, 20);		//En plus petit et pas en gras
@@ -639,7 +639,7 @@ public class Plateau
 		{
 			Font font = new Font("Papyrus",Font.PLAIN, 16);
 			StdDraw.setFont(font);
-			StdDraw.text(width/9.5, height/1.15, "Erreur, veuillez ré-essayer");
+			StdDraw.text(width/9.5, height/1.15, "Erreur, veuillez rÃ©-essayer");
 			StdDraw.text(width/9.5, height/1.20, "de cliquer sur un territoire");	
 			StdDraw.show(1500);
 		}
@@ -666,7 +666,7 @@ public class Plateau
 		{
 			Font font = new Font("Papyrus",Font.PLAIN, 16);
 			StdDraw.setFont(font);
-			StdDraw.text(width/9.5, height/1.15, "Ce déplacement a fatigué une ou plusieurs unités ");
+			StdDraw.text(width/9.5, height/1.15, "Ce dÃ©placement a fatiguÃ© une ou plusieurs unitÃ©s ");
 			StdDraw.text(width/9.5, height/1.20, "elles ne peuvent plus bouger pendant ce tour");	
 			StdDraw.show(2000);
 		}
@@ -675,7 +675,7 @@ public class Plateau
 		{
 			Font font = new Font("Papyrus",Font.PLAIN, 16);
 			StdDraw.setFont(font);
-			StdDraw.text(width/9.5, height/1.15, "Ce déplacement a fatigué" + nbr + "soldats, ");
+			StdDraw.text(width/9.5, height/1.15, "Ce dÃ©placement a fatiguÃ©" + nbr + "soldats, ");
 			StdDraw.text(width/9.5, height/1.20, "il ne peut plus bouger pendant ce tour");	
 			StdDraw.show(2000);
 		}
@@ -684,7 +684,7 @@ public class Plateau
 		{
 			Font font = new Font("Papyrus",Font.PLAIN, 16);
 			StdDraw.setFont(font);
-			StdDraw.text(width/9.5, height/1.15, "Ce déplacement a fatigué"+ nbr + "magicien, ");
+			StdDraw.text(width/9.5, height/1.15, "Ce dÃ©placement a fatiguÃ©"+ nbr + "magicien, ");
 			StdDraw.text(width/9.5, height/1.20, "il ne peut plus bouger pendant ce tour");	
 			StdDraw.show(2000);
 		}
@@ -693,7 +693,7 @@ public class Plateau
 		{
 			Font font = new Font("Papyrus",Font.PLAIN, 16);
 			StdDraw.setFont(font);
-			StdDraw.text(width/9.5, height/1.15, "Ce déplacement a fatigué"+ nbr + "magiciens, ");
+			StdDraw.text(width/9.5, height/1.15, "Ce dÃ©placement a fatiguÃ©"+ nbr + "magiciens, ");
 			StdDraw.text(width/9.5, height/1.20, "il ne peut plus bouger pendant ce tour");	
 			StdDraw.show(2000);
 		}
@@ -702,7 +702,7 @@ public class Plateau
 		{
 			Font font = new Font("Papyrus",Font.PLAIN, 16);
 			StdDraw.setFont(font);
-			StdDraw.text(width/9.5, height/1.15, "Ce déplacement a fatigué"+ nbr + "dragon, ");
+			StdDraw.text(width/9.5, height/1.15, "Ce dÃ©placement a fatiguÃ©"+ nbr + "dragon, ");
 			StdDraw.text(width/9.5, height/1.20, "il ne peut plus bouger pendant ce tour");	
 			StdDraw.show(2000);
 		}
@@ -711,7 +711,7 @@ public class Plateau
 		{
 			Font font = new Font("Papyrus",Font.PLAIN, 16);
 			StdDraw.setFont(font);
-			StdDraw.text(width/9.5, height/1.15, "Ce déplacement a fatigué"+ nbr + "dragons, ");
+			StdDraw.text(width/9.5, height/1.15, "Ce dÃ©placement a fatiguÃ©"+ nbr + "dragons, ");
 			StdDraw.text(width/9.5, height/1.20, "il ne peut plus bouger pendant ce tour");	
 			StdDraw.show(2000);
 		}
@@ -719,16 +719,16 @@ public class Plateau
 		{
 			Font font = new Font("Papyrus",Font.PLAIN, 16);
 			StdDraw.setFont(font);
-			StdDraw.text(width/9.5, height/1.15, "Sélectionnez le territoire dont vous");
-			StdDraw.text(width/9.5, height/1.20, "voulez déplacer des joueurs.");	
+			StdDraw.text(width/9.5, height/1.15, "SÃ©lectionnez le territoire dont vous");
+			StdDraw.text(width/9.5, height/1.20, "voulez dÃ©placer des joueurs.");	
 			StdDraw.show(1500);
 		}
 		else if(info == "selectTerrEtUnite")
 		{
 			Font font = new Font("Papyrus",Font.PLAIN, 16);
 			StdDraw.setFont(font);
-			StdDraw.text(width/9.5, height/1.15, "Sélectionnez les unités que vous souhaitez");
-			StdDraw.text(width/9.5, height/1.20, "déplacer puis cliquez sur le Territoire cible.");	
+			StdDraw.text(width/9.5, height/1.15, "SÃ©lectionnez les unitÃ©s que vous souhaitez");
+			StdDraw.text(width/9.5, height/1.20, "dÃ©placer puis cliquez sur le Territoire cible.");	
 			StdDraw.show(2000);
 		}
 		else if(info == "choixRenforts")
@@ -736,22 +736,22 @@ public class Plateau
 			Font font = new Font("Papyrus",Font.PLAIN, 16);
 			StdDraw.setFont(font);
 			StdDraw.text(width/9.5, height/1.15, "Placez vos renforts avant d'effectuer d'autre actions.");
-			StdDraw.text(width/9.5, height/1.20, "Sélectionnez les en bas à gauche puis placez-les.");	
+			StdDraw.text(width/9.5, height/1.20, "SÃ©lectionnez les en bas Ã  gauche puis placez-les.");	
 			StdDraw.show(2000);
 		}
 		else if (info == "aucuneUnite")
 		{
 			Font font = new Font("Papyrus",Font.PLAIN, 16);
 			StdDraw.setFont(font);
-			StdDraw.text(width/9.5, height/1.15, "Vous n'avez pas séléctionné d'unités.");
-			StdDraw.text(width/9.5, height/1.20, "Sélectionnez les en bas à gauche puis placez-les.");	
+			StdDraw.text(width/9.5, height/1.15, "Vous n'avez pas sÃ©lÃ©ctionnÃ© d'unitÃ©s.");
+			StdDraw.text(width/9.5, height/1.20, "SÃ©lectionnez les en bas Ã  gauche puis placez-les.");	
 			StdDraw.show(2000);
 		}
 		else if (info == "caseParCase")
 		{
 			Font font = new Font("Papyrus",Font.PLAIN, 16);
 			StdDraw.setFont(font);
-			StdDraw.text(width/9.5, height/1.15, "Veuillez déplacer vos unités cases par cases.");
+			StdDraw.text(width/9.5, height/1.15, "Veuillez dÃ©placer vos unitÃ©s cases par cases.");
 			StdDraw.show(2000);
 		}
 		else if (info == "terriEnnemi")
@@ -766,7 +766,7 @@ public class Plateau
 		{
 			Font font = new Font("Papyrus",Font.PLAIN, 16);
 			StdDraw.setFont(font);
-			StdDraw.text(width/9.5, height/1.15, "Vous ne pouvez pas retirer toutes les unités");
+			StdDraw.text(width/9.5, height/1.15, "Vous ne pouvez pas retirer toutes les unitÃ©s");
 			StdDraw.text(width/9.5, height/1.20, "d'un territoire. Il faut en laisser au moins une");
 			StdDraw.show(2000);
 		}
@@ -774,7 +774,7 @@ public class Plateau
 		{
 			Font font = new Font("Papyrus",Font.PLAIN, 16);
 			StdDraw.setFont(font);
-			StdDraw.text(width/9.5, height/1.15, "Toutes les unités de ce territoire sont fatigués.");
+			StdDraw.text(width/9.5, height/1.15, "Toutes les unitÃ©s de ce territoire sont fatiguÃ©s.");
 			StdDraw.text(width/9.5, height/1.20, "Elle ne peuvent plus bouger ni attaquer ce tour-ci.");
 			StdDraw.show(2000);
 		}
@@ -782,7 +782,7 @@ public class Plateau
 		{
 			Font font = new Font("Papyrus",Font.PLAIN, 16);
 			StdDraw.setFont(font);
-			StdDraw.text(width/9.5, height/1.15, "Veuillez sélectionner le territoire d'où");
+			StdDraw.text(width/9.5, height/1.15, "Veuillez sÃ©lectionner le territoire d'oÃ¹");
 			StdDraw.text(width/9.5, height/1.20, "vous voulez attaquer");
 			StdDraw.show(2000);
 		}
@@ -790,7 +790,7 @@ public class Plateau
 		{
 			Font font = new Font("Papyrus",Font.PLAIN, 16);
 			StdDraw.setFont(font);
-			StdDraw.text(width/9.5, height/1.15, "Sélectionnez les unités partant en bataille et");
+			StdDraw.text(width/9.5, height/1.15, "SÃ©lectionnez les unitÃ©s partant en bataille et");
 			StdDraw.text(width/9.5, height/1.20, "cliquez sur le territoire que vous voulez attaquer");
 			StdDraw.show(2000);
 		}
@@ -798,7 +798,7 @@ public class Plateau
 		{
 			Font font = new Font("Papyrus",Font.PLAIN, 16);
 			StdDraw.setFont(font);
-			StdDraw.text(width/9.5, height/1.15, "Veuillez attaquer un territoire voisin au vôtre");
+			StdDraw.text(width/9.5, height/1.15, "Veuillez attaquer un territoire voisin au vÃ´tre");
 			StdDraw.show(2000);
 		}
 		else if (info == "terriAllie")
@@ -806,7 +806,7 @@ public class Plateau
 			Font font = new Font("Papyrus",Font.PLAIN, 16);
 			StdDraw.setFont(font);
 			StdDraw.text(width/9.5, height/1.15, "Ce territoire vous appartient, utilisez l'option");
-			StdDraw.text(width/9.5, height/1.20, "Se deplacer du menu pour y envoyer des unités.");
+			StdDraw.text(width/9.5, height/1.20, "Se deplacer du menu pour y envoyer des unitÃ©s.");
 			StdDraw.show(2000);
 		}
 		else if (info == "pasPlusDe3")
@@ -814,7 +814,7 @@ public class Plateau
 			Font font = new Font("Papyrus",Font.PLAIN, 16);
 			StdDraw.setFont(font);
 			StdDraw.text(width/9.5, height/1.15, "Vous ne pouvez pas attaquer avec");
-			StdDraw.text(width/9.5, height/1.20, "plus de 3 soldtats en même temps");
+			StdDraw.text(width/9.5, height/1.20, "plus de 3 soldtats en mÃªme temps");
 			StdDraw.show(2000);
 		}
 		
@@ -825,9 +825,9 @@ public class Plateau
 		StdDraw.picture(width/9.5, height/1.17, "infosTer.png");
 		Font font = new Font("Papyrus",Font.PLAIN, 14);
 		StdDraw.setFont(font);
-		StdDraw.text(width/9.5, height/1.15, "Sélectionner un territoire");
+		StdDraw.text(width/9.5, height/1.15, "SÃ©lectionner un territoire");
 		StdDraw.setFont(font);
-		StdDraw.text(width/9.5, height/1.20, "pour afficher son nombre d'armées");	
+		StdDraw.text(width/9.5, height/1.20, "pour afficher son nombre d'armÃ©es");	
 		StdDraw.show();
 
 		
@@ -906,8 +906,8 @@ public class Plateau
 			StdDraw.text(width/1.1, height/1.70 , "Sur chacun de vos territoires");
 			StdDraw.text(width/1.1, height/1.80, "on place 1 de vos soldats");
 			StdDraw.text(width/1.1, height/1.95 , "Cliquez sur vos territoires pour");
-			StdDraw.text(width/1.1, height/2.05 , "placer vos armées non placées");
-			StdDraw.text(width/1.1, height/2.30, "Encore " + soldatsRestants + " soldats à placer");
+			StdDraw.text(width/1.1, height/2.05 , "placer vos armÃ©es non placÃ©es");
+			StdDraw.text(width/1.1, height/2.30, "Encore " + soldatsRestants + " soldats Ã  placer");
 			
 		}
 	}
@@ -934,7 +934,7 @@ public class Plateau
 			StdDraw.text(width/1.1, height/2.05 , "Renforts : " + renforts);
 		
 			//Boutons
-			StdDraw.text(width/1.1, height/2.4 , "Se déplacer");
+			StdDraw.text(width/1.1, height/2.4 , "Se dÃ©placer");
 			StdDraw.rectangle(width/1.1, height/2.4 , 50, 11);
 			StdDraw.text(width/1.1, height/2.65 , "Attaquer");
 			StdDraw.rectangle(width/1.1, height/2.67 , 50, 11);
@@ -956,7 +956,7 @@ public class Plateau
 			StdDraw.text(width/10, height/2.6 , "Cliquez sur un bouton");
 			StdDraw.text(width/10, height/2.75 , "puis sur un territoire");
 			StdDraw.text(width/10, height/2.9,  "pour ajouter et placer");
-			StdDraw.text(width/10, height/3.05,  "votre nouvelle armée");
+			StdDraw.text(width/10, height/3.05,  "votre nouvelle armÃ©e");
 			
 			StdDraw.text(width/10, height/3.7,  "Soldat : 1");
 			StdDraw.rectangle(width/10, height/3.7, 50, 11);
@@ -1012,7 +1012,7 @@ public class Plateau
 			
 			Font font = new Font("Papyrus", Font.ITALIC, 15);	
 			StdDraw.setFont(font);
-			StdDraw.text(width/10, height/2.4 , "Déplacements");
+			StdDraw.text(width/10, height/2.4 , "DÃ©placements");
 		
 			StdDraw.text(width/13.8, height/3.0,  "Soldats :");
 			StdDraw.text(width/9.9, height/3.0, "+");
@@ -1061,5 +1061,15 @@ public class Plateau
 	{
 		StdDraw.text(width/8.1, height/4.0, " "+nombreCanons);
 	}
-
+	
+		public static void afficheGagant(int idJr)
+	{
+		Font font= new Font("Papyrus", Font.BOLD, 16);
+		StdDraw.picture(width/2, height/2, "infosGagnant.png");
+		StdDraw.setFont(font);
+		StdDraw.text(width/2, height/1.9, "Le joueur " + idJr);
+		StdDraw.setFont(font);
+		StdDraw.text(width/2, height/2.1, "gagne la partie !!!");
+		StdDraw.show();
+	}
 }	
