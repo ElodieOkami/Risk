@@ -1,5 +1,6 @@
-import edu.princeton.cs.introcs.StdDraw;
 import java.util.Random;
+
+import edu.princeton.cs.introcs.StdDraw;
 
 public class Tour {
 		
@@ -113,7 +114,13 @@ public class Tour {
 							break;
 						
 						case "attaque":
-											//Fonction attaque
+							StdDraw.clear();
+							Plateau.actualiserTout(cartePng);
+							Plateau.afficheInfosJoueur(cartePng, 2, 0);
+							Plateau.afficheInfosAttaquer2(cartePng);
+							
+							Territoire.attaqueIA(1, cartePng);
+							
 							deplAttqTerm = "undefined";
 							break;
 							
