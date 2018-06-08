@@ -1012,7 +1012,7 @@ public class Plateau
 		StdDraw.text(width/2, height/1.9, "Le joueur " + idJr);
 		StdDraw.setFont(font);
 		StdDraw.text(width/2, height/2.1, "gagne la partie !!!");
-		SdtDraw.show();
+		StdDraw.show();
 	}
 
 }	
