@@ -739,6 +739,14 @@ public class Plateau
 			StdDraw.text(width/9.5, height/1.20, "Sélectionnez les en bas à gauche puis placez-les.");	
 			StdDraw.show(2000);
 		}
+		else if(info == "choixIA")
+		{
+			Font font = new Font("Papyrus",Font.PLAIN, 16);
+			StdDraw.setFont(font);
+			StdDraw.text(width/9.5, height/1.15, "Veuillez patienter quelques secondes...");
+			StdDraw.text(width/9.5, height/1.20, "L'IA réfléchit avant de jouer...");	
+			StdDraw.show(2000);
+		}
 		else if (info == "aucuneUnite")
 		{
 			Font font = new Font("Papyrus",Font.PLAIN, 16);
