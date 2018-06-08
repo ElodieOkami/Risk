@@ -457,6 +457,155 @@ public class Territoire {
 		
 	}
 	
+	public static void attaqueIA(int idJoueurAttq, String cartePng)
+	{
+		int idTerrIni=-1;			//id du territoire source
+		int idTerrCible = -1;		//id du territoire cible
+		int nbrSoldatsAttq=0;		//nombre de soldtats à déplacer
+		int nbrCavalsAttq=0;		//nbr de cavaliers
+		int nbrCanonsAttq=0;		//canons
+		boolean tousFatigues = true;
+		Plateau.afficheMessages("choixIA", 0);
+		while(idTerrIni == -1)		//Tant qu'un territoire n'est pas séléctionné
+		{
+			Plateau.actualiserTout(cartePng);
+			Plateau.afficheInfosJoueur(cartePng, idJoueurAttq+1, 0);
+			Plateau.afficheInfosAttaquer2(cartePng);
+			Plateau.afficheInfosArmees(cartePng);
+			//Choix du territoire initial
+			Joueur joueur = RiskIsep.listeJoueurs.get(1);
+			int limite = joueur.listeTerrPoss.size();
+			Random y = new Random();
+			int yAlea = y.nextInt(limite);
+			idTerrIni=joueur.listeTerrPoss.get(yAlea).getId();	//On choisit un id d'un territoire possédé par l'IA au hasard
+			try {
+        		Thread.sleep(50);
+        	} catch(InterruptedException e) {
+        		System.out.println("Sommeil interrompu");
+        	}
+		}
+		for (int i=0; i<RiskIsep.listeJoueurs.get(idJoueurAttq).getListeUnite().size(); i++)
+		{
+			if (RiskIsep.listeJoueurs.get(idJoueurAttq).getListeUnite().get(i).getMvtLeft() > 0 && RiskIsep.listeJoueurs.get(idJoueurAttq).getListeUnite().get(i).getIdPosition() == idTerrIni)		
+			{
+				tousFatigues = false;
+			}
+		}
+		if (tousFatigues)
+		{
+			Plateau.actualiserTout(cartePng);
+			Plateau.afficheInfosJoueur(cartePng, idJoueurAttq+1, 0);
+			Plateau.afficheInfosAttaquer2(cartePng);
+			Plateau.afficheMessages("choixIA", 0);
+		}
+		else
+		{		
+			int limiteSoldats = RiskIsep.listeJoueurs.get(idJoueurAttq).calculLimiteSoldats(idTerrIni);
+			int limiteCavaliers = RiskIsep.listeJoueurs.get(idJoueurAttq).calculLimiteCavaliers(idTerrIni);
+			int limiteCanons = RiskIsep.listeJoueurs.get(idJoueurAttq).calculLimiteCanons(idTerrIni);
+			Plateau.actualiserTout(cartePng);
+			Plateau.afficheInfosJoueur(cartePng, idJoueurAttq+1, 0);
+			Plateau.afficheInfosAttaquer2(cartePng);
+			Plateau.afficheNbrSoldatsRenforts(nbrSoldatsAttq);
+			Plateau.afficheNbrCavalsRenforts(nbrCavalsAttq);
+			Plateau.afficheNbrCanonsRenforts(nbrCanonsAttq);
+			Plateau.afficheMessages("choixIA", 0);
+			//Etape séléction unité puis séléction territoire cible
+			while(idTerrCible == -1)
+			{
+				Plateau.actualiserTout(cartePng);
+				Plateau.afficheInfosJoueur(cartePng, idJoueurAttq+1, 0);
+				Plateau.afficheInfosAttaquer2(cartePng);
+				Plateau.afficheNbrSoldatsRenforts(nbrSoldatsAttq);
+				Plateau.afficheNbrCavalsRenforts(nbrCavalsAttq);
+				Plateau.afficheNbrCanonsRenforts(nbrCanonsAttq);
+				Plateau.afficheInfosArmees(cartePng);
+				try {
+	        		Thread.sleep(70);
+	        	} catch(InterruptedException e) {
+	        		System.out.println("Sommeil interrompu");
+	        	}
+				//Elle attaque avec 1 soldat
+				nbrSoldatsAttq = 1;
+				nbrCavalsAttq = 0;
+				nbrCanonsAttq = 0;
+				
+				Joueur joueur1 = RiskIsep.listeJoueurs.get(0);
+				int limite = joueur1.listeTerrPoss.size();
+				Random x = new Random();
+				int xAlea = x.nextInt(limite);
+				idTerrCible=joueur1.listeTerrPoss.get(xAlea).getId();	//On choisit un id d'un territoire possédé par l'IA au hasard
+			}
+			if(nbrSoldatsAttq==0 && nbrCavalsAttq==0 && nbrCanonsAttq==0)		//Si aucune unité n'est sélectionnée
+			{
+				Plateau.actualiserTout(cartePng);
+				Plateau.afficheInfosJoueur(cartePng, idJoueurAttq+1, 0);
+				Plateau.afficheInfosAttaquer2(cartePng);
+				Plateau.afficheMessages("choixIa", 0);
+			}
+			else if (idJoueurAttq==RiskIsep.regionClicked(idTerrCible).getTerritoires().get(territoireDsRegion(idTerrCible)).getProprietaire())
+			{
+				Plateau.actualiserTout(cartePng);
+				Plateau.afficheInfosJoueur(cartePng, idJoueurAttq+1, 0);
+				Plateau.afficheInfosAttaquer2(cartePng);
+				Plateau.afficheMessages("choixIA",0);
+			}
+			else if(nbrSoldatsAttq+nbrCavalsAttq+nbrCanonsAttq>3)
+			{
+				Plateau.actualiserTout(cartePng);
+				Plateau.afficheInfosJoueur(cartePng, idJoueurAttq+1, 0);
+				Plateau.afficheInfosAttaquer2(cartePng);
+				Plateau.afficheMessages("choixIA", 0);
+			}
+			else if(RiskIsep.regionClicked(idTerrIni).getTerritoires().get(Territoire.territoireDsRegion(idTerrIni)).getNbrSoldat() == nbrSoldatsAttq && RiskIsep.regionClicked(idTerrIni).getTerritoires().get(Territoire.territoireDsRegion(idTerrIni)).getNbrCaval() == nbrCavalsAttq && RiskIsep.regionClicked(idTerrIni).getTerritoires().get(Territoire.territoireDsRegion(idTerrIni)).getNbrCanon() == nbrCanonsAttq)
+			{		//Si on cherche à bouger toutes les unités d'un territoire
+				Plateau.actualiserTout(cartePng);
+				Plateau.afficheInfosJoueur(cartePng, idJoueurAttq+1, 0);
+				Plateau.afficheInfosAttaquer2(cartePng);
+				Plateau.afficheMessages("choixIA", 0);
+			}
+			else if (matriceVoisins[idTerrIni][idTerrCible] != 1)		//Si les territoires ne sont pas voisins
+			{
+				Plateau.actualiserTout(cartePng);
+				Plateau.afficheInfosJoueur(cartePng, idJoueurAttq+1, 0);
+				Plateau.afficheInfosAttaquer2(cartePng);
+				Plateau.afficheMessages("choixIA", 0);
+			}
+			else if (RiskIsep.regionClicked(idTerrIni).getTerritoires().get(Territoire.territoireDsRegion(idTerrIni)).getProprietaire() == RiskIsep.regionClicked(idTerrCible).getTerritoires().get(Territoire.territoireDsRegion(idTerrCible)).getProprietaire()) //Si on cherche a aller sur un territoire ennemi
+			{
+				Plateau.actualiserTout(cartePng);
+				Plateau.afficheInfosJoueur(cartePng, idJoueurAttq+1, 0);
+				Plateau.afficheInfosAttaquer2(cartePng);
+				Plateau.afficheMessages("choixIA", 0);
+			}
+			else
+			{
+				
+				ArrayList <Unite>listeUniteDefense = RiskIsep.selectionDefense(idTerrCible);
+				ArrayList <Unite>listeUniteAttaque = RiskIsep.creaArrayAttaquant(idJoueurAttq, idTerrIni, nbrSoldatsAttq, nbrCavalsAttq, nbrCanonsAttq);
+				
+				boolean isVictoire = RiskIsep.bataille(idJoueurAttq, idTerrIni, idTerrCible, listeUniteDefense,listeUniteAttaque);
+				if(isVictoire && RiskIsep.regionClicked(idTerrCible).getTerritoires().get(Territoire.territoireDsRegion(idTerrCible)).getNbrCanon()+RiskIsep.regionClicked(idTerrCible).getTerritoires().get(Territoire.territoireDsRegion(idTerrCible)).getNbrCaval()+RiskIsep.regionClicked(idTerrCible).getTerritoires().get(Territoire.territoireDsRegion(idTerrCible)).getNbrSoldat() == 0)
+				{
+					int idJoueurDef = RiskIsep.regionClicked(idTerrCible).getTerritoires().get(Territoire.territoireDsRegion(idTerrCible)).getProprietaire();
+					RiskIsep.changePossesseurTerr(idTerrCible, idJoueurAttq, idJoueurDef);
+					if(nbrSoldatsAttq !=0)
+					{
+						RiskIsep.deplacerSoldat(nbrSoldatsAttq, idTerrIni, idTerrCible, idJoueurAttq, cartePng);
+					}
+					if(nbrCavalsAttq !=0)
+					{
+						RiskIsep.deplacerCavalier(nbrCavalsAttq, idTerrIni, idTerrCible, idJoueurAttq, cartePng);
+					}
+					if(nbrCanonsAttq !=0)
+					{
+						RiskIsep.deplacerCanon(nbrCanonsAttq, idTerrIni, idTerrCible, idJoueurAttq, cartePng);
+					}
+				}
+			}
+		}	
+	}
+	
 	
 
 	public static int territoireDsRegion(int idTerri)
