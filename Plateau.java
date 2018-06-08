@@ -812,7 +812,7 @@ public class Plateau
 			StdDraw.setFont(font);
 			StdDraw.text(width/11, height/1.10, "Soldats : " + nbrSoldat );
 			StdDraw.text(width/11, height/1.15, "Magiciens : " + nbrCavalier);
-			StdDraw.text(width/11, height/1.20, "Canons : " + nbrCanon);
+			StdDraw.text(width/11, height/1.20, "Dragons : " + nbrCanon);
 		}
 		StdDraw.show();
 	}
@@ -1004,7 +1004,7 @@ public class Plateau
 		StdDraw.text(width/8.1, height/4.0, " "+nombreCanons);
 	}
 	
-	public static void afficheGagant(int idJr)
+	public static void afficheGagnant(int idJr)
 	{
 		Font font= new Font("Papyrus", Font.BOLD, 16);
 		StdDraw.picture(width/2, height/2, "infosGagnant.png");
