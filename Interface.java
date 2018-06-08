@@ -7,18 +7,19 @@ import java.io.IOException;
 import javax.imageio.ImageIO;
 import edu.princeton.cs.introcs.StdDraw;
 
-//Class permettant de récupérer et analyser des informations selaon la position des clics
+//Class permettant de rÃ©cupÃ©rer et analyser des informations selaon la position des clics
 
 public class Interface {
 	
-	static Dimension dimension = java.awt.Toolkit.getDefaultToolkit().getScreenSize();		//Permet d'avoir la largeur et la hauteur d'un écran
+	static Dimension dimension = java.awt.Toolkit.getDefaultToolkit().getScreenSize();		//Permet d'avoir la largeur et la hauteur d'un Ã©cran
 	final static int height = (int)dimension.getHeight();								//hauteur
-    final static int width  = (int)dimension.getWidth();								//largeur
+    final static int width  = (int)dimension.getWidth();	//largeur
+    static boolean isIAneeded = false;
     
 
-	static final int clicTropBas = 20; //A cause de la barre en haut de la fenêtre, tous les clics sont trop bas
+	static final int clicTropBas = 20; //A cause de la barre en haut de la fenÃªtre, tous les clics sont trop bas
 	
-	//Interface 1er Menu (séléction du nombre de joueurs)
+	//Interface 1er Menu (sÃ©lÃ©ction du nombre de joueurs)
 	public static int MenuJoueur() 			
 	{
 		Plateau.afficheMenuJoueur();		//Visuel
@@ -26,17 +27,18 @@ public class Interface {
 		{
 			double clickX=StdDraw.mouseX();
 			double clickY=StdDraw.mouseY()-clicTropBas;		
-			return nombreJoueurs(clickX, clickY);		//Quel nombre de joueur a été cliqué
+			return nombreJoueurs(clickX, clickY);		//Quel nombre de joueur a Ã©tÃ© cliquÃ©
 		}
 		return 0;
 	}
 	
-	public static int nombreJoueurs(double clickX, double clickY) //Quel nombre de joueur a été cliqué
-	{					
+	public static int nombreJoueurs(double clickX, double clickY) //Quel nombre de joueur a Ã©tÃ© cliquÃ©
+	{		
 			if(height/1.5-20 < clickY && clickY < height/1.5+20) 
 			{
 				if (width/3.9-15 < clickX && clickX < width/3.9+15) 
 				{
+					isIAneeded = true;
 					return 2; //2 car un joueur et une IA
 				}
 				
@@ -69,7 +71,7 @@ public class Interface {
 	}
 	
 	
-	//Interface 2ème Menu (séléction de la carte)
+	//Interface 2Ã¨me Menu (sÃ©lÃ©ction de la carte)
 	public static String MenuCarte() 
 	{
 		Plateau.afficheMenuCarte();		//Visuel
@@ -77,7 +79,7 @@ public class Interface {
 		{
 			double clickX=StdDraw.mouseX();
 			double clickY=StdDraw.mouseY()-clicTropBas;
-			int indice = choixCarte(clickX, clickY);		//Quelle carte a été cliquée
+			int indice = choixCarte(clickX, clickY);		//Quelle carte a Ã©tÃ© cliquÃ©e
 			if(indice == 1)
 			{
 				return "plateauTerre.png";
@@ -90,7 +92,7 @@ public class Interface {
 		return "nonselectionne";
 	}
 	
-	public static int choixCarte(double clickX, double clickY)	//Quelle carte a été cliquée
+	public static int choixCarte(double clickX, double clickY)	//Quelle carte a Ã©tÃ© cliquÃ©e
 	{
 		
 		if(height/1.5-height/45 < clickY && clickY < height/1.5+height/30) 
@@ -109,7 +111,7 @@ public class Interface {
 	}
 	
 	//Jeu
-	public static BufferedImage buffImage(String cartePng)		//Fonction qui enregistre l'image dans le buffer (sert à l'obtention du RGB de où on clique)
+	public static BufferedImage buffImage(String cartePng)		//Fonction qui enregistre l'image dans le buffer (sert Ã  l'obtention du RGB de oÃ¹ on clique)
 	{
 		try
 		{
@@ -130,7 +132,7 @@ public class Interface {
 	    }
 		return null;
 	}
-	public static int lectureClic(String cartePng) {		//A partir de la couleur d'où on clique, ressort le territoire cliqué
+	public static int lectureClic(String cartePng) {		//A partir de la couleur d'oÃ¹ on clique, ressort le territoire cliquÃ©
 	    	
 		BufferedImage image =buffImage(cartePng);
 	    Color couleur;
@@ -189,7 +191,7 @@ public class Interface {
 	        	clickX = (int)(clickX*multiX);
 	        	clickY = (int)(clickY*multiY);*/ //A travailler pour le rescale
 	        			
-	        	couleur = new Color(image.getRGB(clickX, image.getHeight()-clickY));	//Couleur aux coordonnées du clic
+	        	couleur = new Color(image.getRGB(clickX, image.getHeight()-clickY));	//Couleur aux coordonnÃ©es du clic
 	        			
 	        	//System.out.println("R = " + couleur.getRed());
 	        	//System.out.println("G = " + couleur.getGreen());
@@ -212,7 +214,7 @@ public class Interface {
 	    Color couleur;
 	    int clickX=(int) StdDraw.mouseX();
         int clickY=(int) StdDraw.mouseY()-clicTropBas;
-        if (clickX>200 && clickX<1600)
+        if (clickX>133 && clickX<1233)
         {
         	clickX = clickX-((width-image.getWidth())/2);
         	clickY = clickY-((height-image.getHeight())/2);
@@ -256,7 +258,7 @@ public class Interface {
 						return i;
 					}
 				}
-				System.out.println("Erreur, veuillez ré-essayer de cliquer sur un territoire");
+				System.out.println("Erreur, veuillez rÃ©-essayer de cliquer sur un territoire");
 				Plateau.afficheMessages("erreur",0);
 			}
 		}
@@ -299,7 +301,7 @@ public class Interface {
 		return -1;
 	}
 	
-	public static int[][] creaTableauCouleurs(String cartePng)		//Table qui dit quelle couleur correspond à quel idTerritoire
+	public static int[][] creaTableauCouleurs(String cartePng)		//Table qui dit quelle couleur correspond Ã  quel idTerritoire
 	{
 		
 		if (cartePng == "plateauElder.png")
@@ -629,15 +631,5 @@ public class Interface {
 			}
 		}
 	}
-	
-	/* public static int renfortCavalier()
-	{
-		
-	}
-	
-	public static int renfortCanon()
-	{
-		
-	} */
 	
 }
