@@ -214,7 +214,7 @@ public class Interface {
 	    Color couleur;
 	    int clickX=(int) StdDraw.mouseX();
         int clickY=(int) StdDraw.mouseY()-clicTropBas;
-        if (clickX>133 && clickX<1233)
+        if (clickX>200 && clickX<1600)
         {
         	clickX = clickX-((width-image.getWidth())/2);
         	clickY = clickY-((height-image.getHeight())/2);
