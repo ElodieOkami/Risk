@@ -15,7 +15,7 @@ public class Jeu {
 			
 			joueurGagnant = RiskIsep.allRegionPoss(nbrJr);
 		}
-		Plateau.afficheGagant(joueurGagnant);
+		Plateau.afficheGagnant(joueurGagnant);
 		return joueurGagnant;
 	}
 	
