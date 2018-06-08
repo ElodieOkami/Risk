@@ -24,7 +24,7 @@ public class Tour {
 					Plateau.afficheInfosJoueur(cartePng, idJoueur+1, 0);
 					Plateau.afficheInfosArmees(cartePng);
 					deplAttqTerm = Interface.whichButtonIsPressed();	//Mettre la	 fonction de Maya sur le choix du menu
-					//On fait rien, on attend juste pour passer ‡ la suite
+					//On fait rien, on attend juste pour passer √† la suite
 				}
 				
 				switch(deplAttqTerm)
@@ -35,7 +35,7 @@ public class Tour {
 					Plateau.afficheInfosJoueur(cartePng, idJoueur+1, 0);
 					Plateau.afficheInfosSeDeplacer(cartePng);
 					
-					Territoire.deplacement(idJoueur, cartePng); //Fonction dÈplacement
+					Territoire.deplacement(idJoueur, cartePng); //Fonction d√©placement
 					
 					deplAttqTerm = "undefined";
 					break;
@@ -59,13 +59,78 @@ public class Tour {
 		}
 		
 			
-	}  
+	}
+	
+	public static void tourIA(String cartePng)
+	{
+		boolean tourPasFini = true;
+		
+			int renforts;
+			renforts = RiskIsep.appelFonctionRenforts(1);
+			RiskIsep.choixUniteEtPlacerRenfortsIA(renforts, 1, cartePng);
+			Plateau.actualiserTout(cartePng);
+			Plateau.actualiserInfoRenforts(cartePng, 1, 0);
+			StdDraw.show();
+			String deplAttqTerm="undefined";
+			
+			while(tourPasFini)
+			{
+				while (deplAttqTerm == "undefined")
+				{
+					StdDraw.clear();
+					Plateau.actualiserTout(cartePng);
+					Plateau.afficheInfosJoueur(cartePng, 2, 0);
+					Plateau.afficheInfosArmees(cartePng);
+					
+					//L'IA choisit al√©atoirement ce qu'elle fait entre se d√©placer, attaquer ou fin de tour
+					Random x = new Random();
+					int xAlea = x.nextInt(3);
+					if(xAlea == 0)
+					{
+						deplAttqTerm = "deplacement";
+					}
+					if(xAlea == 1)
+					{
+						deplAttqTerm = "attaque";
+					}
+					if(xAlea == 2)
+					{
+						deplAttqTerm = "terminer";
+					}
+				}
+					switch(deplAttqTerm)
+					{
+						case "deplacement" :
+							StdDraw.clear();
+							Plateau.actualiserTout(cartePng);
+							Plateau.afficheInfosJoueur(cartePng, 2, 0);
+							Plateau.afficheInfosSeDeplacer(cartePng);
+							
+							Territoire.deplacementIA(1, cartePng); //Fonction d√©placement
+							
+							deplAttqTerm = "undefined";
+							break;
+						
+						case "attaque":
+											//Fonction attaque
+							deplAttqTerm = "undefined";
+							break;
+							
+						case "terminer":
+											//Fonction fin de tour
+							tourPasFini = false;
+							break;
+				}
+		}
+		
+			
+	} 
   
 	
 	
 	
 	
-	// Fonction qui vÈrifie si la mission de joueur qui vient de finir son tour a ÈtÈ accomplie
+	// Fonction qui v√©rifie si la mission de joueur qui vient de finir son tour a √©t√© accomplie
 	public static void verifMission()
 	{
 		
