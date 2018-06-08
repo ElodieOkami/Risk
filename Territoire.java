@@ -1,4 +1,5 @@
 import java.util.ArrayList;
+import java.util.Random;
 
 public class Territoire {
 	public static int numero;			//Numéro dans la région
