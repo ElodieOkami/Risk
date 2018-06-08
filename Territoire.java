@@ -255,11 +255,22 @@ public class Territoire {
 				nbrCavalsDepl = 0;
 				nbrCanonsDepl = 0;
 				
-				Joueur joueur = RiskIsep.listeJoueurs.get(1);
-				int limite = joueur.listeTerrPoss.size();
-				Random x = new Random();
-				int xAlea = x.nextInt(limite);
-				idTerrCible=joueur.listeTerrPoss.get(xAlea).getId();	//On choisit un id d'un territoire possédé par l'IA au hasard
+				//Elle choisit un id Cible
+				for(int k =0; k<42; k++)
+				{
+					if(matriceVoisins[idTerrIni][k] == 1)
+					{
+						Joueur joueur = RiskIsep.listeJoueurs.get(1);
+						int limite = joueur.listeTerrPoss.size();
+						for(int j =0; j< limite;j++)
+						{
+							if(joueur.listeTerrPoss.get(j).getId() == k )
+							{
+								idTerrCible=k;
+							}
+						}
+					}
+				}
 			}
 			if(nbrSoldatsDepl==0 && nbrCavalsDepl==0 && nbrCanonsDepl==0)		//Si aucune unité n'est sélectionnée
 			{
@@ -530,11 +541,22 @@ public class Territoire {
 				nbrCavalsAttq = 0;
 				nbrCanonsAttq = 0;
 				
-				Joueur joueur1 = RiskIsep.listeJoueurs.get(0);
-				int limite = joueur1.listeTerrPoss.size();
-				Random x = new Random();
-				int xAlea = x.nextInt(limite);
-				idTerrCible=joueur1.listeTerrPoss.get(xAlea).getId();	//On choisit un id d'un territoire possédé par l'IA au hasard
+				//Elle choisit un id Cible
+				for(int k =0; k<42; k++)
+				{
+					if(matriceVoisins[idTerrIni][k] == 1)
+					{
+						Joueur joueur = RiskIsep.listeJoueurs.get(0);
+						int limite = joueur.listeTerrPoss.size();
+						for(int j =0; j< limite;j++)
+						{
+							if(joueur.listeTerrPoss.get(j).getId() == k )
+							{
+								idTerrCible=k;
+							}
+						}
+					}
+				}
 			}
 			if(nbrSoldatsAttq==0 && nbrCavalsAttq==0 && nbrCanonsAttq==0)		//Si aucune unité n'est sélectionnée
 			{
