@@ -2,7 +2,7 @@
 public class Jeu {
 	
 	
-	public static int partieDeRisk(int nbrJr, String cartePng) //Fonction appellée par le Main
+	public static int partieDeRisk(int nbrJr, String cartePng) //Fonction appellÃ©e par le Main
 	{
 		int joueurGagnant =-1;
 		while(joueurGagnant ==-1)
@@ -15,6 +15,7 @@ public class Jeu {
 			
 			joueurGagnant = RiskIsep.allRegionPoss(nbrJr);
 		}
+		Plateau.afficheGagant(joueurGagnant);
 		return joueurGagnant;
 	}
 	
