@@ -1070,7 +1070,7 @@ public class Plateau
 		StdDraw.text(width/8.1, height/4.0, " "+nombreCanons);
 	}
 	
-		public static void afficheGagant(int idJr)
+		public static void afficheGagnant(int idJr)
 	{
 		Font font= new Font("Papyrus", Font.BOLD, 16);
 		StdDraw.picture(width/2, height/2, "infosGagnant.png");
