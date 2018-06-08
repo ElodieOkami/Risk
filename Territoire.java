@@ -1,8 +1,8 @@
 import java.util.ArrayList;
 
 public class Territoire {
-	public static int numero;			//NumÈro dans la rÈgion
-	public int proprietaire;	//PropriÈtaire de ce territoire
+	public static int numero;			//Num√©ro dans la r√©gion
+	public int proprietaire;	//Propri√©taire de ce territoire
 	public int id;		//id parmi les 42 du plateau
 	public int nbrCanon;
 	public int nbrCaval;
@@ -62,11 +62,11 @@ public class Territoire {
 	{
 		int idTerrIni=-1;			//id du territoire source
 		int idTerrCible = -1;		//id du territoire cible
-		int nbrSoldatsDepl=0;		//nombre de soldtats ‡ dÈplacer
+		int nbrSoldatsDepl=0;		//nombre de soldtats √† d√©placer
 		int nbrCavalsDepl=0;		//nbr de cavaliers
 		int nbrCanonsDepl=0;		//canons
 		boolean tousFatigues = true;
-		System.out.println("Veuillez sÈlectionner le territoire d'o˘ vous voulez dÈplacer des unitÈs");
+		System.out.println("Veuillez s√©lectionner le territoire d'o√π vous voulez d√©placer des unit√©s");
 		Plateau.afficheMessages("deplacerIni", 0);
 		while(idTerrIni == -1)		//Tant qu'on ne clique pas sur un territoire
 		{
@@ -84,7 +84,7 @@ public class Territoire {
 		for (int i=0; i<RiskIsep.listeJoueurs.get(idJoueur).getListeUnite().size(); i++)
 		{
 			if (RiskIsep.listeJoueurs.get(idJoueur).getListeUnite().get(i).getMvtLeft() > 0 && RiskIsep.listeJoueurs.get(idJoueur).getListeUnite().get(i).getIdPosition() == idTerrIni)
-			{							//On enlËve l'appel de tousFatigue dËs qu'on trouve une unitÈ non fatiguÈ
+			{							//On enl√®ve l'appel de tousFatigue d√®s qu'on trouve une unit√© non fatigu√©
 				tousFatigues = false;
 			}
 		}
@@ -107,7 +107,7 @@ public class Territoire {
 			Plateau.afficheNbrCavalsRenforts(nbrCavalsDepl);
 			Plateau.afficheNbrCanonsRenforts(nbrCanonsDepl);
 			Plateau.afficheMessages("selectTerrEtUnite", 0);
-			System.out.println("Veuillez sÈlectionner le nombre d'unitÈs ‡ dÈplacer puis sÈlectionnez le territoire o˘ vous souhaitez les envoyer");
+			System.out.println("Veuillez s√©lectionner le nombre d'unit√©s √† d√©placer puis s√©lectionnez le territoire o√π vous souhaitez les envoyer");
 			while(idTerrCible == -1)
 			{
 				Plateau.actualiserTout(cartePng);
@@ -128,21 +128,21 @@ public class Territoire {
 				
 				idTerrCible = Interface.lectureClic(cartePng);
 			}
-			if(nbrSoldatsDepl==0 && nbrCavalsDepl==0 && nbrCanonsDepl==0)		//Si aucune unitÈ n'est sÈlectionnÈe
+			if(nbrSoldatsDepl==0 && nbrCavalsDepl==0 && nbrCanonsDepl==0)		//Si aucune unit√© n'est s√©lectionn√©e
 			{
 				Plateau.actualiserTout(cartePng);
 				Plateau.afficheInfosJoueur(cartePng, idJoueur+1, 0);
 				Plateau.afficheInfosSeDeplacer(cartePng);
 				Plateau.afficheMessages("aucuneUnite", 0);
-				System.out.println("Vous n'avez sÈlectionnÈ aucune unitÈ ‡ dÈplacer");
+				System.out.println("Vous n'avez s√©lectionn√© aucune unit√© √† d√©placer");
 			}
 			if(RiskIsep.regionClicked(idTerrIni).getTerritoires().get(Territoire.territoireDsRegion(idTerrIni)).getNbrSoldat() == nbrSoldatsDepl && RiskIsep.regionClicked(idTerrIni).getTerritoires().get(Territoire.territoireDsRegion(idTerrIni)).getNbrCaval() == nbrCavalsDepl && RiskIsep.regionClicked(idTerrIni).getTerritoires().get(Territoire.territoireDsRegion(idTerrIni)).getNbrCanon() == nbrCanonsDepl)
-			{		//Si on cherche ‡ bouger toutes les unitÈs d'un territoire
+			{		//Si on cherche √† bouger toutes les unit√©s d'un territoire
 				Plateau.actualiserTout(cartePng);
 				Plateau.afficheInfosJoueur(cartePng, idJoueur+1, 0);
 				Plateau.afficheInfosSeDeplacer(cartePng);
 				Plateau.afficheMessages("pasToutDunCoup", 0);
-				System.out.println("Veuillez dÈplacer vos unitÈs case par case");
+				System.out.println("Veuillez d√©placer vos unit√©s case par case");
 			}
 			else if (matriceVoisins[idTerrIni][idTerrCible] != 1)		//Si les territoires ne sont pas voisins
 			{
@@ -150,7 +150,7 @@ public class Territoire {
 				Plateau.afficheInfosJoueur(cartePng, idJoueur+1, 0);
 				Plateau.afficheInfosSeDeplacer(cartePng);
 				Plateau.afficheMessages("caseParCase", 0);
-				System.out.println("Veuillez dÈplacer vos unitÈs case par case");
+				System.out.println("Veuillez d√©placer vos unit√©s case par case");
 			}
 			else if (RiskIsep.regionClicked(idTerrIni).getTerritoires().get(Territoire.territoireDsRegion(idTerrIni)).getProprietaire() != RiskIsep.regionClicked(idTerrCible).getTerritoires().get(Territoire.territoireDsRegion(idTerrCible)).getProprietaire()) //Si on cherche a aller sur un territoire ennemi
 			{
@@ -179,15 +179,146 @@ public class Territoire {
 		
 	}
 	
+	public static void deplacementIA(int idJoueur, String cartePng)
+	{
+		int idTerrIni=-1;			//id du territoire source
+		int idTerrCible = -1;		//id du territoire cible
+		int nbrSoldatsDepl=0;		//nombre de soldtats √† d√©placer
+		int nbrCavalsDepl=0;		//nbr de cavaliers
+		int nbrCanonsDepl=0;		//canons
+		boolean tousFatigues = true;
+		//Etape s√©l√©ction territoire
+		Plateau.afficheMessages("choixIA", 0);
+		while(idTerrIni == -1)		//Tant qu'un territoire n'est pas s√©l√©ctionn√©
+		{
+			Plateau.actualiserTout(cartePng);
+			Plateau.afficheInfosJoueur(cartePng, idJoueur+1, 0);
+			Plateau.afficheInfosSeDeplacer(cartePng);
+			Plateau.afficheInfosArmees(cartePng);
+			
+			Joueur joueur = RiskIsep.listeJoueurs.get(1);
+			int limite = joueur.listeTerrPoss.size();
+			Random y = new Random();
+			int yAlea = y.nextInt(limite);
+			idTerrIni=joueur.listeTerrPoss.get(yAlea).getId();	//On choisit un id d'un territoire poss√©d√© par l'IA au hasard
+			
+			try {
+        		Thread.sleep(100);
+        	} catch(InterruptedException e) {
+        		System.out.println("Sommeil interrompu");
+        	}
+		}
+		for (int i=0; i<RiskIsep.listeJoueurs.get(idJoueur).getListeUnite().size(); i++)
+		{
+			if (RiskIsep.listeJoueurs.get(idJoueur).getListeUnite().get(i).getMvtLeft() > 0 && RiskIsep.listeJoueurs.get(idJoueur).getListeUnite().get(i).getIdPosition() == idTerrIni)
+			{
+				tousFatigues = false;
+			}
+		}
+		if (tousFatigues)
+		{
+			Plateau.actualiserTout(cartePng);
+			Plateau.afficheInfosJoueur(cartePng, idJoueur+1, 0);
+			Plateau.afficheInfosSeDeplacer(cartePng);
+			Plateau.afficheMessages("choixIA", 0);
+		}
+		else
+		{		
+			int limiteSoldats = RiskIsep.listeJoueurs.get(idJoueur).calculLimiteSoldats(idTerrIni);
+			int limiteCavaliers = RiskIsep.listeJoueurs.get(idJoueur).calculLimiteCavaliers(idTerrIni);
+			int limiteCanons = RiskIsep.listeJoueurs.get(idJoueur).calculLimiteCanons(idTerrIni);
+			Plateau.actualiserTout(cartePng);
+			Plateau.afficheInfosJoueur(cartePng, idJoueur+1, 0);
+			Plateau.afficheInfosSeDeplacer(cartePng);
+			Plateau.afficheNbrSoldatsRenforts(nbrSoldatsDepl);
+			Plateau.afficheNbrCavalsRenforts(nbrCavalsDepl);
+			Plateau.afficheNbrCanonsRenforts(nbrCanonsDepl);
+			Plateau.afficheMessages("choixIA", 0);
+			//Etape s√©l√©ction nbre d'unit√© puis territoire cible
+			while(idTerrCible == -1)
+			{
+				Plateau.actualiserTout(cartePng);
+				Plateau.afficheInfosJoueur(cartePng, idJoueur+1, 0);
+				Plateau.afficheInfosSeDeplacer(cartePng);
+				Plateau.afficheNbrSoldatsRenforts(nbrSoldatsDepl);
+				Plateau.afficheNbrCavalsRenforts(nbrCavalsDepl);
+				Plateau.afficheNbrCanonsRenforts(nbrCanonsDepl);
+				Plateau.afficheInfosArmees(cartePng);
+				try {
+	        		Thread.sleep(70);
+	        	} catch(InterruptedException e) {
+	        		System.out.println("Sommeil interrompu");
+	        	}
+				//l'IA d√©place 1 seule arm√©e
+				nbrSoldatsDepl = 1;
+				nbrCavalsDepl = 0;
+				nbrCanonsDepl = 0;
+				
+				Joueur joueur = RiskIsep.listeJoueurs.get(1);
+				int limite = joueur.listeTerrPoss.size();
+				Random x = new Random();
+				int xAlea = x.nextInt(limite);
+				idTerrCible=joueur.listeTerrPoss.get(xAlea).getId();	//On choisit un id d'un territoire poss√©d√© par l'IA au hasard
+			}
+			if(nbrSoldatsDepl==0 && nbrCavalsDepl==0 && nbrCanonsDepl==0)		//Si aucune unit√© n'est s√©lectionn√©e
+			{
+				Plateau.actualiserTout(cartePng);
+				Plateau.afficheInfosJoueur(cartePng, idJoueur+1, 0);
+				Plateau.afficheInfosSeDeplacer(cartePng);
+				Plateau.afficheMessages("choixIA", 0);
+			}
+			if(RiskIsep.regionClicked(idTerrIni).getTerritoires().get(Territoire.territoireDsRegion(idTerrIni)).getNbrSoldat() == nbrSoldatsDepl && RiskIsep.regionClicked(idTerrIni).getTerritoires().get(Territoire.territoireDsRegion(idTerrIni)).getNbrCaval() == nbrCavalsDepl && RiskIsep.regionClicked(idTerrIni).getTerritoires().get(Territoire.territoireDsRegion(idTerrIni)).getNbrCanon() == nbrCanonsDepl)
+			{		//Si on cherche √† bouger toutes les unit√©s d'un territoire
+				Plateau.actualiserTout(cartePng);
+				Plateau.afficheInfosJoueur(cartePng, idJoueur+1, 0);
+				Plateau.afficheInfosSeDeplacer(cartePng);
+				Plateau.afficheMessages("choixIA", 0);
+				System.out.println("Veuillez d√©placer vos unit√©s case par case");
+			}
+			else if (matriceVoisins[idTerrIni][idTerrCible] != 1)		//Si les territoires ne sont pas voisins
+			{
+				Plateau.actualiserTout(cartePng);
+				Plateau.afficheInfosJoueur(cartePng, idJoueur+1, 0);
+				Plateau.afficheInfosSeDeplacer(cartePng);
+				Plateau.afficheMessages("choixIA", 0);
+				System.out.println("Veuillez d√©placer vos unit√©s case par case");
+			}
+			else if (RiskIsep.regionClicked(idTerrIni).getTerritoires().get(Territoire.territoireDsRegion(idTerrIni)).getProprietaire() != RiskIsep.regionClicked(idTerrCible).getTerritoires().get(Territoire.territoireDsRegion(idTerrCible)).getProprietaire()) //Si on cherche a aller sur un territoire ennemi
+			{
+				Plateau.actualiserTout(cartePng);
+				Plateau.afficheInfosJoueur(cartePng, idJoueur+1, 0);
+				Plateau.afficheInfosSeDeplacer(cartePng);
+				Plateau.afficheMessages("choixIA", 0);
+				System.out.println("Ce territoire ne vous appartient pas, utilisez l'option Attaquer du menu pour l'attaquer.");
+			}
+			else
+			{
+				if(nbrSoldatsDepl !=0)
+				{
+					RiskIsep.deplacerSoldat(nbrSoldatsDepl, idTerrIni, idTerrCible, idJoueur, cartePng);
+				}
+				if(nbrCavalsDepl !=0)
+				{
+					RiskIsep.deplacerCavalier(nbrCavalsDepl, idTerrIni, idTerrCible, idJoueur, cartePng);
+				}
+				if(nbrCanonsDepl !=0)
+				{
+					RiskIsep.deplacerCanon(nbrCanonsDepl, idTerrIni, idTerrCible, idJoueur, cartePng);
+				}
+			}
+		}
+		
+	}
+	
 	public static void attaque(int idJoueurAttq, String cartePng)
 	{
 		int idTerrIni=-1;			//id du territoire source
 		int idTerrCible = -1;		//id du territoire cible
-		int nbrSoldatsAttq=0;		//nombre de soldtats ‡ dÈplacer
+		int nbrSoldatsAttq=0;		//nombre de soldtats √† d√©placer
 		int nbrCavalsAttq=0;		//nbr de cavaliers
 		int nbrCanonsAttq=0;		//canons
 		boolean tousFatigues = true;
-		System.out.println("Veuillez sÈlectionner le territoire d'o˘ vous voulez attaquer");
+		System.out.println("Veuillez s√©lectionner le territoire d'o√π vous voulez attaquer");
 		Plateau.afficheMessages("attaquerIni", 0);
 		while(idTerrIni == -1)		//Tant qu'on ne clique pas sur un territoire
 		{
@@ -228,7 +359,7 @@ public class Territoire {
 			Plateau.afficheNbrCavalsRenforts(nbrCavalsAttq);
 			Plateau.afficheNbrCanonsRenforts(nbrCanonsAttq);
 			Plateau.afficheMessages("selectTerrEtUnite2", 0);
-			System.out.println("Veuillez sÈlectionner les unitÈs partant en guerre et cliquez sur le territoire o˘ vous souhaitez les envoyer");
+			System.out.println("Veuillez s√©lectionner les unit√©s partant en guerre et cliquez sur le territoire o√π vous souhaitez les envoyer");
 			while(idTerrCible == -1)
 			{
 				Plateau.actualiserTout(cartePng);
@@ -249,13 +380,13 @@ public class Territoire {
 				
 				idTerrCible = Interface.lectureClic(cartePng);
 			}
-			if(nbrSoldatsAttq==0 && nbrCavalsAttq==0 && nbrCanonsAttq==0)		//Si aucune unitÈ n'est sÈlectionnÈe
+			if(nbrSoldatsAttq==0 && nbrCavalsAttq==0 && nbrCanonsAttq==0)		//Si aucune unit√© n'est s√©lectionn√©e
 			{
 				Plateau.actualiserTout(cartePng);
 				Plateau.afficheInfosJoueur(cartePng, idJoueurAttq+1, 0);
 				Plateau.afficheInfosAttaquer2(cartePng);
 				Plateau.afficheMessages("aucuneUnite", 0);
-				System.out.println("Vous n'avez sÈlectionnÈ aucune unitÈ ‡ dÈplacer");
+				System.out.println("Vous n'avez s√©lectionn√© aucune unit√© √† d√©placer");
 			}
 			else if (idJoueurAttq==RiskIsep.regionClicked(idTerrCible).getTerritoires().get(territoireDsRegion(idTerrCible)).getProprietaire())
 			{
@@ -272,7 +403,7 @@ public class Territoire {
 				Plateau.afficheMessages("pasPlusDe3", 0);
 			}
 			else if(RiskIsep.regionClicked(idTerrIni).getTerritoires().get(Territoire.territoireDsRegion(idTerrIni)).getNbrSoldat() == nbrSoldatsAttq && RiskIsep.regionClicked(idTerrIni).getTerritoires().get(Territoire.territoireDsRegion(idTerrIni)).getNbrCaval() == nbrCavalsAttq && RiskIsep.regionClicked(idTerrIni).getTerritoires().get(Territoire.territoireDsRegion(idTerrIni)).getNbrCanon() == nbrCanonsAttq)
-			{		//Si on cherche ‡ bouger toutes les unitÈs d'un territoire
+			{		//Si on cherche √† bouger toutes les unit√©s d'un territoire
 				Plateau.actualiserTout(cartePng);
 				Plateau.afficheInfosJoueur(cartePng, idJoueurAttq+1, 0);
 				Plateau.afficheInfosAttaquer2(cartePng);
@@ -293,7 +424,7 @@ public class Territoire {
 				Plateau.afficheInfosJoueur(cartePng, idJoueurAttq+1, 0);
 				Plateau.afficheInfosAttaquer2(cartePng);
 				Plateau.afficheMessages("terriAllie", 0);
-				System.out.println("Ce territoire vous appartient, utilisez l'option Se deplacer du menu pour y envoyer des unitÈs.");
+				System.out.println("Ce territoire vous appartient, utilisez l'option Se deplacer du menu pour y envoyer des unit√©s.");
 			}
 			else
 			{
@@ -356,7 +487,7 @@ public class Territoire {
 	}
 	
 	
-	final static int[][] matriceVoisins= //matrice adjancente dÈffinissant les pays voisins
+	final static int[][] matriceVoisins= //matrice adjancente d√©ffinissant les pays voisins
 		{
 			{0,1,0,0,0,0,0,0,0,0,0, 1,0,0,0,0, 0,0,0,0,0,0,0,0, 0,0,0, 0,0,0,0,0, 0,0,0,0,0,0,0,0,0,0},
 			{1,0,1,1,0,0,0,0,0,0,0, 0,1,1,0,0, 0,0,0,0,0,0,0,0, 0,0,0, 0,0,0,0,0, 0,0,0,0,0,0,0,0,0,0},
