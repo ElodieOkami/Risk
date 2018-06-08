@@ -50,7 +50,6 @@ public class Initialisation {
 			RiskIsep.placementUniteIniIA(nbrJr, cartePng);
 		}
 		return cartePng;	
-		return cartePng;
 	}
 	
 }
