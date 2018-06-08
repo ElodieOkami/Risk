@@ -41,7 +41,15 @@ public class Initialisation {
 		RiskIsep.creaJoueur(nbrJr);
 		RiskIsep.PossesseurTerris(cartePng);
 		Plateau.affichePlateau(cartePng);
-		RiskIsep.placementUniteIni(nbrJr, cartePng);	
+		if(Interface.isIAneeded == false) //joueurs humains
+		{
+			RiskIsep.placementUniteIni(nbrJr, cartePng); 
+		}	
+		else //1 joueur et 1 IA
+		{
+			RiskIsep.placementUniteIniIA(nbrJr, cartePng);
+		}
+		return cartePng;	
 		return cartePng;
 	}
 	
