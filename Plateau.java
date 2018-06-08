@@ -980,12 +980,12 @@ public class Plateau
 			StdDraw.text(width/13.8, height/3.4,  "Magiciens :");
 			StdDraw.text(width/9.9, height/3.4, "+");
 			StdDraw.text(width/9, height/3.4, "-");
-			StdDraw.text(width/13.8, height/4.0,  "Dragons");
+			StdDraw.text(width/13.8, height/4.0,  "Dragons :");
 			StdDraw.text(width/9.9, height/4.0, "+");
 			StdDraw.text(width/9, height/4.0, "-");
 			
-			StdDraw.text(width/10, height/4.8,  "Fin Se Déplacer");
-			StdDraw.rectangle(width/10, height/4.8, 57, 13);
+			//StdDraw.text(width/10, height/4.8,  "Fin Se Déplacer");
+			//StdDraw.rectangle(width/10, height/4.8, 57, 13);
 		}
 	}
 	
