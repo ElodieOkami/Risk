@@ -1,14 +1,14 @@
-//Class permettant les Ã©tapes d'initialisation cÃ d la crÃ©ations des objets dont on a besoin
+//Class permettant les étapes d'initialisation càd la créations des objets dont on a besoin
 
 public class Initialisation {
 
 	
-	public static int initialisationJoueur() //Fonction appellÃ©e par le Main
+	public static int initialisationJoueur() //Fonction appellée par le Main
 	{
 		int nbrJr = 0;		
-		Plateau.CreaCanvas();				//CrÃ©ation d'un canvas adaptÃ© Ã  la taille de la fenÃªtre
+		Plateau.CreaCanvas();				//Création d'un canvas adapté à la taille de la fenêtre
 		
-		while (nbrJr == 0) 					//SÃ©lÃ©ction du nombre de joueurs
+		while (nbrJr == 0) 					//Séléction du nombre de joueurs
 		{
 			nbrJr = Interface.MenuJoueur();
 		}
@@ -41,6 +41,7 @@ public class Initialisation {
 		RiskIsep.creaJoueur(nbrJr);
 		RiskIsep.PossesseurTerris(cartePng);
 		Plateau.afficheInfosIni(cartePng, nbrJr);
+		Plateau.affichePlateau(cartePng);
 		RiskIsep.placementUniteIni(nbrJr, cartePng);	
 		return cartePng;
 	}

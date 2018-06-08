@@ -1,85 +1,71 @@
+import edu.princeton.cs.introcs.StdDraw;
 
-	public class Tour {
+public class Tour {
 		
 		
 	public static void tour(int idJoueur, String cartePng)
 	{
 		boolean tourPasFini = true;
-		while(tourPasFini)
-		{
-			Plateau.afficheInfosJoueur(cartePng, idJoueur + 1);
+		
 			int renforts;
 			renforts = RiskIsep.appelFonctionRenforts(idJoueur);
 			RiskIsep.choixUniteEtPlacerRenforts(renforts, idJoueur, cartePng);
+			Plateau.actualiserTout(cartePng);
+			Plateau.actualiserInfoRenforts(cartePng, idJoueur, 0);
+			StdDraw.show();
+			String deplAttqTerm="undefined";
 			
-			String deplAttqTerm = Interface.whichButtonIsPressed();	//Mettre la	 fonction de Maya sur le choix du menu
-			switch(deplAttqTerm)
+			while(tourPasFini)
 			{
-			case "deplacement" :
-				Plateau.afficheInfosSeDeplacer(cartePng);
-				//Territoire.deplacement(idJoueur, cartePng); //Fonction d√©placement
+				while (deplAttqTerm == "undefined")
+				{
+					StdDraw.clear();
+					Plateau.actualiserTout(cartePng);
+					Plateau.afficheInfosJoueur(cartePng, idJoueur+1, 0);
+					Plateau.afficheInfosArmees(cartePng);
+					deplAttqTerm = Interface.whichButtonIsPressed();	//Mettre la	 fonction de Maya sur le choix du menu
+					//On fait rien, on attend juste pour passer ‡ la suite
+				}
 				
-				break;
-			
-			case "attaque":
-								//Fonction attaque
+				switch(deplAttqTerm)
+				{
+				case "deplacement" :
+					StdDraw.clear();
+					Plateau.actualiserTout(cartePng);
+					Plateau.afficheInfosJoueur(cartePng, idJoueur+1, 0);
+					Plateau.afficheInfosSeDeplacer(cartePng);
+					
+					Territoire.deplacement(idJoueur, cartePng); //Fonction dÈplacement
+					
+					deplAttqTerm = "undefined";
+					break;
 				
-				break;
-				
-			case "terminer":
-								//Fonction fin de tour (juste break?)
-				
-				break;
-			}
+				case "attaque":
+									//Fonction attaque
+					deplAttqTerm = "undefined";
+					break;
+					
+				case "terminer":
+									//Fonction fin de tour (juste break?)
+					tourPasFini = false;
+					break;
+				}
 		}
 		
-		/*boolean tourPasFini = true;
-		while(tourPasFini)
-			{
-				Plateau.afficheInfosJoueur(cartePng, idJoueur + 1);
 			
-				if(Interface.isRenfortPressed())
-				{
-					Plateau.afficheInfosRenforts(cartePng, idJoueur);
-					
-						int renforts;
-						renforts = RiskIsep.appelFonctionRenforts(idJoueur);
-						RiskIsep.choixUniteEtPlacerRenforts(renforts, idJoueur, cartePng); 
-				}
-				
-				else if(Interface.isSeDeplacerPressed())
-				{
-					Plateau.afficheInfosSeDeplacer(cartePng, idJoueur);
-					Territoire.deplacement(idJoueur, cartePng); //Fonction d√©placement
-					
-					
-				}
-				
-				else if(Interface.isAttaquerPressed())
-				{
-					Plateau.afficheInfosAttaquer(cartePng, idJoueur);
-				}
-				
-				else if(Interface.isFinDeTourPressed())
-				{
-					tourPasFini = false;
-				}
-			}*/
-				
-				
 	}  
   
 	
 	
 	
 	
-	// Fonction qui v√©rifie si la mission de joueur qui vient de finir son tour a √©t√© accomplie
+	// Fonction qui vÈrifie si la mission de joueur qui vient de finir son tour a ÈtÈ accomplie
 	public static void verifMission()
 	{
 		
 	}
 	
-	
+
 	public static int nombreSoldatJoueur(Joueur joueur) //renvoie le nombre de soldats d'un joueur
 		{
 			int compteur = 0;
@@ -122,4 +108,6 @@
 			return compteur;
 		}
 		
+	
+
 }

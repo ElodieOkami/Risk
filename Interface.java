@@ -7,19 +7,18 @@ import java.io.IOException;
 import javax.imageio.ImageIO;
 import edu.princeton.cs.introcs.StdDraw;
 
-//Class permettant de rÃ©cupÃ©rer et analyser des informations selaon la position des clics
+//Class permettant de récupérer et analyser des informations selaon la position des clics
 
 public class Interface {
 	
-	static Dimension dimension = java.awt.Toolkit.getDefaultToolkit().getScreenSize();		//Permet d'avoir la largeur et la hauteur d'un Ã©cran
+	static Dimension dimension = java.awt.Toolkit.getDefaultToolkit().getScreenSize();		//Permet d'avoir la largeur et la hauteur d'un écran
 	final static int height = (int)dimension.getHeight();								//hauteur
     final static int width  = (int)dimension.getWidth();								//largeur
-    public static double clickXBoutonRenf = width/10;			//valeur initiale pour renfort soldat
-	public static double clickYBoutonRenf = height/3.4;			//pareil
+    
 
-	static final int clicTropBas = 20; //A cause de la barre en haut de la fenÃªtre, tous les clics sont trop bas
+	static final int clicTropBas = 20; //A cause de la barre en haut de la fenêtre, tous les clics sont trop bas
 	
-	//Interface 1er Menu (sÃ©lÃ©ction du nombre de joueurs)
+	//Interface 1er Menu (séléction du nombre de joueurs)
 	public static int MenuJoueur() 			
 	{
 		Plateau.afficheMenuJoueur();		//Visuel
@@ -27,12 +26,12 @@ public class Interface {
 		{
 			double clickX=StdDraw.mouseX();
 			double clickY=StdDraw.mouseY()-clicTropBas;		
-			return nombreJoueurs(clickX, clickY);		//Quel nombre de joueur a Ã©tÃ© cliquÃ©
+			return nombreJoueurs(clickX, clickY);		//Quel nombre de joueur a été cliqué
 		}
 		return 0;
 	}
 	
-	public static int nombreJoueurs(double clickX, double clickY) //Quel nombre de joueur a Ã©tÃ© cliquÃ©
+	public static int nombreJoueurs(double clickX, double clickY) //Quel nombre de joueur a été cliqué
 	{					
 			if(height/1.5-20 < clickY && clickY < height/1.5+20) 
 			{
@@ -70,7 +69,7 @@ public class Interface {
 	}
 	
 	
-	//Interface 2Ã¨me Menu (sÃ©lÃ©ction de la carte)
+	//Interface 2ème Menu (séléction de la carte)
 	public static String MenuCarte() 
 	{
 		Plateau.afficheMenuCarte();		//Visuel
@@ -78,7 +77,7 @@ public class Interface {
 		{
 			double clickX=StdDraw.mouseX();
 			double clickY=StdDraw.mouseY()-clicTropBas;
-			int indice = choixCarte(clickX, clickY);		//Quelle carte a Ã©tÃ© cliquÃ©e
+			int indice = choixCarte(clickX, clickY);		//Quelle carte a été cliquée
 			if(indice == 1)
 			{
 				return "plateauTerre.png";
@@ -91,7 +90,7 @@ public class Interface {
 		return "nonselectionne";
 	}
 	
-	public static int choixCarte(double clickX, double clickY)	//Quelle carte a Ã©tÃ© cliquÃ©e
+	public static int choixCarte(double clickX, double clickY)	//Quelle carte a été cliquée
 	{
 		
 		if(height/1.5-height/45 < clickY && clickY < height/1.5+height/30) 
@@ -110,7 +109,7 @@ public class Interface {
 	}
 	
 	//Jeu
-	public static BufferedImage buffImage(String cartePng)		//Fonction qui enregistre l'image dans le buffer (sert Ã  l'obtention du RGB de oÃ¹ on clique)
+	public static BufferedImage buffImage(String cartePng)		//Fonction qui enregistre l'image dans le buffer (sert à l'obtention du RGB de où on clique)
 	{
 		try
 		{
@@ -131,7 +130,7 @@ public class Interface {
 	    }
 		return null;
 	}
-	public static int lectureClic(String cartePng) {		//A partir de la couleur d'oÃ¹ on clique, ressort le territoire cliquÃ©
+	public static int lectureClic(String cartePng) {		//A partir de la couleur d'où on clique, ressort le territoire cliqué
 	    	
 		BufferedImage image =buffImage(cartePng);
 	    Color couleur;
@@ -157,7 +156,7 @@ public class Interface {
 	    	int clickX=(int) StdDraw.mouseX();
 	        int clickY=(int) StdDraw.mouseY()-clicTropBas;
 	        
-	        if (clickX<200)
+	        if (clickX<width/5.2)
 	        {
 	        	//System.out.println("Veuillez cliquez sur un des territoires en couleurs");
 	        	return -1;
@@ -175,6 +174,7 @@ public class Interface {
 	        	else
 	        	{
 	        		System.out.println("Veuillez recliquer sur un bouton");
+	        		Plateau.afficheMessages("bouton", 0);
 	        	}
 	        	return -1;
 	        }
@@ -189,13 +189,13 @@ public class Interface {
 	        	clickX = (int)(clickX*multiX);
 	        	clickY = (int)(clickY*multiY);*/ //A travailler pour le rescale
 	        			
-	        	couleur = new Color(image.getRGB(clickX, image.getHeight()-clickY));	//Couleur aux coordonnÃ©es du clic
+	        	couleur = new Color(image.getRGB(clickX, image.getHeight()-clickY));	//Couleur aux coordonnées du clic
 	        			
 	        	//System.out.println("R = " + couleur.getRed());
 	        	//System.out.println("G = " + couleur.getGreen());
 	        	//System.out.println("B = " + couleur.getBlue());
 	        	try {
-	        		Thread.sleep(50);
+	        		Thread.sleep(70);
 	        	} catch(InterruptedException e) {
 	        		System.out.println("Sommeil interrompu");
 	        	}
@@ -204,6 +204,22 @@ public class Interface {
 	        }
 	    }
 	    return -1;
+	}
+	
+	public static int lectureHover(String cartePng)
+	{
+		BufferedImage image =buffImage(cartePng);
+	    Color couleur;
+	    int clickX=(int) StdDraw.mouseX();
+        int clickY=(int) StdDraw.mouseY()-clicTropBas;
+        if (clickX>200 && clickX<1600)
+        {
+        	clickX = clickX-((width-image.getWidth())/2);
+        	clickY = clickY-((height-image.getHeight())/2);
+        	couleur = new Color(image.getRGB(clickX, image.getHeight()-clickY));
+        	return correspondClicNoComments(cartePng, couleur);
+        }
+        return -1;
 	}
 	
 	private static int correspondClic(String cartePng, Color couleur)
@@ -219,12 +235,14 @@ public class Interface {
 			if (R == 255 && G == 255 && B == 255)		//Si on clique sur du blanc
 			{
 				System.out.println("Veuillez cliquez sur un des territoires en couleurs");
+				Plateau.afficheMessages("couleur",0);
 				return -1;
 			}
 			
 			else if (R == 168 && G == 168 && B == 168)		//Si on clique sur du gris
 			{
 				System.out.println("Cette zone est non habitable");
+				Plateau.afficheMessages("inhabitable",0);
 				return -1;
 			}
 			
@@ -235,19 +253,53 @@ public class Interface {
 					if (tabCoul[i][0] == R && tabCoul[i][1] == G && tabCoul[i][2] == B)
 					{
 						//System.out.println("Vous cliquez sur le territoire " + i);
-						Plateau.afficheInfosArmees(cartePng,i);
 						return i;
 					}
 				}
-				System.out.println("Erreur, veuillez rÃ©-essayer de cliquer sur un territoire");
+				System.out.println("Erreur, veuillez ré-essayer de cliquer sur un territoire");
+				Plateau.afficheMessages("erreur",0);
 			}
 		}
 		
 		return -1;
 		
 	}
+	private static int correspondClicNoComments(String cartePng, Color couleur)
+	{
+		if (cartePng == "plateauElder.png")
+		{
+			int tabCoul[][] = creaTableauCouleurs(cartePng);
+			
+			int R = couleur.getRed();
+			int G = couleur.getGreen();
+			int B = couleur.getBlue();
+			
+			if (R == 255 && G == 255 && B == 255)		//Si on clique sur du blanc
+			{
+				return -1;
+			}
+			
+			else if (R == 168 && G == 168 && B == 168)		//Si on clique sur du gris
+			{
+				return -1;
+			}
+			
+			else
+			{
+				for (int i = 0; i<tabCoul.length; i++)
+				{
+					if (tabCoul[i][0] == R && tabCoul[i][1] == G && tabCoul[i][2] == B)
+					{
+						//System.out.println("Vous cliquez sur le territoire " + i);
+						return i;
+					}
+				}
+			}
+		}
+		return -1;
+	}
 	
-	public static int[][] creaTableauCouleurs(String cartePng)		//Table qui dit quelle couleur correspond Ã  quel idTerritoire
+	public static int[][] creaTableauCouleurs(String cartePng)		//Table qui dit quelle couleur correspond à quel idTerritoire
 	{
 		
 		if (cartePng == "plateauElder.png")
@@ -400,32 +452,121 @@ public class Interface {
 	
 	public static String boutonsUnitesRenfort()
 	{
-		while(true)
+		String type="undefined";
+		double clickXBoutonRenf=0;			
+		double clickYBoutonRenf=0;			
+		while (type == "undefined")
 		{
 			if(StdDraw.isMousePressed())
 			{
-				clickXBoutonRenf=StdDraw.mouseX();
-				clickYBoutonRenf=StdDraw.mouseY();
+				if(StdDraw.mouseX()<width/5.4)
+				{
+					clickXBoutonRenf=StdDraw.mouseX();
+					clickYBoutonRenf=StdDraw.mouseY();
+				}
 			}
 			if(width/10-width/15 < clickXBoutonRenf && clickXBoutonRenf < width/10+width/15)  
 			{
 				if (height/3.5-height/100 < clickYBoutonRenf && clickYBoutonRenf < height/3.5+height/100) 
 				{
-					return "soldat";
+					isBoutonRenfortAppuye(clickXBoutonRenf, clickYBoutonRenf);
+					type = "soldat";
 				}
-				if (height/4.25-height/100 < clickYBoutonRenf && clickYBoutonRenf < height/4.25+height/100) 
+				if (height/4.15-height/100 < clickYBoutonRenf && clickYBoutonRenf < height/4.15+height/100) 
 				{
-					return "cavalier";
+					isBoutonRenfortAppuye(clickXBoutonRenf, clickYBoutonRenf);
+					type = "cavalier";
 				}
-				if (height/5.35-height/100 < clickYBoutonRenf && clickYBoutonRenf < height/5.35+height/100) 
+				if (height/5-height/100 < clickYBoutonRenf && clickYBoutonRenf < height/5+height/100) 
 				{
-					return "canon";
+					isBoutonRenfortAppuye(clickXBoutonRenf, clickYBoutonRenf);
+					type = "canon";
 				}
 			}
-			return "undefined";
 		}
-		
+		return type;
 	}
+	
+	public static int nbrSoldatsDeplacer(String cartePng, int limiteSoldats, int nbrSoldats)
+	{
+		if(StdDraw.isMousePressed())
+		{
+			double clickX=StdDraw.mouseX();
+			double clickY=StdDraw.mouseY();
+			if (height/2.9-height/130 < clickY && clickY< height/2.9+height/130)
+			{
+				if (width/9.9-width/150 < clickX && clickX< width/9.9+width/150)
+				{
+					if (nbrSoldats<limiteSoldats)
+					{
+						nbrSoldats++;
+					}
+				}
+				if (width/9-width/150 < clickX && clickX< width/9+width/150)
+				{
+					if (nbrSoldats>0)
+					{
+						nbrSoldats--;
+						Plateau.afficheNbrSoldatsRenforts(nbrSoldats);
+					}
+				}
+			}
+		}
+		return nbrSoldats;
+	}
+	public static int nbrCavaliersDeplacer(String cartePng, int limiteCavaliers, int nbrCavals)
+	{
+		if(StdDraw.isMousePressed())
+		{
+			double clickX=StdDraw.mouseX();
+			double clickY=StdDraw.mouseY();
+			if (height/3.25-height/130 < clickY && clickY< height/3.25+height/130)
+			{
+				if (width/9.9-width/150 < clickX && clickX< width/9.9+width/150)
+				{
+					if (nbrCavals<limiteCavaliers)
+					{
+						nbrCavals++;
+					}
+				}
+				if (width/9-width/150 < clickX && clickX< width/9+width/150)
+				{
+					if (nbrCavals>0)
+					{
+						nbrCavals--;
+					}
+				}
+			}
+		}
+		return nbrCavals;
+	}
+	public static int nbrCanonsDeplacer(String cartePng, int limiteCanons, int nbrCanons)
+	{
+		if(StdDraw.isMousePressed())
+		{
+			double clickX=StdDraw.mouseX();
+			double clickY=StdDraw.mouseY();
+			if (height/3.7-height/130 < clickY && clickY< height/3.7+height/130)
+			{
+				if (width/9.9-width/150 < clickX && clickX< width/9.9+width/150)
+				{
+					if (nbrCanons<limiteCanons)
+					{
+						nbrCanons++;
+					}
+				}
+				if (width/9-width/150 < clickX && clickX< width/9+width/150)
+				{
+					if (nbrCanons>0)
+					{
+						nbrCanons--;
+					}
+				}
+			}
+		}
+		return nbrCanons;
+	}
+	
 	
 	public static boolean isBoutonsUnitesRenfortPressed()
 	{
@@ -464,6 +605,29 @@ public class Interface {
 			}
 		}
 		return -1;
+	}
+	
+	public static void isBoutonRenfortAppuye(double clickXBoutonRenf, double clickYBoutonRenf )
+	{
+		int i=-1;
+		if(width/10-width/15 < clickXBoutonRenf && clickXBoutonRenf < width/10+width/15)  
+		{
+			if (height/3.5-height/100 < clickYBoutonRenf && clickYBoutonRenf < height/3.5+height/100) 
+			{
+				i=1;
+				Plateau.afficherBoutonPressed(i);
+			}
+			if (height/4.25-height/100 < clickYBoutonRenf && clickYBoutonRenf < height/4.25+height/100) 
+			{
+				i=2;
+				Plateau.afficherBoutonPressed(i);
+			}
+			if (height/5.35-height/100 < clickYBoutonRenf && clickYBoutonRenf < height/5.35+height/100) 
+			{
+				i=3;
+				Plateau.afficherBoutonPressed(i);
+			}
+		}
 	}
 	
 	/* public static int renfortCavalier()

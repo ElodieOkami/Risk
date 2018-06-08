@@ -1,6 +1,9 @@
-public class Unite {
+import java.util.ArrayList;
+
+public class Unite implements Comparable{
 	int cout;
 	int[] puissance;
+	int puissanceCombat;
 	int prioriteATT;
 	int prioriteDEF;
 	int mvtTour;
@@ -33,6 +36,12 @@ public class Unite {
 	}
 	public void setPuissance(int[] puissance) {
 		this.puissance = puissance;
+	}
+	public int getPuissanceCombat() {
+		return puissanceCombat;
+	}
+	public void setPuissanceCombat(int puissanceCombat) {
+		this.puissanceCombat = puissanceCombat;
 	}
 	public int getPrioriteATT() {
 		return prioriteATT;
@@ -71,24 +80,94 @@ public class Unite {
 		this.type = type;
 	}
 	
+	
+	@Override
+	public int compareTo(Unite comparestu)
+	{
+		int comparePuiss=((Unite)comparestu).getPuissanceCombat();
+		return comparePuiss-this.puissanceCombat;
+	}
+	
+	@Override
+	public String toString()
+	{
+		return "[ cout=" + cout + ", puissance=" + puissance + ", prioriteATT=" + prioriteATT + ", prioriteDEF=" + ", mvtTour=" + mvtTour + ", mvtLeft=" + mvtLeft + ", idPosition=" + idPosition + ", type=" + type + "]";
+		}
+
+	public static int[] TriParSelection(int[] S)
+	{
+		System.out.println("Table avant le tri : ");
+		PrintTab(S);
+		int indice;
 		
-	public static int nbrSoldatsDeplacer(String cartePng)
-	{
-		int nbrSoldats=0;
-							//Fonction de Maya
-		return nbrSoldats;
+		for (int i=0; i<S.length; i++)
+		{
+			indice = IndiceMin(S, i);
+			if (i!=indice)
+			{
+				S=Permuter(S, i, indice);
+			}
+		}
+		System.out.println();
+		System.out.println();
+		System.out.println("Table après le tri : ");
+		PrintTab(S);
+		return S;
 	}
-	public static int nbrCavaliersDeplacer(String cartePng)
+	
+	public static int[] Permuter(int S[], int i, int j)
 	{
-		int nbrCavals=0;
-		//Fonction de Maya
-		return nbrCavals;
+		int tmp = S[i];
+		S[i] = S[j];
+		S[j] = tmp;
+		return S;
 	}
-	public static int nbrCanonsDeplacer(String cartePng)
+	
+	public static void PrintTab(int tab[])
 	{
-		int nbrCanons=0;
-		//Fonction de Maya
-		return nbrCanons;
+		for (int i=0; i<tab.length; i++)
+		{
+			System.out.print(tab[i]+" ");
+		}
+	}
+	
+	public static int IndiceMin(int S[], int rang)
+	{
+		int indice = rang;
+		for (int i=rang+1; i<S.length; i++)
+		{
+			if (S[i]<S[indice])
+			{
+				indice = i;
+			}
+		}
+		return indice;
+	}
+	
+	public static int highestPrioATT(ArrayList<Unite> liste)
+	{
+		int highestPatt = 3;
+		for (int i=0; i<liste.size();i++)
+		{
+			if (highestPatt >liste.get(i).getPrioriteATT())
+			{
+				highestPatt = liste.get(i).getPrioriteATT();
+			}
+		}
+		return highestPatt;
+	}
+	
+	public static int highestPrioDEF(ArrayList<Unite> liste)
+	{
+		int highestPdef = 3;
+		for (int i=0; i<liste.size();i++)
+		{
+			if (highestPdef >liste.get(i).getPrioriteDEF())
+			{
+				highestPdef = liste.get(i).getPrioriteDEF();
+			}
+		}
+		return highestPdef;
 	}
 	
 	

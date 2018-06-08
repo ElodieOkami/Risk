@@ -1,4 +1,4 @@
-import java.awt.Color;
+	import java.awt.Color;
 	import java.util.ArrayList;
 	
 	public class Joueur {
@@ -63,63 +63,63 @@ import java.awt.Color;
 		
 		
 		
-		//Etape 3 : RÃ©partition d'un nombre de soldats pour chaque joueur
+		//Etape 3 : Répartition d'un nombre de soldats pour chaque joueur
 		
 
 		public void repartitionUnite(int nbrJr)
 		{
-			switch(nbrJr) //On gÃ¨re les diffÃ©rents cas
+			switch(nbrJr) //On gère les différents cas
 			{
 			case 1 :
 				for(int i = 0; i < 40; i++)
 				{
-					this.listeUnite.add(new Soldat(1, listePuissanceSoldat, 2, 1, 2, 2, -1, "Soldat"));
+					this.listeUnite.add(new Soldat(1, listePuissanceSoldat, 2, 1, 2, 2, -1, "soldat"));
 				}
-				//System.out.println("Le joueur et l'IA ont reÃ§u 40 soldats");
+				//System.out.println("Le joueur et l'IA ont reçu 40 soldats");
 				break;
 			case 2 :
 				for(int i = 0; i < 40; i++)
 				{
-					this.listeUnite.add(new Soldat(1, listePuissanceSoldat, 2, 1, 2, 2, -1, "Soldat"));
+					this.listeUnite.add(new Soldat(1, listePuissanceSoldat, 2, 1, 2, 2, -1, "soldat"));
 				}
-				//System.out.println("Les deux joueurs ont reÃ§u 40 soldats");
+				//System.out.println("Les deux joueurs ont reçu 40 soldats");
 				break;
 			case 3 :
 				for(int i = 0; i < 35; i++)
 				{
-					this.listeUnite.add(new Soldat(1, listePuissanceSoldat, 2, 1, 2, 2, -1, "Soldat"));
+					this.listeUnite.add(new Soldat(1, listePuissanceSoldat, 2, 1, 2, 2, -1, "soldat"));
 				}
-				//System.out.println("Les trois joueurs ont reÃ§u 35 soldats");
+				//System.out.println("Les trois joueurs ont reçu 35 soldats");
 				break;
 			case 4 :
 				for(int i = 0; i < 30; i++)
 				{
-					this.listeUnite.add(new Soldat(1, listePuissanceSoldat, 2, 1, 2, 2, -1, "Soldat"));
+					this.listeUnite.add(new Soldat(1, listePuissanceSoldat, 2, 1, 2, 2, -1, "soldat"));
 				}
-				//System.out.println("Les quatre joueurs ont reÃ§u 30 soldats");
+				//System.out.println("Les quatre joueurs ont reçu 30 soldats");
 				break;
 			case 5 :
 				for(int i = 0; i < 25; i++)
 				{
-					this.listeUnite.add(new Soldat(1, listePuissanceSoldat, 2, 1, 2, 2, -1, "Soldat"));
+					this.listeUnite.add(new Soldat(1, listePuissanceSoldat, 2, 1, 2, 2, -1, "soldat"));
 				}
-				//System.out.println("Les cinq joueurs ont reÃ§u 25 soldats");
+				//System.out.println("Les cinq joueurs ont reçu 25 soldats");
 				break;
 			case 6 :
 				for(int i = 0; i < 20; i++)
 				{
-					this.listeUnite.add(new Soldat(1, listePuissanceSoldat, 2, 1, 2, 2, -1, "Soldat"));
+					this.listeUnite.add(new Soldat(1, listePuissanceSoldat, 2, 1, 2, 2, -1, "soldat"));
 				}
-				//System.out.println("Les six joueurs ont reÃ§u 20 soldats");
+				//System.out.println("Les six joueurs ont reçu 20 soldats");
 				break;
 			}
 		}
 		
 		public void rempliListTerrJoueur()
 		{
-			for (int i=0; i<6; i++)		//On parcours les rÃ©gions
+			for (int i=0; i<6; i++)		//On parcours les régions
 			{
-				for (int j=0; j<RiskIsep.getRegion(i).getTerritoires().size(); j++)		//On parcours les tÃ©ritoires de cette rÃ©gion
+				for (int j=0; j<RiskIsep.getRegion(i).getTerritoires().size(); j++)		//On parcours les téritoires de cette région
 				{
 					if (RiskIsep.getRegion(i).getTerritoires().get(j).getProprietaire() == this.getIdJoueur())
 					{
@@ -133,8 +133,8 @@ import java.awt.Color;
 		{
 			for (int i=0; i<this.getListeTerrPoss().size(); i++)
 			{
-				RiskIsep.regionClicked(this.getListeTerrPoss().get(i).getId()).getTerritoires().get(Territoire.territoireDsRegion(this.getListeTerrPoss().get(i).getId())).setNbrSoldat(RiskIsep.regionClicked(this.getListeTerrPoss().get(i).getId()).getTerritoires().get(Territoire.territoireDsRegion(this.getListeTerrPoss().get(i).getId())).getNbrSoldat()+1);	//Le territoire se voit automatiquement attribuÃ© un soldat 
-				this.getListeUnite().get(numeroSoldat).setIdPosition(this.getListeTerrPoss().get(i).getId()); 	//On dit sur quel territoire le soldat a Ã©tÃ© placÃ©
+				RiskIsep.regionClicked(this.getListeTerrPoss().get(i).getId()).getTerritoires().get(Territoire.territoireDsRegion(this.getListeTerrPoss().get(i).getId())).setNbrSoldat(RiskIsep.regionClicked(this.getListeTerrPoss().get(i).getId()).getTerritoires().get(Territoire.territoireDsRegion(this.getListeTerrPoss().get(i).getId())).getNbrSoldat()+1);	//Le territoire se voit automatiquement attribué un soldat 
+				this.getListeUnite().get(numeroSoldat).setIdPosition(this.getListeTerrPoss().get(i).getId()); 	//On dit sur quel territoire le soldat a été placé
 				numeroSoldat++;
 			}
 			return numeroSoldat;
@@ -147,6 +147,7 @@ import java.awt.Color;
 			int renfTerr = (int)this.getListeTerrPoss().size()/3;
 			int renfReg = returnRenfRegIfComplete(this.getIdJoueur());
 			int renfCapture = returnRenfCapture(this.getNbrTerrCaptured());
+			this.setNbrTerrCaptured(0);
 			
 			renforts = renfTerr+renfReg+renfCapture;
 			return renforts;
@@ -206,6 +207,48 @@ import java.awt.Color;
 			{
 				this.listeUnite.add(new Canon(7, listePuissanceCanon, 3, 2, 1, 1, idTerr, "canon"));
 			}
+		}
+		
+		public int calculLimiteSoldats(int idTerrIni)
+		{
+			int limiteSoldats = 0;
+			
+			for (int i=0; i<this.getListeUnite().size(); i++)
+			{
+				if (this.getListeUnite().get(i).getIdPosition() == idTerrIni && this.getListeUnite().get(i).getMvtLeft() > 0 && this.getListeUnite().get(i).getType() == "soldat")
+				{
+					limiteSoldats++;
+				}
+			}
+			return limiteSoldats;
+		}
+		
+		public int calculLimiteCavaliers(int idTerrIni)
+		{
+			int limiteCavaliers = 0;
+			
+			for (int i=0; i<this.getListeUnite().size(); i++)
+			{
+				if (this.getListeUnite().get(i).getIdPosition() == idTerrIni && this.getListeUnite().get(i).getMvtLeft() > 0 && this.getListeUnite().get(i).getType() == "cavalier")
+				{
+					limiteCavaliers++;
+				}
+			}
+			return limiteCavaliers;
+		}
+		
+		public int calculLimiteCanons(int idTerrIni)
+		{
+			int limiteCanons = 0;
+			
+			for (int i=0; i<this.getListeUnite().size(); i++)
+			{
+				if (this.getListeUnite().get(i).getIdPosition() == idTerrIni && this.getListeUnite().get(i).getMvtLeft() > 0 && this.getListeUnite().get(i).getType() == "canon")
+				{
+					limiteCanons++;
+				}
+			}
+			return limiteCanons;
 		}
 		
 	}
